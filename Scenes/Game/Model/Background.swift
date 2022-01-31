@@ -14,12 +14,12 @@ class Background {
     private var startPosition: CGPoint
     private var reset = true
     
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, parent: SKNode) {
         self.node = node
         self.duplicateNode = node.copy() as! SKSpriteNode
         duplicateNode.position.y += node.size.height
-        duplicateNode.alpha = 0.5
         startPosition = node.position
+        parent.addChild(duplicateNode)
     }
     
     func update(deltaTime: TimeInterval) {

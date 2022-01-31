@@ -9,6 +9,9 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    // Score TODO: separete from scene
+    var currentScore = 0
+    var scoreLimiter = 0
     
     var player: Player!
     var spawner: Spawner!
@@ -18,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Labels
     var introNode: SKSpriteNode!
     var gameOverNode: SKSpriteNode!
+    var scoreLabel: SKLabelNode!
     
     var lastUpdate = TimeInterval(0)
     var status: GameStatus = .intro
@@ -31,6 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player = Player(node: playerNode)
         
         // spawner setup
+        let spawnerNode = self.childNode(withName: "spawner")!
+        spawner = Spawner(node: spawnerNode, parent: self)
         
         // pan setup
         let panNode = self.childNode(withName: "pan") as! SKSpriteNode
@@ -40,10 +46,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         introNode = self.childNode(withName: "intro") as? SKSpriteNode
         gameOverNode = self.childNode(withName: "gameOver") as? SKSpriteNode
         gameOverNode.removeFromParent()
+        scoreLabel = self.childNode(withName: "score") as? SKLabelNode
         
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
-        background = Background(node: backgroundNode)
+        background = Background(node: backgroundNode, parent: self)
     }
     
     
@@ -99,6 +106,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOverNode.removeFromParent()
         self.addChild(introNode)
         player.reset()
+        spawner.reset()
+        
+        currentScore = 0
     }
     
     func gameOver() {
@@ -113,7 +123,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let eggTouchedPan = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)
-        if eggTouchedPan {
+        let eggTouchedEnemy = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
+        if eggTouchedPan || eggTouchedEnemy {
             gameOver()
         }
     }
@@ -151,6 +162,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             break
         case .playing:
             background.update(deltaTime: deltaTime)
+            spawner.update(deltaTime: deltaTime)
+            
+            //Score counting
+            scoreLimiter += 1
+            if scoreLimiter >= 10 {
+                currentScore += 1
+                scoreLabel.text = "\(currentScore)"
+                scoreLimiter = 0
+            }
         case .gameOver:
             break
         }
