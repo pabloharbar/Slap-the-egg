@@ -17,6 +17,7 @@ class Player {
     private var flickStartPoint: CGPoint
     private var flickEndPoint: CGPoint
     private var impulseDuration = TimeInterval(0)
+    private var playerFlickPosition = CGPoint(x: 0, y: 0)
     
     // Flick physical constants
     private let linearK = 10
@@ -56,6 +57,7 @@ class Player {
     func startFlick(position: CGPoint, currentTime: TimeInterval) {
         flickStartPoint = position
         impulseDuration = currentTime
+        playerFlickPosition = node.position
     }
     
     func flickRelease(position: CGPoint, currentTime: TimeInterval) {
@@ -70,7 +72,8 @@ class Player {
         let a = -m
         let b = CGFloat(1)
         let c = m * flickStartPoint.x - flickStartPoint.y
-        let distance = abs(a * node.position.x + b * node.position.y + c) / pow((pow(a, 2) + pow(b, 2)), 0.5)
+        let distance = abs(a * playerFlickPosition.x + b * playerFlickPosition.y + c) / pow((pow(a, 2) + pow(b, 2)), 0.5)
+//        let distance = abs(a * node.position.x + b * node.position.y + c) / pow((pow(a, 2) + pow(b, 2)), 0.5)
         
         
         let delta_x = flickEndPoint.x - flickStartPoint.x

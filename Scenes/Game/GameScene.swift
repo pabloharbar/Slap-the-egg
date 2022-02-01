@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         // Physics contact delegate
         physicsWorld.contactDelegate = self
-        
+        physicsWorld.gravity.dy /= 2
         // player setup
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         player = Player(node: playerNode)
