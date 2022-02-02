@@ -15,10 +15,19 @@ struct ContentView: View {
         ZStack {
             SpriteView(scene: gameManager.scene)
                 .ignoresSafeArea()
+
             VStack {
-                Text("Score: \(gameManager.score)")
-                    .font(.headline)
+                HStack {
+                    Spacer()
+                    EggShellLabel(money: $gameManager.money).offset(x: -15, y: -5)
+                }
                 Spacer()
+                MenuLabel()
+
+                ScoreLabel(score: $gameManager.score)
+                    .opacity(Double(gameManager.alpha))
+                Spacer()
+                
             }
         }
         .onReceive(gameManager.scene.scorePublisher, perform: { target in
