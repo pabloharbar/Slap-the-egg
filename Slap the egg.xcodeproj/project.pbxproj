@@ -12,12 +12,14 @@
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
 		5B3DE53327A8572B00DB2743 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3DE53227A8572B00DB2743 /* GameManager.swift */; };
+		5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62127AACD7600B74A7C /* GameManager.swift */; };
 		5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */; };
 		5BBCD6CE27A3328300A743A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CD27A3328300A743A7 /* ContentView.swift */; };
 		5BBCD6D027A3328400A743A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CF27A3328400A743A7 /* Assets.xcassets */; };
 		5BBCD6D327A3328400A743A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD6D227A3328400A743A7 /* Preview Assets.xcassets */; };
 		5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6DB27A3336500A743A7 /* GameScene.swift */; };
 		5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD70527A3399300A743A7 /* GameScene.sks */; };
+		5BEC960627A9D1F800B9CEDF /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		5B3DE53227A8572B00DB2743 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		5B5CD62127AACD7600B74A7C /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		5BBCD6C827A3328300A743A7 /* Slap the egg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slap the egg.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slap_the_eggApp.swift; sourceTree = "<group>"; };
 		5BBCD6CD27A3328300A743A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -33,6 +36,8 @@
 		5BBCD6D227A3328400A743A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5BBCD6DB27A3336500A743A7 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5BBCD70527A3399300A743A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		5BEC960427A9D1CC00B9CEDF /* Slap-the-egg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Slap-the-egg-Info.plist"; sourceTree = SOURCE_ROOT; };
+		5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +62,7 @@
 		5B18A4A627A493FD004A2CD0 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				5B5CD62027AACD4700B74A7C /* View Model */,
 				5BBCD6DB27A3336500A743A7 /* GameScene.swift */,
 				5B3DE53227A8572B00DB2743 /* GameManager.swift */,
 				5BBCD70527A3399300A743A7 /* GameScene.sks */,
@@ -84,6 +90,14 @@
 			path = Spawn;
 			sourceTree = "<group>";
 		};
+		5B5CD62027AACD4700B74A7C /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B5CD62127AACD7600B74A7C /* GameManager.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		5BBCD6BF27A3328300A743A7 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +117,8 @@
 		5BBCD6CA27A3328300A743A7 /* Slap the egg */ = {
 			isa = PBXGroup;
 			children = (
+				5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */,
+				5BEC960427A9D1CC00B9CEDF /* Slap-the-egg-Info.plist */,
 				5B18A4A527A493F3004A2CD0 /* Scenes */,
 				5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */,
 				5BBCD6CD27A3328300A743A7 /* ContentView.swift */,
@@ -178,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BEC960627A9D1F800B9CEDF /* Bangers-Regular.ttf in Resources */,
 				5BBCD6D327A3328400A743A7 /* Preview Assets.xcassets in Resources */,
 				5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */,
 				5BBCD6D027A3328400A743A7 /* Assets.xcassets in Resources */,
@@ -192,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */,
+				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
 				5B3DE53327A8572B00DB2743 /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
@@ -332,6 +350,7 @@
 				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Slap-the-egg-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -362,6 +381,7 @@
 				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Slap-the-egg-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

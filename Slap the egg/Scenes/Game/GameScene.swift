@@ -8,10 +8,17 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
-    // Score TODO: separete from scene
+enum GameStatus {
+    case menu
+    case intro
+    case playing
+    case gameOver
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
+    // Score TODO: separate from scene
     var currentScore = 0
-    var scoreLimiter = 0
+    var scoreLimiter = 0 // auxiliar
     
     var player: Player!
     var spawner: Spawner!
@@ -19,17 +26,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var background: Background!
     
     // Labels
-    var introNode: SKSpriteNode!
+    var title: SKNode!
+    var titleLabel: SKLabelNode!
     var gameOverNode: SKSpriteNode!
     var scoreLabel: SKLabelNode!
     
     var lastUpdate = TimeInterval(0)
-    var status: GameStatus = .intro
+    var status: GameStatus = .menu
     
     override func didMove(to view: SKView) {
         // Physics contact delegate
         physicsWorld.contactDelegate = self
-        physicsWorld.gravity.dy /= 2
+        
         // player setup
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         player = Player(node: playerNode)
@@ -43,7 +51,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pan = Pan(node: panNode)
         
         // label setup
-        introNode = self.childNode(withName: "intro") as? SKSpriteNode
+        title = self.childNode(withName: "title")!
+        titleLabel = self.childNode(withName: "menuLabel") as? SKLabelNode
+        titleLabel.fontName = "Bangers-Regular"
         gameOverNode = self.childNode(withName: "gameOver") as? SKSpriteNode
         gameOverNode.removeFromParent()
         scoreLabel = self.childNode(withName: "score") as? SKLabelNode
@@ -58,12 +68,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Flick mode
         switch status {
+        case .menu:
+            status = .intro
+            title.removeFromParent()
+            titleLabel.removeFromParent()
+            // Aproximar frigideira
+            pan.zoomIn()
         case .intro:
-            player.startFlick(position: pos, currentTime: lastUpdate)
+            start()
+            player.slap(at: pos, parent: self)
         case .playing:
-            player.startFlick(position: pos, currentTime: lastUpdate)
+            player.slap(at: pos, parent: self)
+//            player.startFlick(position: pos, currentTime: lastUpdate)
         case .gameOver:
-            break
+            reset()
         }
 
     }
@@ -82,32 +100,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        // Flick mode
-        switch status {
-        case .intro:
-            start()
-            player.flickRelease(position: pos, currentTime: lastUpdate)
-        case .playing:
-            player.flickRelease(position: pos, currentTime: lastUpdate)
-        case .gameOver:
-            reset()
-        }
-
+   
     }
     
     func start() {
         status = .playing
         player.start()
-        introNode.removeFromParent()
+        title.removeFromParent()
     }
     
     func reset() {
-        status = .intro
+        status = .menu
         gameOverNode.removeFromParent()
-        self.addChild(introNode)
+        self.addChild(title)
+        self.addChild(titleLabel)
         player.reset()
         spawner.reset()
-        
+        pan.zoomOut()
         currentScore = 0
     }
     
@@ -130,21 +139,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -158,6 +152,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastUpdate = currentTime
         
         switch status {
+        case .menu:
+            break
         case .intro:
             break
         case .playing:
@@ -175,10 +171,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             break
         }
     }
-}
-
-enum GameStatus {
-    case intro
-    case playing
-    case gameOver
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    }
 }
