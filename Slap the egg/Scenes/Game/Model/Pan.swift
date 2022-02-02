@@ -28,4 +28,14 @@ class Pan {
         node.run(zoomOut)
         node.run(move)
     }
+    
+    func gameOver() {
+        let texture = SKTexture(imageNamed: "panGameOver")
+        node.run(SKAction.setTexture(texture))
+    }
+    
+    func reset() {
+        let texture = SKTexture(imageNamed: "panela")
+        node.run(SKAction.setTexture(texture))
+    }
 }

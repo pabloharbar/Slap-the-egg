@@ -19,9 +19,10 @@ enum GameStatus {
 class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     // Score publisher setup
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
-    private var cancellableSet = Set<AnyCancellable>()
+    public let statusPublisher = CurrentValueSubject<GameStatus, Never>(.menu)
+//    private var cancellableSet = Set<AnyCancellable>()
     
-    @Published var target = 0 // Talvez nao precise do target
+//    @Published var target = 0 // Talvez nao precise do target
     @Published var currentScore = 0 {
         didSet {
             scorePublisher.send(self.currentScore)
@@ -29,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     }
     var scoreLimiter = 0 // auxiliar
     
+    // Sprites
     var player: Player!
     var spawner: Spawner!
     var pan: Pan!
@@ -39,8 +41,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var titleLabel: SKLabelNode!
     var gameOverNode: SKSpriteNode!
     
+    let deadEgg = SKSpriteNode(imageNamed: "deadEgg")
+    var touchIndicator: SKSpriteNode!
+    
     var lastUpdate = TimeInterval(0)
-    var status: GameStatus = .menu
+    @Published var status: GameStatus = .menu {
+        didSet {
+            statusPublisher.send(self.status)
+        }
+    }
 
     override func didMove(to view: SKView) {
         // Physics contact delegate
@@ -63,6 +72,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         titleLabel = self.childNode(withName: "menuLabel") as? SKLabelNode
         titleLabel.fontName = "Bangers-Regular"
         
+        touchIndicator = self.childNode(withName: "touch") as? SKSpriteNode
+        touchIndicator.removeFromParent()
+        let approximate = SKAction.moveBy(x: -100, y: 50, duration: 0.5)
+        let distanciate = SKAction.moveBy(x: 100, y: -50, duration: 0.5)
+        let scaleUp = SKAction.scale(to: 1.2, duration: 0.3)
+        let scaleDown = SKAction.scale(to: 0.9, duration: 0.3)
+        let touchAnimation = SKAction.sequence([scaleDown,scaleUp,distanciate,approximate])
+        touchIndicator.run(SKAction.repeatForever(touchAnimation))
+        
         let fadeOut = SKAction.fadeOut(withDuration: 0.5)
         let fadeIn = SKAction.fadeIn(withDuration: 1)
         let animation = SKAction.sequence([fadeOut,fadeIn])
@@ -76,9 +94,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         background = Background(node: backgroundNode, parent: self)
         
         // Publisher setup
-        scorePublisher.sink(receiveValue: { [unowned self] value in
-            self.target = value
-        }).store(in: &cancellableSet)
+//        scorePublisher.sink(receiveValue: { [unowned self] value in
+////            self.target = value
+//        }).store(in: &cancellableSet)
+//        statusPublisher.sink(receiveValue: { [unowned self] value in
+//
+//        })
     }
     
     
@@ -92,6 +113,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             titleLabel.removeFromParent()
             // Aproximar frigideira
             pan.zoomIn()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                if self.status == .intro {
+                    self.beginTouchAnimation()
+                }
+            }
         case .intro:
             if player.checkTouch(at: pos) {
                 start()
@@ -119,14 +145,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         player.start()
         title.removeFromParent()
         titleLabel.removeFromParent()
+        touchIndicator.removeFromParent()
     }
     
     func reset() {
         status = .menu
         gameOverNode.removeFromParent()
         self.addChild(title)
-        player.reset()
+        player.reset(parent: self)
         spawner.reset()
+        pan.reset()
         pan.zoomOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if self.status == .menu {
@@ -134,11 +162,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             }
         }
         currentScore = 0
+        deadEgg.removeFromParent()
     }
     
-    func gameOver() {
+    func gameOver(killedByPan: Bool, deathPosition: CGPoint) {
         if status == .gameOver {
             return
+        }
+        if killedByPan {
+            pan.gameOver()
+        } else {
+            deadEgg.position = deathPosition
+            deadEgg.zPosition = -3
+            deadEgg.zRotation = player.getZRotation()
+            self.addChild(deadEgg)
         }
         
         player.die()
@@ -150,11 +187,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let eggTouchedPan = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedEnemy = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
         if eggTouchedPan || eggTouchedEnemy {
-            gameOver()
+            gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
         }
     }
     
-    
+    func beginTouchAnimation() {
+        self.addChild(touchIndicator)
+    }
     
     
     override func update(_ currentTime: TimeInterval) {
