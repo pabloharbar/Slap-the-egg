@@ -11,7 +11,6 @@
 		5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A127A48929004A2CD0 /* Pan.swift */; };
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
-		5B3DE53327A8572B00DB2743 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3DE53227A8572B00DB2743 /* GameManager.swift */; };
 		5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62127AACD7600B74A7C /* GameManager.swift */; };
 		5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */; };
 		5BBCD6CE27A3328300A743A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CD27A3328300A743A7 /* ContentView.swift */; };
@@ -27,7 +26,6 @@
 		5B18A4A127A48929004A2CD0 /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
-		5B3DE53227A8572B00DB2743 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		5B5CD62127AACD7600B74A7C /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		5BBCD6C827A3328300A743A7 /* Slap the egg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slap the egg.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slap_the_eggApp.swift; sourceTree = "<group>"; };
@@ -62,11 +60,11 @@
 		5B18A4A627A493FD004A2CD0 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				5B5CD62327AACE2C00B74A7C /* View */,
+				5B18A4A727A49406004A2CD0 /* Model */,
 				5B5CD62027AACD4700B74A7C /* View Model */,
 				5BBCD6DB27A3336500A743A7 /* GameScene.swift */,
-				5B3DE53227A8572B00DB2743 /* GameManager.swift */,
 				5BBCD70527A3399300A743A7 /* GameScene.sks */,
-				5B18A4A727A49406004A2CD0 /* Model */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -96,6 +94,13 @@
 				5B5CD62127AACD7600B74A7C /* GameManager.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		5B5CD62327AACE2C00B74A7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5BBCD6BF27A3328300A743A7 = {
@@ -210,7 +215,6 @@
 			files = (
 				5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */,
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
-				5B3DE53327A8572B00DB2743 /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
 				5B18A4A027A452BC004A2CD0 /* Player.swift in Sources */,

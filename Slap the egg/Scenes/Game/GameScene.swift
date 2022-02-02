@@ -6,7 +6,8 @@
 //
 
 import SpriteKit
-import GameplayKit
+import Foundation
+import Combine
 
 enum GameStatus {
     case menu
@@ -16,8 +17,16 @@ enum GameStatus {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
-    // Score TODO: separate from scene
-    var currentScore = 0
+    // Score publisher setup
+    public let scorePublisher = CurrentValueSubject<Int, Never>(0)
+    private var cancellableSet = Set<AnyCancellable>()
+    
+    @Published var target = 0 // Talvez nao precise do target
+    @Published var currentScore = 0 {
+        didSet {
+            scorePublisher.send(self.currentScore)
+        }
+    }
     var scoreLimiter = 0 // auxiliar
     
     var player: Player!
@@ -29,11 +38,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var title: SKNode!
     var titleLabel: SKLabelNode!
     var gameOverNode: SKSpriteNode!
-    var scoreLabel: SKLabelNode!
     
     var lastUpdate = TimeInterval(0)
     var status: GameStatus = .menu
-    
+
     override func didMove(to view: SKView) {
         // Physics contact delegate
         physicsWorld.contactDelegate = self
@@ -54,13 +62,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         title = self.childNode(withName: "title")!
         titleLabel = self.childNode(withName: "menuLabel") as? SKLabelNode
         titleLabel.fontName = "Bangers-Regular"
+        
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+        let fadeIn = SKAction.fadeIn(withDuration: 1)
+        let animation = SKAction.sequence([fadeOut,fadeIn])
+        titleLabel.run(SKAction.repeatForever(animation))
+        
         gameOverNode = self.childNode(withName: "gameOver") as? SKSpriteNode
         gameOverNode.removeFromParent()
-        scoreLabel = self.childNode(withName: "score") as? SKLabelNode
         
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
         background = Background(node: backgroundNode, parent: self)
+        
+        // Publisher setup
+        scorePublisher.sink(receiveValue: { [unowned self] value in
+            self.target = value
+        }).store(in: &cancellableSet)
     }
     
     
@@ -75,8 +93,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             // Aproximar frigideira
             pan.zoomIn()
         case .intro:
-            start()
-            player.slap(at: pos, parent: self)
+            if player.checkTouch(at: pos) {
+                start()
+                player.slap(at: pos, parent: self)
+            }
         case .playing:
             player.slap(at: pos, parent: self)
 //            player.startFlick(position: pos, currentTime: lastUpdate)
@@ -88,15 +108,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     
     func touchMoved(toPoint pos : CGPoint) {
         
-        // Flick track animation
-        let track = SKSpriteNode(color: .red, size: CGSize(width: 20, height: 20))
-        
-        track.position = pos
-        self.addChild(track)
-        
-        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-        track.run(fadeOut)
-
     }
     
     func touchUp(atPoint pos : CGPoint) {
@@ -107,16 +118,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         status = .playing
         player.start()
         title.removeFromParent()
+        titleLabel.removeFromParent()
     }
     
     func reset() {
         status = .menu
         gameOverNode.removeFromParent()
         self.addChild(title)
-        self.addChild(titleLabel)
         player.reset()
         spawner.reset()
         pan.zoomOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.status == .menu {
+                self.addChild(self.titleLabel)
+            }
+        }
         currentScore = 0
     }
     
@@ -164,7 +180,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             scoreLimiter += 1
             if scoreLimiter >= 10 {
                 currentScore += 1
-                scoreLabel.text = "\(currentScore)"
                 scoreLimiter = 0
             }
         case .gameOver:

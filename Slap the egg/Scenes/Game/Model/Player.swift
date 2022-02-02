@@ -20,8 +20,6 @@ class Player {
     init(node: SKSpriteNode) {
         self.node = node
         startPosition = node.position
-//        flickEndPoint = CGPoint(x: 0, y: 0)
-//        flickStartPoint = CGPoint(x: 0, y: 0)
         physicsSetup()
     }
     
@@ -61,7 +59,7 @@ class Player {
             let fadeOut = SKAction.fadeOut(withDuration: 1)
             missNode.text = "Errou"
             missNode.fontName = "Bangers-Regular"
-            missNode.fontSize = 30
+            missNode.fontSize = 40
             missNode.fontColor = .red
             missNode.position = position
             missNode.zPosition = -1
@@ -70,6 +68,32 @@ class Player {
         }
     }
     
+    func checkTouch(at point: CGPoint) -> Bool {
+        return node.contains(point)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 //    // Flick Mode
 //    func startFlick(position: CGPoint, currentTime: TimeInterval) {
@@ -123,4 +147,4 @@ class Player {
 //        }
 //
 //    }
-}
+
