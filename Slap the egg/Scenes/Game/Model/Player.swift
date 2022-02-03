@@ -37,13 +37,14 @@ class Player {
     }
     
     func die() {
-        
+        node.removeFromParent()
     }
     
-    func reset() {
+    func reset(parent: SKNode) {
         node.position = startPosition
         node.zRotation = 0
         node.physicsBody?.isDynamic = false
+        parent.addChild(node)
     }
     
     func slap(at position: CGPoint, parent: SKNode) {
@@ -70,6 +71,10 @@ class Player {
     
     func checkTouch(at point: CGPoint) -> Bool {
         return node.contains(point)
+    }
+    
+    func getZRotation() -> CGFloat {
+        return node.zRotation
     }
 }
 

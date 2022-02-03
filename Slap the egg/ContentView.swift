@@ -15,23 +15,29 @@ struct ContentView: View {
         ZStack {
             SpriteView(scene: gameManager.scene)
                 .ignoresSafeArea()
-
             VStack {
-                HStack {
-                    Spacer()
-                    EggShellLabel(money: $gameManager.money).offset(x: -15, y: -5)
-                }
+                Text(" \(gameManager.score) ")
+                    .font(.custom("Bangers-Regular", size: 48))
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.gray.opacity(0.6))
+                    .cornerRadius(20)
+                    .opacity(gameManager.displayScoreBoard())
                 Spacer()
-                MenuLabel()
-
-                ScoreLabel(score: $gameManager.score)
-                    .opacity(Double(gameManager.alpha))
-                Spacer()
-                
             }
+            Text(" Highest: \(gameManager.record) ")
+                .font(.custom("Bangers-Regular", size: 36))
+                .padding(.bottom, 80)
+                .opacity(gameManager.displayRecord())
         }
         .onReceive(gameManager.scene.scorePublisher, perform: { target in
             gameManager.score = target
+        })
+        .onReceive(gameManager.scene.statusPublisher, perform: { status in
+            gameManager.gameStatus = status
+            if status == .gameOver {
+                gameManager.updateRecord()
+            }
         })
     }
 }

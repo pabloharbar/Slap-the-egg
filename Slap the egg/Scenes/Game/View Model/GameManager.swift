@@ -14,16 +14,29 @@ class GameManager: ObservableObject {
     var scene: GameScene
     
     @Published var score = 0
-    @Published var money = 0
-    @Published var alpha = 0
+    @Published var record: Int
+    
     @Published var gameStatus: GameStatus = .menu
     
     init() {
         scene = SKScene(fileNamed: "GameScene") as! GameScene
         scene.scaleMode = .fill // TODO: Rever scaleMode e aspecto da scene
+        record = UserDefaultsWrapper.fetchRecord() ?? 0
     }
     
-    func updateStatus() {
-//        scene.status = gameStatus
+    func updateRecord() {
+        if score > record {
+            UserDefaultsWrapper.setRecord(model: score)
+            record = UserDefaultsWrapper.fetchRecord() ?? 0
+        }
     }
+    
+    func displayScoreBoard() -> Double {
+        return gameStatus == .playing || gameStatus == .gameOver ? 1 : 0
+    }
+    
+    func displayRecord() -> Double {
+        return gameStatus == .menu || gameStatus == .gameOver ? 1 : 0
+    }
+    
 }

@@ -47,7 +47,7 @@ class Spawner {
         let pathNode = SKShapeNode(path: dashedPath)
         pathNode.strokeColor = .gray
         pathNode.lineWidth = 10
-        pathNode.zPosition = -1
+        pathNode.zPosition = -4
         pathNode.lineCap = .round
         
 //        path.setLineDash(dashes, count: dashes.count, phase: 0)
