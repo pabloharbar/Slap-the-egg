@@ -8,17 +8,17 @@
 import Foundation
 
 class UserDefaultsWrapper {
-    static func setRecord(model: Int) {
+    static func setRecord(model: PlayerData) {
         let data = try? JSONEncoder().encode(model)
-        UserDefaults.standard.set(data, forKey: "record")
+        UserDefaults.standard.set(data, forKey: "data")
     }
     
-    static func fetchRecord() -> Int? {
-        guard let data = UserDefaults.standard.data(forKey: "record") else {
+    static func fetchRecord() -> PlayerData? {
+        guard let data = UserDefaults.standard.data(forKey: "data") else {
             return nil
         }
         
-        let record = try? JSONDecoder().decode(Int.self, from: data)
+        let record = try? JSONDecoder().decode(PlayerData.self, from: data)
         return record
     }
     

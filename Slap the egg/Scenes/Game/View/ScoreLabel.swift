@@ -15,7 +15,7 @@ struct ScoreLabel: View {
                 .fill(.gray)
                 .frame(width: 130, height: 80)
                 .opacity(0.30)
-            Text("\(score)")
+            Text("\(score) ")
                 .padding()
                 .foregroundColor(.white)
                 .font(Font.custom("Bangers-Regular", size: 36))

@@ -11,6 +11,11 @@
 		5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A127A48929004A2CD0 /* Pan.swift */; };
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
+		5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */; };
+		5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */; };
+		5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3BD69F27AC5B670061E4B6 /* GameKit.framework */; };
+		5B3BD6A327AC5BC70061E4B6 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD6A227AC5BC70061E4B6 /* LeaderboardViewController.swift */; };
+		5B3BD6A627AC5C390061E4B6 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */; };
 		5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62127AACD7600B74A7C /* GameManager.swift */; };
 		5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */; };
 		5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */; };
@@ -30,6 +35,11 @@
 		5B18A4A127A48929004A2CD0 /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReviewLabel.swift; sourceTree = "<group>"; };
+		5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
+		5B3BD69F27AC5B670061E4B6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		5B3BD6A227AC5BC70061E4B6 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		5B5CD62127AACD7600B74A7C /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		5BBCD6C827A3328300A743A7 /* Slap the egg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slap the egg.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +99,57 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5B3BD69927AC54F50061E4B6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5B3BD6A427AC5BD30061E4B6 /* View */,
+				5B3BD69B27AC55000061E4B6 /* View Model */,
+				5B3BD69A27AC54FB0061E4B6 /* Model */,
+				5B3BD6A127AC5BB20061E4B6 /* View Controller */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		5B3BD69A27AC54FB0061E4B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B3BD69B27AC55000061E4B6 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		5B3BD69E27AC5B670061E4B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B3BD69F27AC5B670061E4B6 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B3BD6A127AC5BB20061E4B6 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B3BD6A227AC5BC70061E4B6 /* LeaderboardViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		5B3BD6A427AC5BD30061E4B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5B3DE53427A857AD00DB2743 /* Spawn */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				5B5CD62127AACD7600B74A7C /* GameManager.swift */,
-				5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -110,6 +171,7 @@
 			children = (
 				5BBCD6CA27A3328300A743A7 /* Slap the egg */,
 				5BBCD6C927A3328300A743A7 /* Products */,
+				5B3BD69E27AC5B670061E4B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,9 +186,10 @@
 		5BBCD6CA27A3328300A743A7 /* Slap the egg */ = {
 			isa = PBXGroup;
 			children = (
+				5B18A4A527A493F3004A2CD0 /* Scenes */,
+				5B3BD69927AC54F50061E4B6 /* Service */,
 				5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */,
 				5BEC960427A9D1CC00B9CEDF /* Slap-the-egg-Info.plist */,
-				5B18A4A527A493F3004A2CD0 /* Scenes */,
 				5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */,
 				5BBCD6CD27A3328300A743A7 /* ContentView.swift */,
 				5BBCD6CF27A3328400A743A7 /* Assets.xcassets */,
@@ -149,6 +212,7 @@
 				ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */,
 				ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */,
 				ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */,
+				5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3BD6A627AC5C390061E4B6 /* LeaderboardView.swift in Sources */,
 				5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */,
 				5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */,
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
@@ -232,11 +297,14 @@
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
 				5B18A4A027A452BC004A2CD0 /* Player.swift in Sources */,
 				ECDE210F27AB093E0091AAF1 /* EggShellLabel.swift in Sources */,
+				5B3BD6A327AC5BC70061E4B6 /* LeaderboardViewController.swift in Sources */,
 				5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */,
+				5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */,
 				5BBCD6CE27A3328300A743A7 /* ContentView.swift in Sources */,
 				ECDE211127AB0EFD0091AAF1 /* MenuLabel.swift in Sources */,
 				ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */,
 				5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */,
+				5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,13 +435,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Slap the egg/Preview Content\"";
-				DEVELOPMENT_TEAM = 2C49HA74H3;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Slap-the-egg-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -398,13 +467,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Slap the egg/Preview Content\"";
-				DEVELOPMENT_TEAM = 2C49HA74H3;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Slap-the-egg-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

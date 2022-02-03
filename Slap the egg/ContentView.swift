@@ -15,20 +15,26 @@ struct ContentView: View {
         ZStack {
             SpriteView(scene: gameManager.scene)
                 .ignoresSafeArea()
+        
             VStack {
-                Text(" \(gameManager.score) ")
-                    .font(.custom("Bangers-Regular", size: 48))
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.gray.opacity(0.6))
-                    .cornerRadius(20)
+                HStack {
+                    Spacer()
+                    EggShellLabel(money: $gameManager.money)
+                        .offset(x: -15, y: -5)
+                        .opacity(gameManager.gameStatus == .menu ? 1 : 0)
+                }
+                Spacer()
+            }
+            
+            VStack {
+                ScoreLabel(score: $gameManager.score)
                     .opacity(gameManager.displayScoreBoard())
                 Spacer()
             }
-            Text(" Highest: \(gameManager.record) ")
-                .font(.custom("Bangers-Regular", size: 36))
-                .padding(.bottom, 80)
-                .opacity(gameManager.displayRecord())
+            if gameManager.leaderboardVisible {
+                LeaderboardView(leaderboardVisible: $gameManager.leaderboardVisible)
+            }
+            menuDisplay()
         }
         .onReceive(gameManager.scene.scorePublisher, perform: { target in
             gameManager.score = target
@@ -36,9 +42,35 @@ struct ContentView: View {
         .onReceive(gameManager.scene.statusPublisher, perform: { status in
             gameManager.gameStatus = status
             if status == .gameOver {
-                gameManager.updateRecord()
+                gameManager.updateData()
             }
         })
+        .onAppear {
+            gameManager.authenticatePlayer()
+        }
+    }
+    
+    @ViewBuilder func menuDisplay() -> some View {
+        if gameManager.gameStatus == .gameOver {
+            VStack(spacing: 0) {
+                ScoreReviewLabel(sessionScore: $gameManager.score)
+                    .padding(.bottom,30)
+                Text(" Highest: \(gameManager.record) ")
+                    .font(.custom("Bangers-Regular", size: 36))
+                MenuLabel(leaderboardVisible: $gameManager.leaderboardVisible)
+                    .padding(.bottom,40)
+                EggShellLabel(money: $gameManager.money)
+            }
+            .opacity(gameManager.displayRecord())
+        } else {
+            VStack(spacing: 0) {
+                Text(" Highest: \(gameManager.record) ")
+                    .font(.custom("Bangers-Regular", size: 36))
+                MenuLabel(leaderboardVisible: $gameManager.leaderboardVisible)
+                    .padding(.bottom,40)
+            }
+            .opacity(gameManager.displayRecord())
+        }
     }
 }
 

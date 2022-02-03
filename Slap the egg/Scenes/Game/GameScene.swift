@@ -39,7 +39,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     // Labels
     var title: SKNode!
     var titleLabel: SKLabelNode!
-    var gameOverNode: SKSpriteNode!
     
     let deadEgg = SKSpriteNode(imageNamed: "deadEgg")
     var touchIndicator: SKSpriteNode!
@@ -85,9 +84,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let fadeIn = SKAction.fadeIn(withDuration: 1)
         let animation = SKAction.sequence([fadeOut,fadeIn])
         titleLabel.run(SKAction.repeatForever(animation))
-        
-        gameOverNode = self.childNode(withName: "gameOver") as? SKSpriteNode
-        gameOverNode.removeFromParent()
         
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
@@ -150,7 +146,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     
     func reset() {
         status = .menu
-        gameOverNode.removeFromParent()
         self.addChild(title)
         player.reset(parent: self)
         spawner.reset()
@@ -179,7 +174,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
         
         player.die()
-        self.addChild(gameOverNode)
         status = .gameOver
     }
     

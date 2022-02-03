@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct MenuLabel: View {
+    @Binding var leaderboardVisible: Bool
     var body: some View {
-        HStack {
-            Image("storeButton")
-            Image("leaderboardButton")
-            Image("settingsButton")
-            
+        HStack(spacing: 28) {
+//            Button(action: {}) {
+//                Image("storeButton")
+//            }
+            Button(action: {
+                leaderboardVisible.toggle()
+            }) {
+                Image("leaderboardButton")
+            }
+//            Button(action: {}) {
+//                Image("settingsButton")
+//            }
         }
     }
 }
 
 struct MenuLabel_Previews: PreviewProvider {
     static var previews: some View {
-        MenuLabel()
+        MenuLabel(leaderboardVisible: .constant(true))
     }
 }
