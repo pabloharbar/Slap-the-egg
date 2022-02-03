@@ -14,6 +14,8 @@ class GameManager: ObservableObject {
     var scene: GameScene
     
     @Published var score = 0
+    @Published var money = 0
+    @Published var alpha = 0
     @Published var gameStatus: GameStatus = .menu
     
     init() {
