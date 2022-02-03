@@ -16,6 +16,8 @@
 		5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3BD69F27AC5B670061E4B6 /* GameKit.framework */; };
 		5B3BD6A327AC5BC70061E4B6 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD6A227AC5BC70061E4B6 /* LeaderboardViewController.swift */; };
 		5B3BD6A627AC5C390061E4B6 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */; };
+		5B3BD6A827AC80710061E4B6 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD6A727AC80710061E4B6 /* ShopView.swift */; };
+		5B3BD6AA27AC80850061E4B6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD6A927AC80850061E4B6 /* SettingsView.swift */; };
 		5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62127AACD7600B74A7C /* GameManager.swift */; };
 		5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */; };
 		5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */; };
@@ -40,6 +42,8 @@
 		5B3BD69F27AC5B670061E4B6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5B3BD6A227AC5BC70061E4B6 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		5B3BD6A727AC80710061E4B6 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		5B3BD6A927AC80850061E4B6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5B5CD62127AACD7600B74A7C /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		5BBCD6C827A3328300A743A7 /* Slap the egg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slap the egg.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +217,8 @@
 				ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */,
 				ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */,
 				5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */,
+				5B3BD6A727AC80710061E4B6 /* ShopView.swift */,
+				5B3BD6A927AC80850061E4B6 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,9 +298,11 @@
 				5B3BD6A627AC5C390061E4B6 /* LeaderboardView.swift in Sources */,
 				5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */,
 				5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */,
+				5B3BD6AA27AC80850061E4B6 /* SettingsView.swift in Sources */,
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
+				5B3BD6A827AC80710061E4B6 /* ShopView.swift in Sources */,
 				5B18A4A027A452BC004A2CD0 /* Player.swift in Sources */,
 				ECDE210F27AB093E0091AAF1 /* EggShellLabel.swift in Sources */,
 				5B3BD6A327AC5BC70061E4B6 /* LeaderboardViewController.swift in Sources */,

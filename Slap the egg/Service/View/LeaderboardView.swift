@@ -9,7 +9,7 @@ import GameKit
 import SwiftUI
 
 struct LeaderboardView: UIViewControllerRepresentable {
-    @Binding var leaderboardVisible: Bool
+    @Binding var menuStatus: MenuList
     
     typealias UIViewControllerType = UIViewController
     
@@ -24,18 +24,18 @@ struct LeaderboardView: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> LeaderboardCoordinator {
-        LeaderboardCoordinator(leaderboardVisible: $leaderboardVisible)
+        LeaderboardCoordinator(menuStatus: $menuStatus)
     }
 }
 
 class LeaderboardCoordinator: NSObject {
-    @Binding var leaderboardVisible: Bool
+    @Binding var menuStatus: MenuList
 
-    init(leaderboardVisible: Binding<Bool>) {
-        self._leaderboardVisible = leaderboardVisible
+    init(menuStatus: Binding<MenuList>) {
+        self._menuStatus = menuStatus
     }
 
     func dismiss() {
-        leaderboardVisible.toggle()
+        menuStatus = .hidden
     }
 }

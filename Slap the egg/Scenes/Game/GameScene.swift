@@ -88,14 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
         background = Background(node: backgroundNode, parent: self)
-        
-        // Publisher setup
-//        scorePublisher.sink(receiveValue: { [unowned self] value in
-////            self.target = value
-//        }).store(in: &cancellableSet)
-//        statusPublisher.sink(receiveValue: { [unowned self] value in
-//
-//        })
+
     }
     
     

@@ -9,6 +9,13 @@ import SwiftUI
 import SpriteKit
 import GameKit
 
+enum MenuList {
+    case hidden
+    case shop
+    case leaderboard
+    case settings
+}
+
 class GameManager: ObservableObject {
     
     static var gameSpeed = CGFloat(500)
@@ -21,7 +28,7 @@ class GameManager: ObservableObject {
     
     @Published var gameStatus: GameStatus = .menu
     
-    @Published var leaderboardVisible = false
+    @Published var menuStatus: MenuList = .hidden
     
     private var gcEnabled = Bool() // Check if the user has Game Center enabled
     private var gcDefaultLeaderBoard = String() // Check the default leaderboardID
@@ -38,8 +45,6 @@ class GameManager: ObservableObject {
         money += score / 10
         if score > record {
             record = score
-//            UserDefaultsWrapper.setRecord(model: score)
-//            record = UserDefaultsWrapper.fetchRecord() ?? 0
         }
         UserDefaultsWrapper.setRecord(model: PlayerData(highscore: record, money: money))
         let data = UserDefaultsWrapper.fetchRecord()

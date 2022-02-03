@@ -13,7 +13,7 @@ class LeaderboardViewController: UIViewController,GKGameCenterControllerDelegate
     private var gcEnabled = Bool() // Check if the user has Game Center enabled
     private var gcDefaultLeaderBoard = String() // Check the default leaderboardID
     
-    var coordinator: LeaderboardCoordinator = LeaderboardCoordinator(leaderboardVisible: .constant(true))
+    var coordinator: LeaderboardCoordinator = LeaderboardCoordinator(menuStatus: .constant(.leaderboard))
     
     override func viewDidLoad() {
         super.viewDidLoad()

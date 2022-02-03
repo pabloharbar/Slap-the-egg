@@ -31,9 +31,7 @@ struct ContentView: View {
                     .opacity(gameManager.displayScoreBoard())
                 Spacer()
             }
-            if gameManager.leaderboardVisible {
-                LeaderboardView(leaderboardVisible: $gameManager.leaderboardVisible)
-            }
+            modalDisplay()
             menuDisplay()
         }
         .onReceive(gameManager.scene.scorePublisher, perform: { target in
@@ -57,7 +55,7 @@ struct ContentView: View {
                     .padding(.bottom,30)
                 Text(" Highest: \(gameManager.record) ")
                     .font(.custom("Bangers-Regular", size: 36))
-                MenuLabel(leaderboardVisible: $gameManager.leaderboardVisible)
+                MenuLabel(menuStatus: $gameManager.menuStatus)
                     .padding(.bottom,40)
                 EggShellLabel(money: $gameManager.money)
             }
@@ -66,10 +64,23 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 Text(" Highest: \(gameManager.record) ")
                     .font(.custom("Bangers-Regular", size: 36))
-                MenuLabel(leaderboardVisible: $gameManager.leaderboardVisible)
+                MenuLabel(menuStatus: $gameManager.menuStatus)
                     .padding(.bottom,40)
             }
             .opacity(gameManager.displayRecord())
+        }
+    }
+    
+    @ViewBuilder func modalDisplay() -> some View {
+        switch gameManager.menuStatus {
+        case .shop:
+            HStack {}
+        case .leaderboard:
+            LeaderboardView(menuStatus: $gameManager.menuStatus)
+        case .settings:
+            HStack {}
+        case .hidden:
+            HStack {}
         }
     }
 }
