@@ -39,6 +39,7 @@ struct ContentView: View {
         })
         .onReceive(gameManager.scene.statusPublisher, perform: { status in
             gameManager.gameStatus = status
+            gameManager.scene.difficulty = gameManager.difficultySelected
             if status == .gameOver {
                 gameManager.updateData()
             }

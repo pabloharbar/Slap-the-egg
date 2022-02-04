@@ -17,8 +17,19 @@ struct SettingsView: View {
                     .font(.custom("Bangers-Regular", size: 64))
                 VStack(spacing: 45) {
                     HStack {
-                        Text("Sound ")
+                        Text("Difficulty ")
                         Spacer()
+                        Button(action: {
+                            switch gameManager.difficultySelected {
+                            case .easy:
+                                gameManager.difficultySelected = .hard
+                            case .hard :
+                                gameManager.difficultySelected = .easy
+                            }
+                        }) {
+                            Text("\(gameManager.difficultySelected.rawValue) ")
+                        }
+                        .padding(.trailing)
                     }
                     HStack {
                         Text("GameCenter ")

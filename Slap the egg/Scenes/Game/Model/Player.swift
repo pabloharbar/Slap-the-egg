@@ -47,26 +47,66 @@ class Player {
         parent.addChild(node)
     }
     
-    func slap(at position: CGPoint, parent: SKNode) {
-        if node.contains(position) {
+    func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty) {
+        switch difficulty {
+        case .easy:
             let deltaX = node.position.x - position.x
-            let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
-            let vx = deltaX / normalizedWidth * velocityModule
+            let width = parent.scene!.size.width
+            let vx = deltaX / width * velocityModule
             node.physicsBody?.velocity.dx = vx
             node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
-            node.physicsBody?.angularVelocity = -angularK * deltaX / normalizedWidth
-        } else {
-            let missNode = SKLabelNode()
-            let fadeOut = SKAction.fadeOut(withDuration: 1)
-            missNode.text = "Errou"
-            missNode.fontName = "Bangers-Regular"
-            missNode.fontSize = 40
-            missNode.fontColor = .red
-            missNode.position = position
-            missNode.zPosition = -1
-            parent.addChild(missNode)
-            missNode.run(fadeOut)
+            node.physicsBody?.angularVelocity = -angularK * deltaX / width
+        case .hard:
+            if node.contains(position) {
+                let deltaX = node.position.x - position.x
+                let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
+                let vx = deltaX / normalizedWidth * velocityModule
+                node.physicsBody?.velocity.dx = vx
+                node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+                node.physicsBody?.angularVelocity = -angularK * deltaX / normalizedWidth
+            } else {
+                let missNode = SKLabelNode()
+                let fadeOut = SKAction.fadeOut(withDuration: 1)
+                missNode.text = "Errou"
+                missNode.fontName = "Bangers-Regular"
+                missNode.fontSize = 40
+                missNode.fontColor = .red
+                missNode.position = position
+                missNode.zPosition = -1
+                parent.addChild(missNode)
+                missNode.run(fadeOut)
+            }
         }
+        // Tap em qualquer lugar da tela
+//        let deltaX = node.position.x - position.x
+//        let width = parent.scene!.size.width
+//        let vx = deltaX / width * velocityModule
+//        node.physicsBody?.velocity.dx = vx
+//        node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+//        node.physicsBody?.angularVelocity = -angularK * deltaX / width
+        
+        
+        
+        // Tap dentro do ovo:
+//        if node.contains(position) {
+//            let deltaX = node.position.x - position.x
+//            let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
+//            let vx = deltaX / normalizedWidth * velocityModule
+//            node.physicsBody?.velocity.dx = vx
+//            node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+//            node.physicsBody?.angularVelocity = -angularK * deltaX / normalizedWidth
+//        } else {
+//            let missNode = SKLabelNode()
+//            let fadeOut = SKAction.fadeOut(withDuration: 1)
+//            missNode.text = "Errou"
+//            missNode.fontName = "Bangers-Regular"
+//            missNode.fontSize = 40
+//            missNode.fontColor = .red
+//            missNode.position = position
+//            missNode.zPosition = -1
+//            parent.addChild(missNode)
+//            missNode.run(fadeOut)
+//        }
     }
     
     func checkTouch(at point: CGPoint) -> Bool {

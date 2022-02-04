@@ -16,7 +16,14 @@ enum MenuList {
     case settings
 }
 
+enum Difficulty: String {
+    case easy = "Easy"
+    case hard = "Hard"
+}
+
 class GameManager: ObservableObject {
+    
+    @Published var difficultySelected: Difficulty = .easy
     
     static var gameSpeed = CGFloat(500)
     

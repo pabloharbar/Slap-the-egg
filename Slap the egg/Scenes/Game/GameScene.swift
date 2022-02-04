@@ -18,6 +18,8 @@ enum GameStatus {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
+    var difficulty: Difficulty = .easy
+    
     // Score publisher setup
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
     public let statusPublisher = CurrentValueSubject<GameStatus, Never>(.menu)
@@ -112,10 +114,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case .intro:
             if player.checkTouch(at: pos) {
                 start()
-                player.slap(at: pos, parent: self)
+                player.slap(at: pos, parent: self, difficulty: difficulty)
             }
         case .playing:
-            player.slap(at: pos, parent: self)
+            player.slap(at: pos, parent: self, difficulty: difficulty)
 //            player.startFlick(position: pos, currentTime: lastUpdate)
         case .gameOver:
             reset()
