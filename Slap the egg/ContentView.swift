@@ -55,8 +55,9 @@ struct ContentView: View {
                     .padding(.bottom,30)
                 Text(" Highest: \(gameManager.record) ")
                     .font(.custom("Bangers-Regular", size: 36))
-                MenuLabel(menuStatus: $gameManager.menuStatus)
+                MenuLabel()
                     .padding(.bottom,40)
+                    .environmentObject(gameManager)
                 EggShellLabel(money: $gameManager.money)
             }
             .opacity(gameManager.displayRecord())
@@ -64,8 +65,9 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 Text(" Highest: \(gameManager.record) ")
                     .font(.custom("Bangers-Regular", size: 36))
-                MenuLabel(menuStatus: $gameManager.menuStatus)
+                MenuLabel()
                     .padding(.bottom,40)
+                    .environmentObject(gameManager)
             }
             .opacity(gameManager.displayRecord())
         }
@@ -74,11 +76,13 @@ struct ContentView: View {
     @ViewBuilder func modalDisplay() -> some View {
         switch gameManager.menuStatus {
         case .shop:
-            HStack {}
+            ShopView()
+                .environmentObject(gameManager)
         case .leaderboard:
             LeaderboardView(menuStatus: $gameManager.menuStatus)
         case .settings:
-            HStack {}
+            SettingsView()
+                .environmentObject(gameManager)
         case .hidden:
             HStack {}
         }

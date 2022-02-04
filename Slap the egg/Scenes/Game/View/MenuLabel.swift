@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct MenuLabel: View {
-    @Binding var menuStatus: MenuList
+    @EnvironmentObject var gameManager: GameManager
     var body: some View {
         HStack(spacing: 28) {
             Button(action: {
-                menuStatus = .shop
+                gameManager.menuStatus = .shop
+                gameManager.scene.holdScene()
             }) {
                 Image("storeButton")
             }
             Button(action: {
-                menuStatus = .leaderboard
+                gameManager.menuStatus = .leaderboard
             }) {
                 Image("leaderboardButton")
             }
             Button(action: {
-                menuStatus = .settings
+                gameManager.menuStatus = .settings
+                gameManager.scene.holdScene()
             }) {
                 Image("settingsButton")
             }
@@ -32,6 +34,7 @@ struct MenuLabel: View {
 
 struct MenuLabel_Previews: PreviewProvider {
     static var previews: some View {
-        MenuLabel(menuStatus: .constant(.hidden))
+        MenuLabel()
+            .environmentObject(GameManager())
     }
 }

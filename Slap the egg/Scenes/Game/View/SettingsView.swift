@@ -8,10 +8,40 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var gameManager: GameManager
     var body: some View {
         ZStack {
-//            Image("")
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Image("settingsBackground")
+            VStack(spacing: 32) {
+                Text("Settings ")
+                    .font(.custom("Bangers-Regular", size: 64))
+                VStack(spacing: 45) {
+                    HStack {
+                        Text("Sound ")
+                        Spacer()
+                    }
+                    HStack {
+                        Text("GameCenter ")
+                        Spacer()
+                    }
+                    HStack {
+                        Text("Vibration ")
+                        Spacer()
+                    }
+                }
+            }
+            .foregroundColor(.white)
+            .font(.custom("Bangers-Regular", size: 36))
+            .frame(maxWidth: 300)
+            
+            Button(action: {
+                gameManager.menuStatus = .hidden
+                gameManager.scene.resumeScene()
+            }) {
+                Image("dismissSettings")
+            }
+            .offset(x: -130, y: -160)
+
         }
     }
 }
@@ -19,5 +49,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(GameManager())
     }
 }

@@ -11,6 +11,7 @@ import Combine
 
 enum GameStatus {
     case menu
+    case wait
     case intro
     case playing
     case gameOver
@@ -44,6 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var touchIndicator: SKSpriteNode!
     
     var lastUpdate = TimeInterval(0)
+    var previousStatus: GameStatus = .menu
     @Published var status: GameStatus = .menu {
         didSet {
             statusPublisher.send(self.status)
@@ -117,6 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
 //            player.startFlick(position: pos, currentTime: lastUpdate)
         case .gameOver:
             reset()
+        case .wait:
+            break
         }
 
     }
@@ -170,6 +174,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         status = .gameOver
     }
     
+    func holdScene() {
+        if status == .menu {
+            previousStatus = .menu
+            status = .wait
+            titleLabel.removeFromParent()
+            title.removeFromParent()
+        } else if status == .gameOver {
+            previousStatus = .gameOver
+            status = .wait
+        }
+    }
+    
+    func resumeScene() {
+        if previousStatus == .menu {
+            self.addChild(titleLabel)
+            self.addChild(title)
+            status = .menu
+        } else if previousStatus == .gameOver {
+            status = .gameOver
+        }
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let eggTouchedPan = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedEnemy = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
@@ -209,6 +235,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 scoreLimiter = 0
             }
         case .gameOver:
+            break
+        case .wait:
             break
         }
     }
