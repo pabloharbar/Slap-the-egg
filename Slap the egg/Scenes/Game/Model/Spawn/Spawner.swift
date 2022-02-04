@@ -11,6 +11,8 @@ import SpriteKit
 
 enum Enemies {
     case knife
+    case spoon
+    case spatula
 }
 
 class Spawner {
@@ -27,6 +29,7 @@ class Spawner {
     private var startPosition = CGPoint(x: 0, y: 0)
     
     init(node: SKNode, parent: SKNode) {
+        // Models setup
         self.spawnModel = node
         startPosition =  spawnModel.childNode(withName: "knife")!.position
         self.parent = parent
@@ -62,6 +65,17 @@ class Spawner {
         enemies.append(new)
     }
     
+    func spawnKnife() {
+        
+    }
+    
+    func spawnSpoon() {
+        
+    }
+    
+    func spawnSpatula() {
+        
+    }
     func generatePath(path: UIBezierPath) {
         let incline = Int.random(in: -150...150)
         path.removeAllPoints()
