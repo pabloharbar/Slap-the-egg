@@ -51,7 +51,13 @@ class Player {
         switch difficulty {
         case .easy:
             let deltaX = node.position.x - position.x
-            let width = parent.scene!.size.width
+            var width: CGFloat
+            if deltaX > 0 {
+                width = parent.scene!.size.width / 2 + node.position.x
+            } else {
+                width = parent.scene!.size.width / 2 - node.position.x
+            }
+//            let width = parent.scene!.size.width
             let vx = deltaX / width * velocityModule
             node.physicsBody?.velocity.dx = vx
             node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
