@@ -22,10 +22,10 @@ class Background {
         parent.addChild(duplicateNode)
     }
     
-    func update(deltaTime: TimeInterval) {
+    func update(deltaTime: TimeInterval, multiplier: CGFloat) {
         // move
-        node.position.y -= 500 * deltaTime
-        duplicateNode.position.y -= 500 * deltaTime
+        node.position.y -= 500 * deltaTime * multiplier
+        duplicateNode.position.y -= 500 * deltaTime * multiplier
         
         if node.position.y <= startPosition.y && !reset {
             duplicateNode.position.y = node.position.y + node.size.height

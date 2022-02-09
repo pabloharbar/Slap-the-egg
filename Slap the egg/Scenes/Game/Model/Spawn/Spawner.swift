@@ -35,6 +35,7 @@ class Spawner {
 //    private var paths = [UIBezierPath]()
     private var spawner: SKNode!
     private var parent: SKNode
+    private var moveSpeedMultiplier: CGFloat = 1
     
     private var enemies = [SKNode]()
     
@@ -78,7 +79,7 @@ class Spawner {
         pathNode.lineCap = .round
         
         // Animation Setup
-        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: true, speed: 200)
+        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: true, speed: 200 * moveSpeedMultiplier)
         let animation = SKAction.repeatForever(move)
         
         // Add sprites
@@ -104,14 +105,14 @@ class Spawner {
         pathNode.lineCap = .round
         
         // Animation Setup
-        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: 200)
+        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: 200 * moveSpeedMultiplier)
         let animation = SKAction.repeatForever(move)
         
-        let rotation = SKAction.repeatForever(SKAction.rotate(byAngle: .pi * 2, duration: 2))
+        let rotation = SKAction.repeatForever(SKAction.rotate(byAngle: .pi * 2, duration: 2 / moveSpeedMultiplier))
         
         // Spoon copy animation inversed
         let path2 = generateCirclePath(inversed: true)
-        let move2 = SKAction.follow(path2.cgPath, asOffset: false, orientToPath: false, speed: 200)
+        let move2 = SKAction.follow(path2.cgPath, asOffset: false, orientToPath: false, speed: 200 * moveSpeedMultiplier)
         let animation2 = SKAction.repeatForever(move2)
         
         
@@ -139,9 +140,9 @@ class Spawner {
         pathNode.lineCap = .round
         
         // Animation Setup
-        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: 200)
+        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: 200 * moveSpeedMultiplier)
         let animation = SKAction.repeatForever(move)
-        let rotation = SKAction.repeatForever(SKAction.rotate(byAngle: .pi * 2, duration: 1))
+        let rotation = SKAction.repeatForever(SKAction.rotate(byAngle: .pi * 2, duration: 1 / moveSpeedMultiplier))
         
         // Add sprites
         parent.addChild(new)
@@ -183,7 +184,7 @@ class Spawner {
         return path
     }
     
-    func update(deltaTime: TimeInterval) {
+    func update(deltaTime: TimeInterval, multiplier: CGFloat) {
         // interval
         currentTime += deltaTime
         if currentTime >= interval {
@@ -193,7 +194,7 @@ class Spawner {
         
         // move
         for enemy in enemies {
-            enemy.position.y -= 500 * deltaTime
+            enemy.position.y -= 500 * deltaTime * multiplier
         }
         
         if let firstEnemy = enemies.first {
@@ -202,6 +203,9 @@ class Spawner {
                 enemies.removeFirst()
             }
         }
+        
+        // Update move speed
+        moveSpeedMultiplier = (multiplier - 1) * 1.5 + 1
     }
     
     func reset() {

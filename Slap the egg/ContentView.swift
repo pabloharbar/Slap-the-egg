@@ -79,6 +79,7 @@ struct ContentView: View {
         case .shop:
             ShopView()
                 .environmentObject(gameManager)
+                .padding(.bottom, 120)
         case .leaderboard:
             LeaderboardView(menuStatus: $gameManager.menuStatus)
         case .settings:

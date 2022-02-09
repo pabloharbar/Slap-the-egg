@@ -16,7 +16,7 @@ enum MenuList {
     case settings
 }
 
-enum Difficulty: String {
+enum Difficulty: String, Codable {
     case easy = "Easy"
     case hard = "Hard"
 }

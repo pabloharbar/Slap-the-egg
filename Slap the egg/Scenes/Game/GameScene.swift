@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
     }
     var scoreLimiter = 0 // auxiliar
-    
+    var speedMultiplier: CGFloat = 1
     // Sprites
     var player: Player!
     var spawner: Spawner!
@@ -227,10 +227,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case .intro:
             break
         case .playing:
-            background.update(deltaTime: deltaTime)
-            spawner.update(deltaTime: deltaTime)
+            background.update(deltaTime: deltaTime, multiplier: speedMultiplier)
+            spawner.update(deltaTime: deltaTime, multiplier: speedMultiplier)
             
             //Score counting
+            speedMultiplier = 1 + CGFloat(currentScore)/500
             scoreLimiter += 1
             if scoreLimiter >= 10 {
                 currentScore += 1

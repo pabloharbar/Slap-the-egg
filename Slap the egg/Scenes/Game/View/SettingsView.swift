@@ -11,7 +11,11 @@ struct SettingsView: View {
     @EnvironmentObject var gameManager: GameManager
     var body: some View {
         ZStack {
-            Image("settingsBackground")
+            BackgroundView(Colors: [
+                "settingsColor",
+                "settingsLightColor",
+                "settingsLightestColor"
+            ], width: 332, height: 400)
             VStack(spacing: 32) {
                 Text("Settings ")
                     .font(.custom("Bangers-Regular", size: 64))
@@ -32,7 +36,7 @@ struct SettingsView: View {
                         .padding(.trailing)
                     }
                     HStack {
-                        Text("GameCenter ")
+                        Text("Sounds ")
                         Spacer()
                     }
                     HStack {

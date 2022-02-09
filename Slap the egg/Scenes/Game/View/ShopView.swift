@@ -9,21 +9,40 @@ import SwiftUI
 
 struct ShopView: View {
     @EnvironmentObject var gameManager: GameManager
+    @StateObject var shopManager = ShopManager()
     var body: some View {
         ZStack {
-            VStack(spacing: 32) {
-                Text("Shop ")
+            BackgroundView(Colors: [
+                "shopColor",
+                "shopLightColor",
+                "shopLightestColor"
+            ], width: 360, height: 500)
+            VStack(spacing: 0) {
+                Text("Store ")
                     .font(.custom("Bangers-Regular", size: 64))
-                    .padding(.top)
-
-                Spacer()
+                    .foregroundColor(Color("menuLabelColor"))
+                    .padding(.vertical)
+                HStack {
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 0, label: "Eggs")
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 1, label: "Power Ups")
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 2, label: "Backgrounds")
+                    Spacer()
+                }
+                ZStack(alignment: .topLeading) {
+                    HStack {
+                        Rectangle()
+                            .foregroundColor(Color("shopMenuColor"))
+                            .frame(maxWidth: 328, maxHeight: 480)
+                            .cornerRadius(42, corners: [.bottomLeft,.bottomRight])
+                        Spacer()
+                    }
+                    shopManager.getShopItemsCategory()
+                        .padding()
+                        .frame(maxHeight: 480)
+                }
             }
             .foregroundColor(.white)
-            .font(.custom("Bangers-Regular", size: 36))
-            .frame(maxWidth: 300, maxHeight: 480)
-            .background(
-                Image("shopBackground")
-            )
+            .frame(maxWidth: 360, maxHeight: 500)
             
             Button(action: {
                 gameManager.menuStatus = .hidden
