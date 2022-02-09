@@ -42,19 +42,7 @@ class GameManager: ObservableObject {
     
     init() {
         scene = SKScene(fileNamed: "GameScene") as! GameScene
-        
-
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
-        print(identifier)
-        
-        
-        scene.scaleMode = .aspectFill // TODO: Rever scaleMode e aspecto da scene
+        scene.scaleMode = .aspectFill 
         let data = UserDefaultsWrapper.fetchRecord()
         record = data?.highscore ?? 0
         money = data?.money ?? 0

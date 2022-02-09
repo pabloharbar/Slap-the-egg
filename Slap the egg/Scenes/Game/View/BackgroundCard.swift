@@ -22,13 +22,27 @@ struct BackgroundCard: View {
                 Text("\(background.name) ")
                     .font(.custom("Bangers-Regular", size: 24))
                     .foregroundColor(Color("menuLabelColor"))
-                HStack {
-                    Image("eggShell")
-                        .resizable()
-                        .frame(width: 12.75, height: 13.5)
-                    Text("\(background.eggShellCost) ")
-                        .font(.custom("Bangers-Regular", size: 14))
+                Button(action: {}) {
+                    HStack {
+                        Image("eggShell")
+                            .resizable()
+                            .frame(width: 12.75, height: 13.5)
+                        Text("\(background.eggShellCost) ")
+                            .font(.custom("Bangers-Regular", size: 14))
+                    }
+                    .padding(.horizontal)
                 }
+                .background(
+                    ZStack(alignment: .bottomLeading) {
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(height: 24)
+                            .foregroundColor(Color("settingsLightestColor"))
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(height: 22)
+                            .foregroundColor(Color("settingsColor"))
+                            .padding(.trailing, 3)
+                    }
+                )
             }
             Spacer()
         }

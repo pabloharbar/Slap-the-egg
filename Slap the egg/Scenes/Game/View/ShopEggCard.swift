@@ -27,30 +27,33 @@ struct ShopEggCard: View {
             .foregroundColor(Color("modalLabelColor"))
             
             VStack {
-                HStack {
-                    Button(action: {}) {
-                        HStack {
-                            Image("eggShell")
-                                .resizable()
-                                .frame(width: 12.75, height: 13.5)
-                            Text("\(egg.eggShellCost) ")
-                                .font(.custom("Bangers-Regular", size: 14))
-                        }
-                        .padding(.horizontal)
+                Button(action: {}) {
+                    HStack {
+                        Image("eggShell")
+                            .resizable()
+                        .frame(width: 12.75, height: 13.5)
+                        Text("\(egg.eggShellCost) ")
+                            .font(.custom("Bangers-Regular", size: 14))
                     }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .frame(height: 24)
-                                .foregroundColor(.red)
-                        }
-                    )
+                    .padding(.horizontal,6)
                 }
+                .buttonStyle(.plain)
+                .background(
+                    ZStack(alignment: .bottomLeading) {
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(height: 24)
+                            .foregroundColor(Color("settingsLightestColor"))
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(height: 22)
+                            .foregroundColor(Color("settingsColor"))
+                            .padding(.trailing, 3)
+                    }
+                )
                 Spacer()
                 PowerUpView(powerUps: egg.powerUp)
                 Spacer()
             }
-            .padding(.horizontal)
+//            .padding(.horizontal)
         }
         .padding()
         .frame(width: 300, height: 110)

@@ -8,12 +8,14 @@
 import Foundation
 
 struct Cosmetics: Codable {
-    enum Backgrounds: CaseIterable {
+    enum Backgrounds: CaseIterable, Codable {
+        case bricks
         case tiles
         case sky
         case space
     }
-    enum Eggs: CaseIterable {
+    enum Eggs: CaseIterable, Codable {
+        case chicken
         case quail
         case crocodile
         case ostrich
@@ -36,13 +38,15 @@ struct Preferences: Codable {
 class PlayerData: Codable {
     var highscore: Int
     var money: Int
-    var cosmetics: [Cosmetics]
+    var eggsUnlocked: [Cosmetics.Eggs]
+    var backgroundsUnlocked: [Cosmetics.Backgrounds]
     var preferences: Preferences
     
     init(highscore: Int, money: Int) {
         self.highscore = highscore
         self.money = money
-        self.cosmetics = []
+        self.eggsUnlocked = [.chicken]
+        self.backgroundsUnlocked = [.bricks]
         self.preferences = Preferences()
     }
 }
