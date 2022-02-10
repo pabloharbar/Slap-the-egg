@@ -50,6 +50,7 @@ class Player {
     func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty) {
         switch difficulty {
         case .easy:
+            SoundsManager.instance.playSound(sound: .faceSlap)
             let deltaX = node.position.x - position.x
             var width: CGFloat
             if deltaX > 0 {
@@ -64,6 +65,7 @@ class Player {
             node.physicsBody?.angularVelocity = -angularK * deltaX / width
         case .hard:
             if node.contains(position) {
+                SoundsManager.instance.playSound(sound: .faceSlap)
                 let deltaX = node.position.x - position.x
                 let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
                 let vx = deltaX / normalizedWidth * velocityModule
