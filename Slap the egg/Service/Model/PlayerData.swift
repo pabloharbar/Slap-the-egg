@@ -5,22 +5,20 @@
 //  Created by Pablo Penas on 03/02/22.
 //
 
-import Foundation
+import SwiftUI
 
-struct Cosmetics: Codable {
-    enum Backgrounds: CaseIterable, Codable {
-        case bricks
-        case tiles
-        case sky
-        case space
-    }
-    enum Eggs: CaseIterable, Codable {
-        case chicken
-        case quail
-        case crocodile
-        case ostrich
-        case dinossaur
-    }
+enum Backgrounds: CaseIterable, Codable {
+    case bricks
+    case tiles
+    case sky
+    case space
+}
+enum Eggs: CaseIterable, Codable {
+    case chicken
+    case quail
+    case crocodile
+    case ostrich
+    case dinossaur
 }
 
 struct Preferences: Codable {
@@ -38,9 +36,12 @@ struct Preferences: Codable {
 class PlayerData: Codable {
     var highscore: Int
     var money: Int
-    var eggsUnlocked: [Cosmetics.Eggs]
-    var backgroundsUnlocked: [Cosmetics.Backgrounds]
+    var eggsUnlocked: [Eggs]
+    var backgroundsUnlocked: [Backgrounds]
     var preferences: Preferences
+    var selectedEgg: Eggs
+    var selectedBackground: Backgrounds
+    var activePowerUps: [PowerUpType]
     
     init(highscore: Int, money: Int) {
         self.highscore = highscore
@@ -48,5 +49,8 @@ class PlayerData: Codable {
         self.eggsUnlocked = [.chicken]
         self.backgroundsUnlocked = [.bricks]
         self.preferences = Preferences()
+        self.selectedEgg = .chicken
+        self.selectedBackground = .bricks
+        self.activePowerUps = []
     }
 }

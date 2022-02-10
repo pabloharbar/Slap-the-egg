@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ScoreReviewLabel: View {
     @Binding var sessionScore: Int
+    @Binding var multiplier: Int
     var body: some View {
         ZStack {
             Image("sessionLabel")
@@ -16,7 +17,7 @@ struct ScoreReviewLabel: View {
                 Text("\(sessionScore) Points ")
                     .font(Font.custom("Bangers-Regular", size: 64))
                     .foregroundColor(Color("scoreYellow"))
-                Text("+ \(sessionScore/10) Eggshells ")
+                Text("+ \(multiplier * sessionScore/10) Eggshells ")
                     .font(Font.custom("Bangers-Regular", size: 24))
                     .foregroundColor(Color("menuLightColor"))
             }
@@ -26,6 +27,6 @@ struct ScoreReviewLabel: View {
 
 struct ScoreReviewLabel_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreReviewLabel(sessionScore: .constant(1200))
+        ScoreReviewLabel(sessionScore: .constant(1200), multiplier: .constant(1))
     }
 }

@@ -20,9 +20,19 @@ enum GameStatus {
 class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var difficulty: Difficulty = .easy
     
+    // Power Ups
+    @Published var revive = 0 {
+        didSet {
+            revivePublisher.send(self.revive)
+        }
+    }
+    private var PUmultiplicator = 1
+    private var immunity = false
+    
     // Score publisher setup
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
     public let statusPublisher = CurrentValueSubject<GameStatus, Never>(.menu)
+    public let revivePublisher = CurrentValueSubject<Int, Never>(0)
 //    private var cancellableSet = Set<AnyCancellable>()
     
 //    @Published var target = 0 // Talvez nao precise do target
@@ -92,6 +102,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
         background = Background(node: backgroundNode, parent: self)
+        
+        // Load from user defaults
+        let data = UserDefaultsWrapper.fetchRecord() ?? PlayerData(highscore: 0, money: 0)
+        loadPlayerData(data: data)
 
     }
     
@@ -112,13 +126,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 }
             }
         case .intro:
-            if player.checkTouch(at: pos) {
-                start()
-                player.slap(at: pos, parent: self, difficulty: difficulty)
-            }
+            start()
+            player.slap(at: pos, parent: self, difficulty: difficulty)
         case .playing:
             player.slap(at: pos, parent: self, difficulty: difficulty)
-//            player.startFlick(position: pos, currentTime: lastUpdate)
         case .gameOver:
             reset()
         case .wait:
@@ -171,7 +182,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             deadEgg.zRotation = player.getZRotation()
             self.addChild(deadEgg)
         }
-        
+        revive = 0
+        PUmultiplicator = 1
         player.die()
         status = .gameOver
     }
@@ -188,6 +200,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
     }
     
+    func loadPlayerData(data: PlayerData) {
+        // Player update, scale and texture
+        player.changeTexture(selectedEgg: data.selectedEgg)
+        // Background update, texture
+        background.changeTexture(data: data)
+        // Apply power ups
+        for powerUp in data.activePowerUps {
+            applyPowerUp(item: powerUp)
+        }
+    }
+    
+    func applyPowerUp(item: PowerUpType) {
+//        for powerUp in items {
+        switch item {
+        case .multiplicate2x:
+            PUmultiplicator = 2
+        case .multiplicate3x:
+            PUmultiplicator = 3
+        case .multiplicate5x:
+            PUmultiplicator = 5
+        case .revive1:
+            revive += 1
+        case .revive2:
+            revive += 2
+        }
+//        }
+    }
+    
     func resumeScene() {
         if previousStatus == .menu {
             self.addChild(titleLabel)
@@ -202,7 +242,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let eggTouchedPan = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedEnemy = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
         if eggTouchedPan || eggTouchedEnemy {
-            gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
+            if revive <= 0 {
+                if status == .playing {
+                    gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
+                }
+            } else {
+                if !immunity {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.revive -= 1
+                        print(self.revive)
+                        self.immunity = false
+                    }
+                    player.collide(withPan: eggTouchedPan)
+                }
+                immunity = true
+            }
         }
     }
     

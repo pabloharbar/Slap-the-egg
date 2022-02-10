@@ -9,11 +9,11 @@ import Foundation
 
 struct PowerUpsAvailable {
     static let powerUps: [PowerUp] = [
-        PowerUp(name: "Double Points", description: "For one try, your egg shell earnings are doubled", type: .multiplicate, value: 2, shopAvailable: true, image: "doubleIcon"),
-        PowerUp(name: "Triple Points", description: "For one try, your egg shell earnings are triplicated", type: .multiplicate, value: 3),
-        PowerUp(name: "Quintuple Points", description: "For one try, you egg shell earnings are quintuplicated", type: .multiplicate, value: 5),
-        PowerUp(name: "One more Life", description: "In the next session, if the egg gets cracked it ignores one time", type: .revive, value: 1, shopAvailable: true, image: "shieldIcon"),
-        PowerUp(name: "Two more Life", description: "In the next session, if the egg gets cracked it ignores two times", type: .revive, value: 2)
+        PowerUp(name: "Double Points", description: "For one try, your egg shell earnings are doubled", type: .multiplicate2x, value: 2, eggShellCost: 50, shopAvailable: true, image: "doubleIcon"),
+        PowerUp(name: "Triple Points", description: "For one try, your egg shell earnings are triplicated", type: .multiplicate3x, value: 3),
+        PowerUp(name: "Quintuple Points", description: "For one try, you egg shell earnings are quintuplicated", type: .multiplicate5x, value: 5),
+        PowerUp(name: "One more Life", description: "In the next session, if the egg gets cracked it ignores one time", type: .revive1, value: 1, eggShellCost: 25, shopAvailable: true, image: "shieldIcon"),
+        PowerUp(name: "Two more Life", description: "In the next session, if the egg gets cracked it ignores two times", type: .revive2, value: 2)
     ]
 }
 
@@ -33,7 +33,7 @@ class CosmeticsBank {
             image: "quailEgg",
             powerUp: [],
             cosmeticsType: .quail,
-            eggShellCost: 10000,
+            eggShellCost: 100,
             size: .small),
         Egg(animal: "Crocodile",
             image: "crocodileEgg",
@@ -42,7 +42,7 @@ class CosmeticsBank {
                 PowerUpsAvailable.powerUps[3],
             ],
             cosmeticsType: .crocodile,
-            eggShellCost: 25000,
+            eggShellCost: 250,
             size: .medium),
         Egg(animal: "Ostrich",
             image: "ostrichEgg",
@@ -51,7 +51,7 @@ class CosmeticsBank {
                 PowerUpsAvailable.powerUps[3],
             ],
             cosmeticsType: .ostrich,
-            eggShellCost: 5000,
+            eggShellCost: 500,
             size: .big),
         Egg(animal: "T-Rex",
             image: "dinoEgg",
@@ -60,14 +60,14 @@ class CosmeticsBank {
                 PowerUpsAvailable.powerUps[4],
             ],
             cosmeticsType: .dinossaur,
-            eggShellCost: 50000,
+            eggShellCost: 1000,
             size: .big),
     ]
     
     let backgroundsAvailable: [BackgroundModel] = [
         BackgroundModel(name: "Bricks", image: "bricksBackground", type: .bricks),
-        BackgroundModel(name: "Tiles", image: "tilesBackground", eggShellCost: 2500, type: .tiles),
-        BackgroundModel(name: "Sky", image: "skyBackground", eggShellCost: 4000, type: .sky),
-        BackgroundModel(name: "Space", image: "spaceBackground", eggShellCost: 10000, type: .space),
+        BackgroundModel(name: "Tiles", image: "tilesBackground", eggShellCost: 25, type: .tiles),
+        BackgroundModel(name: "Sky", image: "skyBackground", eggShellCost: 40, type: .sky),
+        BackgroundModel(name: "Space", image: "spaceBackground", eggShellCost: 100, type: .space),
     ]
 }

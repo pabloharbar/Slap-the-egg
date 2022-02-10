@@ -11,9 +11,9 @@ struct BackgroundModel {
     let name: String
     let image: String
     let eggShellCost: Int
-    let cosmeticsType: Cosmetics.Backgrounds
+    let cosmeticsType: Backgrounds
     
-    init(name: String, image: String, eggShellCost: Int = 0, type: Cosmetics.Backgrounds) {
+    init(name: String, image: String, eggShellCost: Int = 0, type: Backgrounds) {
         self.name = name
         self.image = image
         self.eggShellCost = eggShellCost

@@ -27,7 +27,10 @@ struct PowerUp: Hashable {
     }
 }
 
-enum PowerUpType {
-    case multiplicate
-    case revive
+enum PowerUpType: Codable {
+    case multiplicate2x
+    case multiplicate3x
+    case multiplicate5x
+    case revive1
+    case revive2
 }

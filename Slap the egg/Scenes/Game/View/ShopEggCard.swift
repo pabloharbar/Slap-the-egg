@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShopEggCard: View {
+    @EnvironmentObject var gameManager: GameManager
     let egg: Egg
     var body: some View {
         HStack(spacing: 0) {
@@ -27,25 +28,41 @@ struct ShopEggCard: View {
             .foregroundColor(Color("modalLabelColor"))
             
             VStack {
-                Button(action: {}) {
-                    HStack {
-                        Image("eggShell")
-                            .resizable()
-                        .frame(width: 12.75, height: 13.5)
-                        Text("\(egg.eggShellCost) ")
-                            .font(.custom("Bangers-Regular", size: 14))
+                Button(action: {
+                    gameManager.processEggPurchase(egg: egg.cosmeticsType)
+                }) {
+                    if gameManager.playerData.selectedEgg == egg.cosmeticsType {
+                        Text("Selected ")
+                            .foregroundColor(Color("menuLabelColor"))
+                            .font(.custom("Bangers-Regular", size: 12))
+                            .padding(.horizontal,6)
+                    } else {
+                        if gameManager.playerData.eggsUnlocked.contains(egg.cosmeticsType) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size: 14))
+                                .foregroundColor(Color("menuLabelColor"))
+                        } else {
+                            HStack {
+                                Image("eggShell")
+                                    .resizable()
+                                    .frame(width: 12.75, height: 13.5)
+                                Text("\(egg.eggShellCost) ")
+                                    .font(.custom("Bangers-Regular", size: 14))
+                            }
+                            .padding(.horizontal,6)
+                        }
                     }
-                    .padding(.horizontal,6)
                 }
                 .buttonStyle(.plain)
+                .frame(maxWidth: 100)
                 .background(
                     ZStack(alignment: .bottomLeading) {
                         RoundedRectangle(cornerRadius: 8)
                             .frame(height: 24)
-                            .foregroundColor(Color("settingsLightestColor"))
+                            .foregroundColor(Color(gameManager.playerData.selectedEgg == egg.cosmeticsType ? "settingsColor" : "settingsLightestColor"))
                         RoundedRectangle(cornerRadius: 8)
                             .frame(height: 22)
-                            .foregroundColor(Color("settingsColor"))
+                            .foregroundColor(Color(gameManager.playerData.selectedEgg == egg.cosmeticsType ? "settingsLightestColor" :"settingsColor"))
                             .padding(.trailing, 3)
                     }
                 )
@@ -68,7 +85,7 @@ struct PowerUpView: View {
         VStack(alignment: .leading, spacing: 4) {
             ForEach(powerUps, id: \.self) { powerUp in
                 switch powerUp.powerUpType {
-                case .multiplicate:
+                case .multiplicate2x,.multiplicate3x,.multiplicate5x:
                     HStack(spacing: 6) {
                         ZStack {
                             Circle().foregroundColor(Color("powerUpYellow")).frame(width: 18, height: 18)
@@ -80,7 +97,7 @@ struct PowerUpView: View {
                             .font(.system(size: 12))
                             .foregroundColor(.white)
                     }
-                case.revive:
+                case.revive1,.revive2:
                     HStack(spacing: 6) {
                         ZStack {
                             Circle().foregroundColor(Color("powerUpGreen")).frame(width: 18, height: 18)
@@ -120,6 +137,7 @@ struct SizeView: View {
 
 struct ShopEggCard_Previews: PreviewProvider {
     static var previews: some View {
-        ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable[1])
+        ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable[0])
+            .environmentObject(GameManager())
     }
 }

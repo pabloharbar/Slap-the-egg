@@ -10,11 +10,11 @@ import Foundation
 class UserDefaultsWrapper {
     static func setRecord(model: PlayerData) {
         let data = try? JSONEncoder().encode(model)
-        UserDefaults.standard.set(data, forKey: "data")
+        UserDefaults.standard.set(data, forKey: "playerData")
     }
     
     static func fetchRecord() -> PlayerData? {
-        guard let data = UserDefaults.standard.data(forKey: "data") else {
+        guard let data = UserDefaults.standard.data(forKey: "playerData") else {
             return nil
         }
         

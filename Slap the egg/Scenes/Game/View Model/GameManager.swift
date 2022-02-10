@@ -27,11 +27,13 @@ class GameManager: ObservableObject {
     
     static var gameSpeed = CGFloat(500)
     
+    var PowerUpMultiplicator = 1
+    
     var scene: GameScene
     
+    @Published var playerData: PlayerData
+    
     @Published var score = 0
-    @Published var money = 0
-    @Published var record: Int
     
     @Published var gameStatus: GameStatus = .menu
     
@@ -43,21 +45,146 @@ class GameManager: ObservableObject {
     init() {
         scene = SKScene(fileNamed: "GameScene") as! GameScene
         scene.scaleMode = .aspectFill 
-        let data = UserDefaultsWrapper.fetchRecord()
-        record = data?.highscore ?? 0
-        money = data?.money ?? 0
+        playerData = UserDefaultsWrapper.fetchRecord() ?? PlayerData(highscore: 0, money: 0)
+    }
+    
+    func processEggPurchase(egg: Eggs) {
+        if playerData.eggsUnlocked.contains(egg) {
+            let data = playerData
+            data.selectedEgg = egg
+            scene.loadPlayerData(data: data)
+            playerData = data
+            saveData()
+        } else {
+            let item = CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == egg }.first!
+            if playerData.money >= item.eggShellCost {
+                playerData.money -= item.eggShellCost
+                playerData.eggsUnlocked.append(egg)
+                saveData()
+            }
+        }
+    }
+    
+    func processBackgroundPurchase(background: Backgrounds) {
+        if playerData.backgroundsUnlocked.contains(background) {
+            let data = playerData
+            data.selectedBackground = background
+            scene.loadPlayerData(data: data)
+            playerData = data
+            saveData()
+        } else {
+            let item = CosmeticsBank.shared.backgroundsAvailable.filter { $0.cosmeticsType == background }.first!
+            if playerData.money >= item.eggShellCost {
+                playerData.money -= item.eggShellCost
+                playerData.backgroundsUnlocked.append(background)
+                saveData()
+            }
+        }
+    }
+    
+    func processPowerUpPurchase(powerUp: PowerUpType) {
+        let cost = PowerUpsAvailable.powerUps.filter { $0.powerUpType == powerUp }.first!.eggShellCost
+        if !playerData.activePowerUps.contains(powerUp) && playerData.money >= cost {
+            let data = playerData
+            data.activePowerUps.append(powerUp)
+            for powerUp in data.activePowerUps {
+                switch powerUp {
+                case .multiplicate2x:
+                    PowerUpMultiplicator = 2
+                case .multiplicate3x:
+                    PowerUpMultiplicator = 3
+                case .multiplicate5x:
+                    PowerUpMultiplicator = 5
+                default:
+                    continue
+                }
+            }
+            data.money -= cost
+            scene.loadPlayerData(data: data)
+            playerData = data
+            saveData()
+        }
+    }
+    
+    func applyPowerUps() {
+        let eggData = CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == playerData.selectedEgg}.first!
+        for powerUp in eggData.powerUp {
+            switch powerUp.powerUpType {
+            case .multiplicate2x:
+                PowerUpMultiplicator = 2
+            case .multiplicate3x:
+                PowerUpMultiplicator = 3
+            case .multiplicate5x:
+                PowerUpMultiplicator = 5
+            case .revive1, .revive2:
+                scene.applyPowerUp(item: powerUp.powerUpType)
+            }
+            let data = playerData
+            if data.activePowerUps.contains(powerUp.powerUpType) && powerUp.powerUpType == .revive1 {
+                data.activePowerUps = data.activePowerUps.filter { $0 != .revive1}
+                data.activePowerUps.append(.revive2)
+            } else {
+                data.activePowerUps.append(powerUp.powerUpType)
+            }
+            playerData = data
+        }
+    }
+    
+    func containsMultiplier() -> Bool {
+        for item in playerData.activePowerUps {
+            switch item {
+            case .multiplicate2x, .multiplicate3x, .multiplicate5x:
+                return true
+            default:
+                continue
+            }
+        }
+        return false
+    }
+    
+    func getBiggestMultiplier() -> Int {
+        var value = 1
+        for item in playerData.activePowerUps {
+            switch item {
+            case .multiplicate2x:
+                if value < 2 {
+                    value = 2
+                }
+            case .multiplicate3x:
+                if value < 3 {
+                    value = 3
+                }
+            case .multiplicate5x:
+                if value < 5 {
+                    value = 5
+                }
+            default:
+                continue
+            }
+        }
+        return value
+    }
+    
+    func clearPowerUps() {
+        playerData.activePowerUps.removeAll()
+        print(playerData.activePowerUps)
+        saveData()
     }
     
     func updateData() {
-        money += score / 10
-        if score > record {
-            record = score
+        playerData.money += PowerUpMultiplicator * score / 10
+        PowerUpMultiplicator = 1
+        if score > playerData.highscore {
+            playerData.highscore = score
         }
-        UserDefaultsWrapper.setRecord(model: PlayerData(highscore: record, money: money))
-        let data = UserDefaultsWrapper.fetchRecord()
-        money = data?.money ?? 0
-        record = data?.highscore ?? 0
-        saveRecord(with: record)
+        saveData()
+        saveRecord(with: playerData.highscore)
+    }
+    
+    func saveData() {
+        UserDefaultsWrapper.setRecord(model: playerData)
+        let data = UserDefaultsWrapper.fetchRecord() ?? PlayerData(highscore: 0, money: 0)
+        playerData = data
     }
     
     func displayScoreBoard() -> Double {
