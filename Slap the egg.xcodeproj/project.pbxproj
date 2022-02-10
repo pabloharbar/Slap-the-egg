@@ -37,6 +37,11 @@
 		5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6DB27A3336500A743A7 /* GameScene.swift */; };
 		5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD70527A3399300A743A7 /* GameScene.sks */; };
 		5BEC960627A9D1F800B9CEDF /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */; };
+		EC5F699A27B439B5001BC98C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F699927B439B5001BC98C /* SoundManager.swift */; };
+		EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F699E27B5864D001BC98C /* faceSlap.mp3 */; };
+		EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A027B58672001BC98C /* mouthPop.mp3 */; };
+		EC5F69A327B58EDC001BC98C /* eggCrush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A227B58EDC001BC98C /* eggCrush.mp3 */; };
+		EC5F69A527B58F03001BC98C /* frying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A427B58F03001BC98C /* frying.mp3 */; };
 		ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */; };
 		ECDE210F27AB093E0091AAF1 /* EggShellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */; };
 		ECDE211127AB0EFD0091AAF1 /* MenuLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */; };
@@ -75,6 +80,11 @@
 		5BBCD70527A3399300A743A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5BEC960427A9D1CC00B9CEDF /* Slap-the-egg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Slap-the-egg-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
+		EC5F699927B439B5001BC98C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		EC5F699E27B5864D001BC98C /* faceSlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = faceSlap.mp3; sourceTree = "<group>"; };
+		EC5F69A027B58672001BC98C /* mouthPop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouthPop.mp3; sourceTree = "<group>"; };
+		EC5F69A227B58EDC001BC98C /* eggCrush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = eggCrush.mp3; sourceTree = "<group>"; };
+		EC5F69A427B58F03001BC98C /* frying.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frying.mp3; sourceTree = "<group>"; };
 		ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggShellLabel.swift; sourceTree = "<group>"; };
 		ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabel.swift; sourceTree = "<group>"; };
@@ -199,6 +209,8 @@
 			children = (
 				5B5CD62127AACD7600B74A7C /* GameManager.swift */,
 				5B50323827B411E200E7E4F4 /* ShopManager.swift */,
+				EC5F699927B439B5001BC98C /* SoundManager.swift */,
+				EC5F699B27B4483C001BC98C /* Sounds */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -242,6 +254,17 @@
 				5BBCD6D227A3328400A743A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EC5F699B27B4483C001BC98C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				EC5F69A427B58F03001BC98C /* frying.mp3 */,
+				EC5F69A227B58EDC001BC98C /* eggCrush.mp3 */,
+				EC5F699E27B5864D001BC98C /* faceSlap.mp3 */,
+				EC5F69A027B58672001BC98C /* mouthPop.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		ECDE210B27AAF85C0091AAF1 /* View */ = {
@@ -323,6 +346,10 @@
 				5BBCD6D327A3328400A743A7 /* Preview Assets.xcassets in Resources */,
 				5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */,
 				5BBCD6D027A3328400A743A7 /* Assets.xcassets in Resources */,
+				EC5F69A327B58EDC001BC98C /* eggCrush.mp3 in Resources */,
+				EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */,
+				EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */,
+				EC5F69A527B58F03001BC98C /* frying.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +363,7 @@
 				5B3BD6A627AC5C390061E4B6 /* LeaderboardView.swift in Sources */,
 				5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */,
 				5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */,
+				EC5F699A27B439B5001BC98C /* SoundManager.swift in Sources */,
 				5B3BD6AA27AC80850061E4B6 /* SettingsView.swift in Sources */,
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
@@ -491,7 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Slap the egg/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = 2C49HA74H3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Slap-the-egg-Info.plist";
@@ -507,7 +535,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -523,7 +551,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Slap the egg/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = 2C49HA74H3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Slap-the-egg-Info.plist";
@@ -539,7 +567,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
