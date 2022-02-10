@@ -46,6 +46,7 @@
 		ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */; };
 		ECDE210F27AB093E0091AAF1 /* EggShellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */; };
 		ECDE211127AB0EFD0091AAF1 /* MenuLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */; };
+		ECF2CB4B27B59D64006F6439 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF2CB4A27B59D64006F6439 /* HapticManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggShellLabel.swift; sourceTree = "<group>"; };
 		ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabel.swift; sourceTree = "<group>"; };
+		ECF2CB4A27B59D64006F6439 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				5B5CD62127AACD7600B74A7C /* GameManager.swift */,
 				5B50323827B411E200E7E4F4 /* ShopManager.swift */,
 				EC5F699927B439B5001BC98C /* SoundManager.swift */,
+				ECF2CB4A27B59D64006F6439 /* HapticManager.swift */,
 				EC5F699B27B4483C001BC98C /* Sounds */,
 			);
 			path = "View Model";
@@ -392,6 +395,7 @@
 				5B50323E27B43B6C00E7E4F4 /* PowerUpCard.swift in Sources */,
 				5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */,
 				5B50322827B3081200E7E4F4 /* BackgroundView.swift in Sources */,
+				ECF2CB4B27B59D64006F6439 /* HapticManager.swift in Sources */,
 				5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
