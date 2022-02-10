@@ -47,6 +47,39 @@ class Player {
         parent.addChild(node)
     }
     
+    func changeTexture(selectedEgg: Eggs) {
+        let target = CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == selectedEgg }.first!
+        let image = target.image
+        let scale: CGFloat
+        node.texture = SKTexture(image: UIImage(named: image)!)
+        switch target.size {
+        case .small:
+            scale = 0.8
+        case .medium:
+            scale = 1.4
+        case .big:
+            scale = 2.2
+        }
+        node.xScale = scale
+        node.yScale = scale
+    }
+    
+    func collide(withPan: Bool) {
+        node.physicsBody?.velocity.dx *= -1
+        node.physicsBody?.velocity.dy *= -1
+//        if abs((node.physicsBody?.velocity.dy)!) <= 100 {
+//            node.physicsBody?.velocity.dy *= 5
+//        }
+//        let treshold: CGFloat = 300
+//        if (node.physicsBody?.velocity.dy)! <= treshold && (node.physicsBody?.velocity.dy)! >= treshold {
+//            node.physicsBody?.velocity.dy = -velocityModule
+//            print("limite")
+//        }
+        if withPan {
+            node.physicsBody?.velocity.dy = velocityModule * 2
+        }
+    }
+    
     func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty) {
         switch difficulty {
         case .easy:
@@ -117,10 +150,10 @@ class Player {
 //        }
     }
     
-    func checkTouch(at point: CGPoint) -> Bool {
-        return node.contains(point)
-    }
-    
+//    func checkTouch(at point: CGPoint) -> Bool {
+//        return node.contains(point)
+//    }
+//    
     func getZRotation() -> CGFloat {
         return node.zRotation
     }

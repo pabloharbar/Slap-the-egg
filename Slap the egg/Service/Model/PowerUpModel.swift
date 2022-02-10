@@ -14,18 +14,23 @@ struct PowerUp: Hashable {
     let value: Int
     let eggShellCost: Int
     let shopAvailable: Bool
+    let image: String
     
-    init(name: String, description: String, type: PowerUpType, value: Int, eggShellCost: Int = 0, shopAvailable: Bool = false) {
+    init(name: String, description: String, type: PowerUpType, value: Int, eggShellCost: Int = 0, shopAvailable: Bool = false, image: String = "") {
         self.name = name
         self.description = description
         self.powerUpType = type
         self.value = value
         self.eggShellCost = eggShellCost
         self.shopAvailable = shopAvailable
+        self.image = image
     }
 }
 
-enum PowerUpType {
-    case multiplicate
-    case revive
+enum PowerUpType: Codable {
+    case multiplicate2x
+    case multiplicate3x
+    case multiplicate5x
+    case revive1
+    case revive2
 }

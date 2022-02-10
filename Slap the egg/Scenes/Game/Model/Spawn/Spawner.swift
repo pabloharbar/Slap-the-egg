@@ -160,11 +160,11 @@ class Spawner {
         let path = UIBezierPath()
 
         if reversed {
-            path.move(to: CGPoint(x: -(parent.frame.width - 100)/2, y: CGFloat(incline)))
-            path.addLine(to: CGPoint(x: (parent.frame.width - 100)/2, y: -CGFloat(incline)))
+            path.move(to: CGPoint(x: -(750 - 100)/2, y: CGFloat(incline)))
+            path.addLine(to: CGPoint(x: (750 - 100)/2, y: -CGFloat(incline)))
         } else {
-            path.move(to: CGPoint(x: (parent.frame.width - 100)/2, y: CGFloat(incline)))
-            path.addLine(to: CGPoint(x: -(parent.frame.width - 100)/2, y: -CGFloat(incline)))
+            path.move(to: CGPoint(x: (750 - 100)/2, y: CGFloat(incline)))
+            path.addLine(to: CGPoint(x: -(750 - 100)/2, y: -CGFloat(incline)))
         }
 
         path.close()

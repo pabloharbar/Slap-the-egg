@@ -37,4 +37,12 @@ class Background {
             reset = false
         }
     }
+    
+    func changeTexture(data: PlayerData) {
+        let target = CosmeticsBank.shared.backgroundsAvailable.filter { $0.cosmeticsType == data.selectedBackground }.first!
+        let image = target.image
+        let texture = SKTexture(image: UIImage(named: image)!)
+        node.texture = texture
+        duplicateNode.texture = texture
+    }
 }

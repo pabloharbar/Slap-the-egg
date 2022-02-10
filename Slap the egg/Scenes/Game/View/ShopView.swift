@@ -39,6 +39,7 @@ struct ShopView: View {
                     shopManager.getShopItemsCategory()
                         .padding()
                         .frame(maxHeight: 480)
+                        .environmentObject(gameManager)
                 }
             }
             .foregroundColor(.white)

@@ -10,6 +10,8 @@ import SpriteKit
 
 struct ContentView: View {
     @StateObject var gameManager = GameManager()
+    @State var playing = false
+    @State var multiplier = 1
     
     var body: some View {
         ZStack {
@@ -19,7 +21,7 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Spacer()
-                    EggShellLabel(money: $gameManager.money)
+                    EggShellLabel(money: $gameManager.playerData.money)
                         .offset(x: -15, y: -5)
                         .opacity(gameManager.gameStatus == .menu ? 1 : 0)
                 }
@@ -27,8 +29,44 @@ struct ContentView: View {
             }
             
             VStack {
-                ScoreLabel(score: $gameManager.score)
-                    .opacity(gameManager.displayScoreBoard())
+                ZStack {
+                    
+                    HStack {
+                        if gameManager.containsMultiplier() {
+                            let value = gameManager.getBiggestMultiplier()
+                            ZStack {
+                                Image("doubleIcon")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .opacity(gameManager.displayScoreBoard())
+                                Text("x\(value) ")
+                                    .font(.custom("Bangers-Regular", size: 24))
+                                    .opacity(gameManager.displayScoreBoard())
+                            }
+                        }
+                        if gameManager.playerData.activePowerUps.contains(.revive2) {
+                            Image("shieldIcon")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .opacity(gameManager.displayScoreBoard())
+                            Image("shieldIcon")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .opacity(gameManager.displayScoreBoard())
+                        }
+                        if  gameManager.playerData.activePowerUps.contains(.revive1) {
+                            Image("shieldIcon")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .opacity(gameManager.displayScoreBoard())
+                            
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    ScoreLabel(score: $gameManager.score)
+                        .opacity(gameManager.displayScoreBoard())
+                }
                 Spacer()
             }
             modalDisplay()
@@ -37,11 +75,36 @@ struct ContentView: View {
         .onReceive(gameManager.scene.scorePublisher, perform: { target in
             gameManager.score = target
         })
+        .onReceive(gameManager.scene.revivePublisher, perform: { value in
+            if value == 0 && gameManager.gameStatus == .playing {
+                guard let index = gameManager.playerData.activePowerUps.firstIndex(where: { $0 == .revive1}) else { return }
+                gameManager.playerData.activePowerUps.remove(at: index)
+            } else if value == 1 && gameManager.gameStatus == .playing {
+                let data = gameManager.playerData
+                data.activePowerUps = gameManager.playerData.activePowerUps.filter { $0 != .revive2 }
+                data.activePowerUps.append(.revive1)
+                gameManager.playerData = data
+            } else if value == 2 && gameManager.gameStatus == .playing {
+                let data = gameManager.playerData
+                data.activePowerUps = gameManager.playerData.activePowerUps.filter { $0 != .revive1 }
+                gameManager.playerData = data
+            }
+        })
         .onReceive(gameManager.scene.statusPublisher, perform: { status in
             gameManager.gameStatus = status
             gameManager.scene.difficulty = gameManager.difficultySelected
             if status == .gameOver {
                 gameManager.updateData()
+                if playing {
+                    gameManager.clearPowerUps()
+                }
+                playing = false
+    
+            } else if status == .playing {
+                print(gameManager.playerData.activePowerUps)
+                gameManager.applyPowerUps()
+                playing = true
+                multiplier = gameManager.getBiggestMultiplier()
             }
         })
         .onAppear {
@@ -52,19 +115,19 @@ struct ContentView: View {
     @ViewBuilder func menuDisplay() -> some View {
         if gameManager.gameStatus == .gameOver {
             VStack(spacing: 0) {
-                ScoreReviewLabel(sessionScore: $gameManager.score)
+                ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
                     .padding(.bottom,30)
-                Text(" Highest: \(gameManager.record) ")
+                Text(" Highest: \(gameManager.playerData.highscore) ")
                     .font(.custom("Bangers-Regular", size: 36))
                 MenuLabel()
                     .padding(.bottom,40)
                     .environmentObject(gameManager)
-                EggShellLabel(money: $gameManager.money)
+                EggShellLabel(money: $gameManager.playerData.money)
             }
             .opacity(gameManager.displayRecord())
         } else {
             VStack(spacing: 0) {
-                Text(" Highest: \(gameManager.record) ")
+                Text(" Highest: \(gameManager.playerData.highscore) ")
                     .font(.custom("Bangers-Regular", size: 36))
                 MenuLabel()
                     .padding(.bottom,40)

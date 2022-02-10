@@ -19,23 +19,24 @@ class ShopManager: ObservableObject {
             VStack {
                 switch cosmeticPage {
                 case 0:
-                    ForEach(Cosmetics.Eggs.allCases, id: \.self) { egg in 
+                    ForEach(Eggs.allCases, id: \.self) { egg in
                         ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable.filter {
                             $0.cosmeticsType == egg
                         }.first!)
                     }
                 case 1:
-                    ForEach(Cosmetics.Backgrounds.allCases, id: \.self) { background in
+                    let powerUpsShopable = PowerUpsAvailable.powerUps.filter { $0.shopAvailable == true }
+                    ForEach(powerUpsShopable, id: \.self) { powerUp in
+                        PowerUpCard(powerUp: powerUp)
+                    }
+                case 2:
+                    ForEach(Backgrounds.allCases, id: \.self) { background in
                         BackgroundCard(background: CosmeticsBank.shared.backgroundsAvailable.filter {
                             $0.cosmeticsType == background
                         }.first!)
                     }
-                case 2:
-                    ForEach(Cosmetics.Eggs.allCases, id: \.self) { egg in
-                        ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == egg }.first!)
-                    }
                 default:
-                    ForEach(Cosmetics.Eggs.allCases, id: \.self) { egg in
+                    ForEach(Eggs.allCases, id: \.self) { egg in
                         ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == egg }.first!)
                     }
                 }

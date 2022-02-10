@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BackgroundCard: View {
+    @EnvironmentObject var gameManager: GameManager
     let background: BackgroundModel
     var body: some View {
         HStack {
@@ -18,17 +19,45 @@ struct BackgroundCard: View {
                 .clipped()
                 .cornerRadius(10)
             Spacer()
-            VStack {
+            VStack(spacing: 20) {
                 Text("\(background.name) ")
                     .font(.custom("Bangers-Regular", size: 24))
                     .foregroundColor(Color("menuLabelColor"))
-                HStack {
-                    Image("eggShell")
-                        .resizable()
-                        .frame(width: 12.75, height: 13.5)
-                    Text("\(background.eggShellCost) ")
-                        .font(.custom("Bangers-Regular", size: 14))
+                Button(action: {
+                    gameManager.processBackgroundPurchase(background: background.cosmeticsType)
+                }) {
+                    if gameManager.playerData.selectedBackground == background.cosmeticsType {
+                        Text("Selected ")
+                            .foregroundColor(Color("menuLabelColor"))
+                            .font(.custom("Bangers-Regular", size: 12))
+                            .padding(.horizontal,6)
+                    } else if gameManager.playerData.backgroundsUnlocked.contains(background.cosmeticsType) {
+                        Image(systemName: "checkmark.seal.fill")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color("menuLabelColor"))
+                    } else {
+                        HStack {
+                            Image("eggShell")
+                                .resizable()
+                                .frame(width: 12.75, height: 13.5)
+                            Text("\(background.eggShellCost) ")
+                                .font(.custom("Bangers-Regular", size: 14))
+                        }
+                        .padding(.horizontal)
+                    }
                 }
+                .frame(maxWidth: 100)
+                .background(
+                    ZStack(alignment: .bottomLeading) {
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(height: 24)
+                            .foregroundColor(Color(gameManager.playerData.selectedBackground == background.cosmeticsType ? "settingsColor" : "settingsLightestColor"))
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(height: 22)
+                            .foregroundColor(Color(gameManager.playerData.selectedBackground == background.cosmeticsType ? "settingsLightestColor" : "settingsColor"))
+                            .padding(.trailing, 3)
+                    }
+                )
             }
             Spacer()
         }
@@ -42,5 +71,6 @@ struct BackgroundCard: View {
 struct BackgroundCard_Previews: PreviewProvider {
     static var previews: some View {
         BackgroundCard(background: BackgroundModel(name: "Bricks", image: "background", eggShellCost: 0, type: .sky))
+            .environmentObject(GameManager())
     }
 }
