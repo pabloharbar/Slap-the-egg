@@ -48,6 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var spawner: Spawner!
     var pan: Pan!
     var background: Background!
+    var toaster: Toaster!
     
     // Labels
     var title: SKNode!
@@ -102,6 +103,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
         background = Background(node: backgroundNode, parent: self)
+        
+        // toaster setup
+        let toasterNode = self.childNode(withName: "toasterModel")!
+        toaster = Toaster(node: toasterNode, parent: self)
         
         // Load from user defaults
         let data = UserDefaultsWrapper.fetchRecord() ?? PlayerData(highscore: 0, money: 0)
@@ -178,7 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             pan.gameOver()
         } else {
             deadEgg.position = deathPosition
-            deadEgg.zPosition = -3
+            deadEgg.zPosition = -2
             deadEgg.zRotation = player.getZRotation()
             self.addChild(deadEgg)
         }
@@ -283,7 +288,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case .playing:
             background.update(deltaTime: deltaTime, multiplier: speedMultiplier)
             spawner.update(deltaTime: deltaTime, multiplier: speedMultiplier)
-            
+            toaster.update(deltaTime: deltaTime)
             //Score counting
             speedMultiplier = 1 + CGFloat(currentScore)/500
             scoreLimiter += 1

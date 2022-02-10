@@ -75,7 +75,7 @@ class Spawner {
         let pathNode = SKShapeNode(path: dashedPath)
         pathNode.strokeColor = .gray
         pathNode.lineWidth = 10
-        pathNode.zPosition = -4
+        pathNode.zPosition = -5
         pathNode.lineCap = .round
         
         // Animation Setup
@@ -101,7 +101,7 @@ class Spawner {
         let pathNode = SKShapeNode(path: dashedPath)
         pathNode.strokeColor = .gray
         pathNode.lineWidth = 10
-        pathNode.zPosition = -4
+        pathNode.zPosition = -5
         pathNode.lineCap = .round
         
         // Animation Setup
@@ -136,7 +136,7 @@ class Spawner {
         let pathNode = SKShapeNode(path: dashedPath)
         pathNode.strokeColor = .gray
         pathNode.lineWidth = 10
-        pathNode.zPosition = -4
+        pathNode.zPosition = -5
         pathNode.lineCap = .round
         
         // Animation Setup

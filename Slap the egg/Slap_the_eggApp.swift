@@ -12,6 +12,7 @@ struct Slap_the_eggApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            HapticManager()
         }
     }
 }

@@ -11,6 +11,7 @@
 		5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A127A48929004A2CD0 /* Pan.swift */; };
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
+		5B265F7727B5A90C004E74DB /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B265F7627B5A90C004E74DB /* Toaster.swift */; };
 		5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */; };
 		5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */; };
 		5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3BD69F27AC5B670061E4B6 /* GameKit.framework */; };
@@ -54,6 +55,7 @@
 		5B18A4A127A48929004A2CD0 /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		5B265F7627B5A90C004E74DB /* Toaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
 		5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReviewLabel.swift; sourceTree = "<group>"; };
 		5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		5B3BD69F27AC5B670061E4B6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -195,6 +197,7 @@
 		5B3DE53427A857AD00DB2743 /* Spawn */ = {
 			isa = PBXGroup;
 			children = (
+				5B265F7627B5A90C004E74DB /* Toaster.swift */,
 				5B18A4A327A48984004A2CD0 /* Spawner.swift */,
 			);
 			path = Spawn;
@@ -376,6 +379,7 @@
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
 				5B3BD6A827AC80710061E4B6 /* ShopView.swift in Sources */,
 				5B50323527B32DFC00E7E4F4 /* PowerUpModel.swift in Sources */,
+				5B265F7727B5A90C004E74DB /* Toaster.swift in Sources */,
 				5B18A4A027A452BC004A2CD0 /* Player.swift in Sources */,
 				ECDE210F27AB093E0091AAF1 /* EggShellLabel.swift in Sources */,
 				5B50323727B32E0E00E7E4F4 /* BackgroundModel.swift in Sources */,
