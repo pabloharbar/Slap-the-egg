@@ -12,6 +12,7 @@
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
 		5B265F7527B59FB6004E74DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */; };
+		5B265F7927B5C0BB004E74DB /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */; };
 		5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */; };
 		5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */; };
 		5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3BD69F27AC5B670061E4B6 /* GameKit.framework */; };
@@ -58,6 +59,7 @@
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReviewLabel.swift; sourceTree = "<group>"; };
 		5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		5B3BD69F27AC5B670061E4B6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -221,6 +223,7 @@
 				5B50323827B411E200E7E4F4 /* ShopManager.swift */,
 				EC5F699927B439B5001BC98C /* SoundManager.swift */,
 				EC5F699B27B4483C001BC98C /* Sounds */,
+				5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				5BBCD6C527A3328300A743A7 /* Frameworks */,
 				5BBCD6C627A3328300A743A7 /* Resources */,
 				0C6ADB91D169DD2ABFE8D7F3 /* [CP] Embed Pods Frameworks */,
+				5B265F7A27B5C3DF004E74DB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -398,6 +402,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5B265F7A27B5C3DF004E74DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		CA6EFA2C49C01C35F4A1A81C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +478,7 @@
 				ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */,
 				5B50323E27B43B6C00E7E4F4 /* PowerUpCard.swift in Sources */,
 				5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */,
+				5B265F7927B5C0BB004E74DB /* AnalyticsManager.swift in Sources */,
 				5B50322827B3081200E7E4F4 /* BackgroundView.swift in Sources */,
 				5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */,
 			);
@@ -587,6 +611,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Slap the egg/Preview Content\"";
 				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;

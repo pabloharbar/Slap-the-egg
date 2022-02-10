@@ -10,13 +10,14 @@ import Firebase
 
 @main
 struct Slap_the_eggApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-    }
-    
-    init() {
-        FirebaseApp.configure()
     }
 }
