@@ -83,7 +83,7 @@ class Player {
     func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty) {
         switch difficulty {
         case .easy:
-            SoundsManager.instance.playSound(sound: .faceSlap)
+//            SoundsManager.instance.playSound(sound: .faceSlap)
             let deltaX = node.position.x - position.x
             var width: CGFloat
             if deltaX > 0 {
