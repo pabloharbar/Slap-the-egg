@@ -13,6 +13,9 @@
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
 		5B265F7527B59FB6004E74DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */; };
 		5B265F7927B5C0BB004E74DB /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */; };
+		5B2C618C27B6BE9F003EA762 /* AdRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */; };
+		5B2C618E27B6DFF7003EA762 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618D27B6DFF7003EA762 /* BannerView.swift */; };
+		5B2C619027B6E087003EA762 /* AdMobID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618F27B6E087003EA762 /* AdMobID.swift */; };
 		5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */; };
 		5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */; };
 		5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3BD69F27AC5B670061E4B6 /* GameKit.framework */; };
@@ -60,6 +63,9 @@
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRewardManager.swift; sourceTree = "<group>"; };
+		5B2C618D27B6DFF7003EA762 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		5B2C618F27B6E087003EA762 /* AdMobID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobID.swift; sourceTree = "<group>"; };
 		5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReviewLabel.swift; sourceTree = "<group>"; };
 		5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		5B3BD69F27AC5B670061E4B6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -163,6 +169,7 @@
 				5B50323227B32DE400E7E4F4 /* EggModel.swift */,
 				5B50323427B32DFC00E7E4F4 /* PowerUpModel.swift */,
 				5B50323627B32E0E00E7E4F4 /* BackgroundModel.swift */,
+				5B2C618F27B6E087003EA762 /* AdMobID.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */,
+				5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */,
+				5B2C618D27B6DFF7003EA762 /* BannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -458,6 +467,7 @@
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
+				5B2C618E27B6DFF7003EA762 /* BannerView.swift in Sources */,
 				5B3BD6A827AC80710061E4B6 /* ShopView.swift in Sources */,
 				5B50323527B32DFC00E7E4F4 /* PowerUpModel.swift in Sources */,
 				5B18A4A027A452BC004A2CD0 /* Player.swift in Sources */,
@@ -471,9 +481,11 @@
 				5B50323B27B420A100E7E4F4 /* BackgroundCard.swift in Sources */,
 				5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */,
 				5B50323327B32DE400E7E4F4 /* EggModel.swift in Sources */,
+				5B2C618C27B6BE9F003EA762 /* AdRewardManager.swift in Sources */,
 				5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */,
 				5BBCD6CE27A3328300A743A7 /* ContentView.swift in Sources */,
 				5B50323127B312D100E7E4F4 /* CosmeticsBank.swift in Sources */,
+				5B2C619027B6E087003EA762 /* AdMobID.swift in Sources */,
 				ECDE211127AB0EFD0091AAF1 /* MenuLabel.swift in Sources */,
 				ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */,
 				5B50323E27B43B6C00E7E4F4 /* PowerUpCard.swift in Sources */,
@@ -621,6 +633,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -654,6 +667,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

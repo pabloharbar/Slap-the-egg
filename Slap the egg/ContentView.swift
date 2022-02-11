@@ -123,6 +123,7 @@ struct ContentView: View {
                     .padding(.bottom,40)
                     .environmentObject(gameManager)
                 EggShellLabel(money: $gameManager.playerData.money)
+                BannerView().frame(width: 320, height: 50, alignment: .center)
             }
             .opacity(gameManager.displayRecord())
         } else {
