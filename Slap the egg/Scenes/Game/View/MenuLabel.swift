@@ -12,20 +12,20 @@ struct MenuLabel: View {
     var body: some View {
         HStack(spacing: 28) {
             Button(action: {
-                SoundsManager.instance.playSound(sound: .mouthPop)
+                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                 gameManager.menuStatus = .shop
                 gameManager.scene.holdScene()
             }) {
                 Image("storeButton")
             }
             Button(action: {
-                SoundsManager.instance.playSound(sound: .mouthPop)
+                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                 gameManager.menuStatus = .leaderboard
             }) {
                 Image("leaderboardButton")
             }
             Button(action: {
-                SoundsManager.instance.playSound(sound: .mouthPop)
+                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                 gameManager.menuStatus = .settings
                 gameManager.scene.holdScene()
             }) {

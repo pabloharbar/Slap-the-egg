@@ -19,6 +19,8 @@ enum GameStatus {
 
 class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var difficulty: Difficulty = .easy
+    var vibrationEnabled: Bool = true
+    var soundEnabled: Bool = true
     
     // Power Ups
     @Published var revive = 0 {
@@ -132,9 +134,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             }
         case .intro:
             start()
-            player.slap(at: pos, parent: self, difficulty: difficulty)
+            player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
         case .playing:
-            player.slap(at: pos, parent: self, difficulty: difficulty)
+            player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
         case .gameOver:
             reset()
         case .wait:
@@ -200,7 +202,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
         if killedByPan {
             pan.gameOver()
+            SoundsManager.instance.playSound(sound: .frying, soundEnabled: soundEnabled)
         } else {
+            SoundsManager.instance.playSound(sound: .eggCrush, soundEnabled: soundEnabled)
             deadEgg.position = deathPosition
             deadEgg.zPosition = -2
             deadEgg.zRotation = player.getZRotation()
@@ -268,6 +272,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         if eggTouchedPan || eggTouchedEnemy {
             if revive <= 0 {
                 if status == .playing {
+                    HapticsManager.instance.notification(type: .error, vibrationEnabled: vibrationEnabled)
                     gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
                 }
             } else {

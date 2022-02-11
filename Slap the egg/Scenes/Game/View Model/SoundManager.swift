@@ -21,7 +21,10 @@ class SoundsManager {
         
     }
     
-    func playSound(sound: SoundOption) {
+    func playSound(sound: SoundOption, soundEnabled: Bool) {
+        if !soundEnabled {
+            return
+        }
         guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else {return}
         do {
             player = try AVAudioPlayer(contentsOf: url)
@@ -39,10 +42,10 @@ struct SoundManager: View {
     var body: some View {
         VStack(spacing: 40) {
             Button("Play sound 1") {
-                SoundsManager.instance.playSound(sound: .faceSlap)
+                SoundsManager.instance.playSound(sound: .faceSlap, soundEnabled: true)
             }
             Button("Play sound2") {
-                SoundsManager.instance.playSound(sound: .mouthPop)
+                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: true)
             }
         }
     }

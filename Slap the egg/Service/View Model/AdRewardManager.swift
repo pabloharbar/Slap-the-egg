@@ -18,8 +18,9 @@ final class AdRewardManager: NSObject, GADFullScreenContentDelegate, ObservableO
         super.init()
         LoadRewarded()
     }
-
+    
     func LoadRewarded(){
+        
         let req = GADRequest()
         GADRewardedAd.load(withAdUnitID: AdMobId.rewardID, request: req, completionHandler: { (ad, error) in
             if let error = error {

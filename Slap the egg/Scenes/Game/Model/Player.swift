@@ -80,10 +80,11 @@ class Player {
         }
     }
     
-    func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty) {
+    func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty, vibrationEnabled: Bool) {
         switch difficulty {
         case .easy:
 //            SoundsManager.instance.playSound(sound: .faceSlap)
+            HapticsManager.instance.impact(style: .soft, vibrationEnabled: vibrationEnabled)
             let deltaX = node.position.x - position.x
             var width: CGFloat
             if deltaX > 0 {
@@ -98,7 +99,8 @@ class Player {
             node.physicsBody?.angularVelocity = -angularK * deltaX / width
         case .hard:
             if node.contains(position) {
-                SoundsManager.instance.playSound(sound: .faceSlap)
+                HapticsManager.instance.impact(style: .soft, vibrationEnabled: vibrationEnabled)
+//                SoundsManager.instance.playSound(sound: .faceSlap)
                 let deltaX = node.position.x - position.x
                 let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
                 let vx = deltaX / normalizedWidth * velocityModule

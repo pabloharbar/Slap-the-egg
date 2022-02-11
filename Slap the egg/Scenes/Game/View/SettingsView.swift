@@ -31,17 +31,55 @@ struct SettingsView: View {
                                 gameManager.difficultySelected = .easy
                             }
                         }) {
-                            Text("\(gameManager.difficultySelected.rawValue) ")
+                            ZStack {
+                                Ellipse()
+                                    .frame(width: 85, height: 50)
+                                    .foregroundColor(gameManager.difficultySelected == .easy ? Color("settingsOffColor") : Color("settingsOnColor"))
+                                Text("\(gameManager.difficultySelected.rawValue) ")
+                                    .foregroundColor(gameManager.difficultySelected == .easy ? Color("settingsOnColor") : Color("settingsOffColor"))
+                            }
                         }
                         .padding(.trailing)
                     }
                     HStack {
                         Text("Sounds ")
                         Spacer()
+                        Button(action: {
+                            let data = gameManager.playerData
+                            data.preferences.soundEnable.toggle()
+                            gameManager.playerData = data
+                            gameManager.scene.soundEnabled = data.preferences.soundEnable
+                            gameManager.saveData()
+                        }) {
+                            ZStack {
+                                Ellipse()
+                                    .frame(width: 85, height: 50)
+                                    .foregroundColor(gameManager.playerData.preferences.soundEnable ? Color("settingsOnColor") : Color("settingsOffColor"))
+                                Text(gameManager.playerData.preferences.soundEnable ? "On " : "Off ")
+                                    .foregroundColor(gameManager.playerData.preferences.soundEnable ? Color("settingsOffColor") : Color("settingsOnColor"))
+                            }
+                        }
+                        .padding(.trailing)
                     }
                     HStack {
                         Text("Vibration ")
                         Spacer()
+                        Button(action: {
+                            let data = gameManager.playerData
+                            data.preferences.vibrationEnable.toggle()
+                            gameManager.playerData = data
+                            gameManager.scene.vibrationEnabled = data.preferences.vibrationEnable
+                            gameManager.saveData()
+                        }) {
+                            ZStack {
+                                Ellipse()
+                                    .frame(width: 85, height: 50)
+                                    .foregroundColor(gameManager.playerData.preferences.vibrationEnable ? Color("settingsOnColor") : Color("settingsOffColor"))
+                                Text(gameManager.playerData.preferences.vibrationEnable ? "On " : "Off ")
+                                    .foregroundColor(gameManager.playerData.preferences.vibrationEnable ? Color("settingsOffColor") : Color("settingsOnColor"))
+                            }
+                        }
+                        .padding(.trailing)
                     }
                 }
             }

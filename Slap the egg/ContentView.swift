@@ -106,6 +106,8 @@ struct ContentView: View {
             } else if status == .playing {
                 print(gameManager.playerData.activePowerUps)
                 gameManager.applyPowerUps()
+                gameManager.scene.vibrationEnabled = gameManager.playerData.preferences.vibrationEnable
+                gameManager.scene.soundEnabled = gameManager.playerData.preferences.soundEnable
                 playing = true
                 multiplier = gameManager.getBiggestMultiplier()
             }
@@ -122,6 +124,13 @@ struct ContentView: View {
                 ZStack {
                     VStack {
                         HStack {
+                            Button(action: {
+                                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
+                                gameManager.scene.resetToIntro()
+                            }) {
+                                Image("retry")
+                                    .scaleEffect(0.8)
+                            }
                             Spacer()
                             EggShellLabel(money: $gameManager.playerData.money)
                                 .offset(x: -15, y: -5)
@@ -129,9 +138,13 @@ struct ContentView: View {
                         Spacer()
                     }
                     
-                   
                     VStack {
                         Spacer()
+                        BannerView().frame(width: 320, height: 50, alignment: .center)
+                    }
+                    
+                   
+                    VStack {
                         ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
                             .padding(.bottom,10)
                         Text(" Highest: \(gameManager.playerData.highscore) ")
@@ -142,7 +155,7 @@ struct ContentView: View {
                        
                         ZStack {
                             Button(action: {
-                                SoundsManager.instance.playSound(sound: .mouthPop)
+                                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                                 adManager.showAd {
                                     gameManager.revive()
                                 }
@@ -176,15 +189,8 @@ struct ContentView: View {
                                 .padding(.vertical)
                             }
                         }
-                        Button(action: {
-                            SoundsManager.instance.playSound(sound: .mouthPop)
-                            gameManager.scene.resetToIntro()
-                        }) {
-                            Image("retry")
-                                .scaleEffect(0.8)
-                        }
-                        BannerView().frame(width: 320, height: 50, alignment: .center)
                     }
+                    .padding(.bottom)
                 }
             }
             .opacity(gameManager.displayRecord())
