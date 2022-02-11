@@ -115,14 +115,64 @@ struct ContentView: View {
     @ViewBuilder func menuDisplay() -> some View {
         if gameManager.gameStatus == .gameOver {
             VStack(spacing: 0) {
-                ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
-                    .padding(.bottom,30)
-                Text(" Highest: \(gameManager.playerData.highscore) ")
-                    .font(.custom("Bangers-Regular", size: 36))
-                MenuLabel()
-                    .padding(.bottom,40)
-                    .environmentObject(gameManager)
-                EggShellLabel(money: $gameManager.playerData.money)
+                ZStack {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            EggShellLabel(money: $gameManager.playerData.money)
+                                .offset(x: -15, y: -5)
+                        }
+                        Spacer()
+                    }
+                    
+                   
+                    VStack {
+                        ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
+                            .padding(.bottom,20)
+                        Text(" Highest: \(gameManager.playerData.highscore) ")
+                            .font(.custom("Bangers-Regular", size: 36))
+                        MenuLabel()
+                            .environmentObject(gameManager)
+                            .padding(.bottom, 20)
+                       
+                        ZStack {
+                            Button(action: {
+                                SoundsManager.instance.playSound(sound: .mouthPop)
+                                gameManager.menuStatus = .shop
+                                gameManager.scene.holdScene()
+                            }) {
+                                HStack {
+                                    Image("double")
+                                        .scaleEffect(0.8)
+                                    Text("watch a short ad to double your coins!")
+                                        .foregroundColor(Color("menuLightColor"))
+                                        .font(Font.custom("Bangers-Regular", size: 22))
+                                    Image("spikeGreen")
+                                   
+                                } .padding(.top, 5)
+                                .background(
+                                    ZStack (alignment: .bottomLeading) {
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .frame(width: 350, height: 120)
+                                            .foregroundColor(Color("powerUpGreen"))
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .frame(width: 340, height: 115)
+                                            .foregroundColor(Color("darkerGreen"))
+                                            .padding(.trailing, 3)
+                                    }
+                                )
+                                .frame(maxWidth: 330)
+                            }
+                        }
+                        Button(action: {
+                            SoundsManager.instance.playSound(sound: .mouthPop)
+                            gameManager.scene.resetToIntro()
+                        }) {
+                            Image("retry")
+                                .scaleEffect(0.8)
+                        }
+                    }
+                }
             }
             .opacity(gameManager.displayRecord())
         } else {
@@ -140,9 +190,17 @@ struct ContentView: View {
     @ViewBuilder func modalDisplay() -> some View {
         switch gameManager.menuStatus {
         case .shop:
+            VStack {
+                HStack {
+                    Spacer()
+                    EggShellLabel(money: $gameManager.playerData.money)
+                        .offset(x: -15, y: -5)
+                }
+                Spacer()
+            }
             ShopView()
                 .environmentObject(gameManager)
-                .padding(.bottom, 120)
+                .padding(.bottom, 50)
         case .leaderboard:
             LeaderboardView(menuStatus: $gameManager.menuStatus)
         case .settings:
