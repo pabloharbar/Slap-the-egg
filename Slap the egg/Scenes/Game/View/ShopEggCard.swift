@@ -10,6 +10,8 @@ import SwiftUI
 struct ShopEggCard: View {
     @EnvironmentObject var gameManager: GameManager
     let egg: Egg
+    let selectedItem:LocalizedStringKey = "selectedItem"
+    let eggSize:LocalizedStringKey = "eggSize"
     var body: some View {
         HStack(spacing: 0) {
             VStack(alignment: .leading) {
@@ -21,7 +23,7 @@ struct ShopEggCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(egg.animal) ")
                     .font(.custom("Bangers-Regular", size: 24))
-                Text("Size")
+                Text(eggSize)
                 SizeView(eggSize: egg.size)
             }
             .frame(maxWidth: 220)
@@ -32,7 +34,7 @@ struct ShopEggCard: View {
                     gameManager.processEggPurchase(egg: egg.cosmeticsType)
                 }) {
                     if gameManager.playerData.selectedEgg == egg.cosmeticsType {
-                        Text("Selected ")
+                        Text(selectedItem)
                             .foregroundColor(Color("menuLabelColor"))
                             .font(.custom("Bangers-Regular", size: 12))
                             .padding(.horizontal,6)
@@ -80,6 +82,8 @@ struct ShopEggCard: View {
 }
 
 struct PowerUpView: View {
+    let life:LocalizedStringKey = "life"
+    let pointCount:LocalizedStringKey = "pointCount"
     let powerUps: [PowerUp]
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -93,7 +97,7 @@ struct PowerUpView: View {
                                 .font(.custom("Bangers-Regular", size: 12))
                                 .foregroundColor(Color("menuLabelColor"))
                         }
-                        Text("points")
+                        Text(pointCount)
                             .font(.system(size: 12))
                             .foregroundColor(.white)
                     }
@@ -105,7 +109,7 @@ struct PowerUpView: View {
                                 .font(.custom("Bangers-Regular", size: 12))
                                 .foregroundColor(Color("menuLabelColor"))
                         }
-                        Text("life")
+                        Text(life)
                             .font(.system(size: 12))
                             .foregroundColor(.white)
                     }

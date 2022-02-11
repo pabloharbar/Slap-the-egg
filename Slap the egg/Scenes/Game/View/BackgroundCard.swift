@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BackgroundCard: View {
     @EnvironmentObject var gameManager: GameManager
+    let selectedItem:LocalizedStringKey = "selectedItem"
     let background: BackgroundModel
     var body: some View {
         HStack {
@@ -27,7 +28,7 @@ struct BackgroundCard: View {
                     gameManager.processBackgroundPurchase(background: background.cosmeticsType)
                 }) {
                     if gameManager.playerData.selectedBackground == background.cosmeticsType {
-                        Text("Selected ")
+                        Text(selectedItem)
                             .foregroundColor(Color("menuLabelColor"))
                             .font(.custom("Bangers-Regular", size: 12))
                             .padding(.horizontal,6)

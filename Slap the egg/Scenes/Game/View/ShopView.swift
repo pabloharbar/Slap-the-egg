@@ -10,6 +10,7 @@ import SwiftUI
 struct ShopView: View {
     @EnvironmentObject var gameManager: GameManager
     @StateObject var shopManager = ShopManager()
+    let storeTitle:LocalizedStringKey = "storeTitle"
     var body: some View {
         ZStack {
             BackgroundView(Colors: [
@@ -18,7 +19,7 @@ struct ShopView: View {
                 "shopLightestColor"
             ], width: 360, height: 500)
             VStack(spacing: 0) {
-                Text("Store ")
+                Text(storeTitle)
                     .font(.custom("Bangers-Regular", size: 64))
                     .foregroundColor(Color("menuLabelColor"))
                     .padding(.vertical)

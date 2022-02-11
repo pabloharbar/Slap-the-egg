@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  Slap the egg
+
+  Created by Luísa Bacichett Trabulci on 11/02/22.
+  
+*/
+
+"highestScore" = "highest:";
+"tapToPlay" = "tap to play";
+"pointCount" = "points";
+"eggShellCount" = "eggshells";
+"storeTitle" = "store";
+"eggsTab" = "eggs";
+"chicken" = "chicken";
+"quailEgg"= "quail";
+"crocodileEgg" = "crocodile";
+"ostrichEgg"= "ostrich";
+"t-rexEgg" = "t-rex";
+"eggSize"= "size";
+"selectedItem" = "selected";
+"life" = "life";
+"powerUpsTab" = "power ups";
+"doublePoints" = "double points";
+"doublePointsText" = "For one try, your egg shell earnings are doubled";
+"active" = "active";
+"oneMoreLife" = "one more life";
+"oneMoreLifeText" = "In the next session, if the egg gets cracked it ignores one time";
+"backgroundsTab" = "backgrounds";
+"bricks" = "bricks";
+"tiles" = "tiles";
+"sky" = "sky";
+"space" = "space";
+"settingsTitle" = "settings";
+"difficulty" = "difficulty";
+"easyLevel" = "easy";
+"hardLevel" = "hard";
+"sounds" = "sounds";
+"on" = "on";
+"off" = "off";
+"vibration" = "vibration";
+"ad" = "ad";
+"missed" = "missed";
+

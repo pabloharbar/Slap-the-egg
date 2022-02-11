@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  Slap the egg
+
+  Created by Luísa Bacichett Trabulci on 11/02/22.
+  
+*/
+
+"highestScore" = "recorde:";
+"tapToPlay" = "toque para jogar";
+"pointCount" = "pontos";
+"eggShellCount" = "cascas de ovo";
+"storeTitle" = "loja";
+"eggsTab" = "ovos";
+"chicken" = "galinha";
+"quailEgg"= "codorna";
+"crocodileEgg" = "crocodilo";
+"ostrichEgg"= "avestruz";
+"t-rexEgg" = "t-rex";
+"eggSize"= "tamanho";
+"selectedItem" = "selecionado";
+"life" = "vida";
+"powerUpsTab" = "power ups";
+"active" = "ativado";
+"doublePoints" = "pontos duplicados";
+"doublePointsText" = "Por uma rodada, seus ganhos de cascas de ovos são duplicados";
+"oneMoreLife" = "mais uma vida";
+"oneMoreLifeText" = "Na próxima rodada a colisão (ou o dano?) do ovo é ignorada uma vez";
+"backgroundsTab" = "fundos";
+"bricks" = "tijolos";
+"tiles" = "azulejos";
+"sky" = "céu";
+"space" = "espaço";
+"settingsTitle" = "configurações";
+"difficulty" = "dificuldade";
+"easyLevel" = "fácil";
+"hardLevel" = "difícil";
+"sounds" = "sons";
+"on" = "on";
+"off" = "off";
+"vibration" = "vibração";
+"ad" = "ad";
+"missed" = "errou";
