@@ -175,6 +175,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         deadEgg.removeFromParent()
     }
     
+    func resetToIntro() {
+        status = .intro
+        player.reset(parent: self)
+        spawner.reset()
+        pan.reset()
+        deadEgg.removeFromParent()
+        currentScore = 0
+    }
+    
     func gameOver(killedByPan: Bool, deathPosition: CGPoint) {
         if status == .gameOver {
             return
