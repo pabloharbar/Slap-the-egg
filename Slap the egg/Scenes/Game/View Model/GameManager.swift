@@ -230,4 +230,13 @@ class GameManager: ObservableObject {
             print("submitted")
         }
     }
+    
+    func revive() {
+        scene.reviveScene()
+    }
+    
+    func getAdPowerUp(powerUp: PowerUpType) {
+        playerData.activePowerUps.append(powerUp)
+        saveData()
+    }
 }

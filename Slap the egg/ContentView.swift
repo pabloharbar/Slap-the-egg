@@ -10,6 +10,7 @@ import SpriteKit
 
 struct ContentView: View {
     @StateObject var gameManager = GameManager()
+    @StateObject var adManager = AdRewardManager()
     @State var playing = false
     @State var multiplier = 1
     
@@ -77,8 +78,10 @@ struct ContentView: View {
         })
         .onReceive(gameManager.scene.revivePublisher, perform: { value in
             if value == 0 && gameManager.gameStatus == .playing {
-                guard let index = gameManager.playerData.activePowerUps.firstIndex(where: { $0 == .revive1}) else { return }
-                gameManager.playerData.activePowerUps.remove(at: index)
+//                guard let index = gameManager.playerData.activePowerUps.firstIndex(where: { $0 == .revive1}) else { return }
+                let data = gameManager.playerData
+                data.activePowerUps = gameManager.playerData.activePowerUps.filter { $0 != .revive1 }
+                gameManager.playerData = data
             } else if value == 1 && gameManager.gameStatus == .playing {
                 let data = gameManager.playerData
                 data.activePowerUps = gameManager.playerData.activePowerUps.filter { $0 != .revive2 }
@@ -109,6 +112,7 @@ struct ContentView: View {
         })
         .onAppear {
             gameManager.authenticatePlayer()
+            adManager.LoadRewarded()
         }
     }
     
@@ -127,8 +131,9 @@ struct ContentView: View {
                     
                    
                     VStack {
+                        Spacer()
                         ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
-                            .padding(.bottom,20)
+                            .padding(.bottom,10)
                         Text(" Highest: \(gameManager.playerData.highscore) ")
                             .font(.custom("Bangers-Regular", size: 36))
                         MenuLabel()
@@ -138,30 +143,37 @@ struct ContentView: View {
                         ZStack {
                             Button(action: {
                                 SoundsManager.instance.playSound(sound: .mouthPop)
-                                gameManager.menuStatus = .shop
-                                gameManager.scene.holdScene()
+                                adManager.showAd {
+                                    gameManager.revive()
+                                }
                             }) {
                                 HStack {
-                                    Image("double")
-                                        .scaleEffect(0.8)
-                                    Text("watch a short ad to double your coins!")
+                                    Image(systemName: "play.fill")
+                                        .font(.system(size: 48)).foregroundColor(Color("settingsColor"))
+                                        .background(
+                                            Image(systemName: "play.fill")
+                                                .font(.system(size: 48)).foregroundColor(Color("settingsLightestColor"))
+                                                .offset(x: 0.5, y: -3)
+                                        )
+                                    Text("watch a short ad to keep playing!")
                                         .foregroundColor(Color("menuLightColor"))
                                         .font(Font.custom("Bangers-Regular", size: 22))
-                                    Image("spikeGreen")
+                                    Image("spikePink")
                                    
                                 } .padding(.top, 5)
                                 .background(
                                     ZStack (alignment: .bottomLeading) {
                                         RoundedRectangle(cornerRadius: 30)
-                                            .frame(width: 350, height: 120)
-                                            .foregroundColor(Color("powerUpGreen"))
+                                            .frame(width: 350, height: 110)
+                                            .foregroundColor(Color("shopLightestColor"))
                                         RoundedRectangle(cornerRadius: 30)
-                                            .frame(width: 340, height: 115)
-                                            .foregroundColor(Color("darkerGreen"))
+                                            .frame(width: 340, height: 104)
+                                            .foregroundColor(Color("shopColor"))
                                             .padding(.trailing, 3)
                                     }
                                 )
                                 .frame(maxWidth: 330)
+                                .padding(.vertical)
                             }
                         }
                         Button(action: {
@@ -171,6 +183,7 @@ struct ContentView: View {
                             Image("retry")
                                 .scaleEffect(0.8)
                         }
+                        BannerView().frame(width: 320, height: 50, alignment: .center)
                     }
                 }
             }
@@ -200,6 +213,7 @@ struct ContentView: View {
             }
             ShopView()
                 .environmentObject(gameManager)
+                .environmentObject(adManager)
                 .padding(.bottom, 50)
         case .leaderboard:
             LeaderboardView(menuStatus: $gameManager.menuStatus)

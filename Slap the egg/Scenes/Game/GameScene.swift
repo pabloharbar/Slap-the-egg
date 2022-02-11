@@ -159,6 +159,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         touchIndicator.removeFromParent()
     }
     
+    func reviveScene() {
+        status = .intro
+        pan.reset()
+        player.reset(parent: self)
+        spawner.reset()
+        deadEgg.removeFromParent()
+    }
+    
     func reset() {
         status = .menu
         self.addChild(title)
@@ -173,6 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
         currentScore = 0
         deadEgg.removeFromParent()
+        speedMultiplier = 1
     }
     
     func resetToIntro() {
@@ -182,6 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         pan.reset()
         deadEgg.removeFromParent()
         currentScore = 0
+        speedMultiplier = 1
     }
     
     func gameOver(killedByPan: Bool, deathPosition: CGPoint) {

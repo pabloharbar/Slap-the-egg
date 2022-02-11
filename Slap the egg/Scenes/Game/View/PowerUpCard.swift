@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PowerUpCard: View {
     @EnvironmentObject var gameManager: GameManager
-    var adRewardManager = AdRewardManager()
+    @EnvironmentObject var adManager: AdRewardManager
     let powerUp: PowerUp
     var body: some View {
         HStack(spacing: 20) {
@@ -52,8 +52,8 @@ struct PowerUpCard: View {
                 } else {
                     HStack {
                         Button(action: {
-                            adRewardManager.showAd(rewardFunction: {
-                                print("Recompensa")
+                            adManager.showAd(rewardFunction: {
+                                gameManager.getAdPowerUp(powerUp: powerUp.powerUpType)
                             })
                         }) {
                             HStack {
@@ -116,5 +116,6 @@ struct PowerUpCard_Previews: PreviewProvider {
     static var previews: some View {
         PowerUpCard(powerUp: PowerUpsAvailable.powerUps[3])
             .environmentObject(GameManager())
+            .environmentObject(AdRewardManager())
     }
 }

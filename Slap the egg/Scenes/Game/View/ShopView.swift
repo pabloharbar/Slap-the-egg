@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShopView: View {
     @EnvironmentObject var gameManager: GameManager
+    @EnvironmentObject var adManager: AdRewardManager
     @StateObject var shopManager = ShopManager()
     var body: some View {
         ZStack {
@@ -40,6 +41,7 @@ struct ShopView: View {
                         .padding()
                         .frame(maxHeight: 480)
                         .environmentObject(gameManager)
+                        .environmentObject(adManager)
                 }
             }
             .foregroundColor(.white)
@@ -61,5 +63,6 @@ struct ShopView_Previews: PreviewProvider {
     static var previews: some View {
         ShopView()
             .environmentObject(GameManager())
+            .environmentObject(AdRewardManager())
     }
 }

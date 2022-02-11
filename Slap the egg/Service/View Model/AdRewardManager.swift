@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleMobileAds
 import UIKit
     
-final class AdRewardManager: NSObject, GADFullScreenContentDelegate {
+final class AdRewardManager: NSObject, GADFullScreenContentDelegate, ObservableObject {
     var rewardedAd: GADRewardedAd?
 
     var rewardFunction: (() -> Void)? = nil
