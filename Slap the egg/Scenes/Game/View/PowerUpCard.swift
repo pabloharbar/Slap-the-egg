@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PowerUpCard: View {
     @EnvironmentObject var gameManager: GameManager
+    var adRewardManager = AdRewardManager()
     let powerUp: PowerUp
     var body: some View {
         HStack(spacing: 20) {
@@ -50,7 +51,11 @@ struct PowerUpCard: View {
 
                 } else {
                     HStack {
-                        Button(action: {}) {
+                        Button(action: {
+                            adRewardManager.showAd(rewardFunction: {
+                                print("Recompensa")
+                            })
+                        }) {
                             HStack {
                                 Image(systemName: "play.fill")
                                     .resizable()

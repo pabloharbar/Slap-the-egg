@@ -11,6 +11,11 @@
 		5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A127A48929004A2CD0 /* Pan.swift */; };
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
 		5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4AA27A4A8DE004A2CD0 /* Background.swift */; };
+		5B265F7527B59FB6004E74DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */; };
+		5B265F7927B5C0BB004E74DB /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */; };
+		5B2C618C27B6BE9F003EA762 /* AdRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */; };
+		5B2C618E27B6DFF7003EA762 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618D27B6DFF7003EA762 /* BannerView.swift */; };
+		5B2C619027B6E087003EA762 /* AdMobID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618F27B6E087003EA762 /* AdMobID.swift */; };
 		5B265F7727B5A90C004E74DB /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B265F7627B5A90C004E74DB /* Toaster.swift */; };
 		5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */; };
 		5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */; };
@@ -39,6 +44,7 @@
 		5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6DB27A3336500A743A7 /* GameScene.swift */; };
 		5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD70527A3399300A743A7 /* GameScene.sks */; };
 		5BEC960627A9D1F800B9CEDF /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */; };
+		687371D92ADCEC6FAA711E00 /* Pods_Slap_the_egg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E18E74BCC607F79D87ED265 /* Pods_Slap_the_egg.framework */; };
 		EC5F699A27B439B5001BC98C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F699927B439B5001BC98C /* SoundManager.swift */; };
 		EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F699E27B5864D001BC98C /* faceSlap.mp3 */; };
 		EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A027B58672001BC98C /* mouthPop.mp3 */; };
@@ -51,10 +57,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05D25F117FD9FEAFC3C3F384 /* Pods-Slap the egg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slap the egg.debug.xcconfig"; path = "Target Support Files/Pods-Slap the egg/Pods-Slap the egg.debug.xcconfig"; sourceTree = "<group>"; };
+		4E18E74BCC607F79D87ED265 /* Pods_Slap_the_egg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slap_the_egg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B18A49F27A452BC004A2CD0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5B18A4A127A48929004A2CD0 /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		5B18A4AA27A4A8DE004A2CD0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRewardManager.swift; sourceTree = "<group>"; };
+		5B2C618D27B6DFF7003EA762 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		5B2C618F27B6E087003EA762 /* AdMobID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobID.swift; sourceTree = "<group>"; };
 		5B265F7627B5A90C004E74DB /* Toaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
 		5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReviewLabel.swift; sourceTree = "<group>"; };
 		5B3BD69C27AC550F0061E4B6 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
@@ -85,6 +98,7 @@
 		5BBCD70527A3399300A743A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5BEC960427A9D1CC00B9CEDF /* Slap-the-egg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Slap-the-egg-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
+		67888E86A347194B2ED56BD0 /* Pods-Slap the egg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slap the egg.release.xcconfig"; path = "Target Support Files/Pods-Slap the egg/Pods-Slap the egg.release.xcconfig"; sourceTree = "<group>"; };
 		EC5F699927B439B5001BC98C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		EC5F699E27B5864D001BC98C /* faceSlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = faceSlap.mp3; sourceTree = "<group>"; };
 		EC5F69A027B58672001BC98C /* mouthPop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouthPop.mp3; sourceTree = "<group>"; };
@@ -102,6 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */,
+				687371D92ADCEC6FAA711E00 /* Pods_Slap_the_egg.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +173,7 @@
 				5B50323227B32DE400E7E4F4 /* EggModel.swift */,
 				5B50323427B32DFC00E7E4F4 /* PowerUpModel.swift */,
 				5B50323627B32E0E00E7E4F4 /* BackgroundModel.swift */,
+				5B2C618F27B6E087003EA762 /* AdMobID.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */,
+				5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -174,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3BD69F27AC5B670061E4B6 /* GameKit.framework */,
+				4E18E74BCC607F79D87ED265 /* Pods_Slap_the_egg.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3BD6A527AC5C390061E4B6 /* LeaderboardView.swift */,
+				5B2C618D27B6DFF7003EA762 /* BannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +238,7 @@
 				EC5F699927B439B5001BC98C /* SoundManager.swift */,
 				ECF2CB4A27B59D64006F6439 /* HapticManager.swift */,
 				EC5F699B27B4483C001BC98C /* Sounds */,
+				5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -229,6 +249,7 @@
 				5BBCD6CA27A3328300A743A7 /* Slap the egg */,
 				5BBCD6C927A3328300A743A7 /* Products */,
 				5B3BD69E27AC5B670061E4B6 /* Frameworks */,
+				5FFC0E343A610FACB4291FBA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,6 +264,7 @@
 		5BBCD6CA27A3328300A743A7 /* Slap the egg */ = {
 			isa = PBXGroup;
 			children = (
+				5B265F7427B59FB6004E74DB /* GoogleService-Info.plist */,
 				5B50322B27B30C9E00E7E4F4 /* Extensions */,
 				5B18A4A527A493F3004A2CD0 /* Scenes */,
 				5B3BD69927AC54F50061E4B6 /* Service */,
@@ -262,6 +284,15 @@
 				5BBCD6D227A3328400A743A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5FFC0E343A610FACB4291FBA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05D25F117FD9FEAFC3C3F384 /* Pods-Slap the egg.debug.xcconfig */,
+				67888E86A347194B2ED56BD0 /* Pods-Slap the egg.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		EC5F699B27B4483C001BC98C /* Sounds */ = {
@@ -300,9 +331,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BBCD6D627A3328400A743A7 /* Build configuration list for PBXNativeTarget "Slap the egg" */;
 			buildPhases = (
+				CA6EFA2C49C01C35F4A1A81C /* [CP] Check Pods Manifest.lock */,
 				5BBCD6C427A3328300A743A7 /* Sources */,
 				5BBCD6C527A3328300A743A7 /* Frameworks */,
 				5BBCD6C627A3328300A743A7 /* Resources */,
+				0C6ADB91D169DD2ABFE8D7F3 /* [CP] Embed Pods Frameworks */,
+				5B265F7A27B5C3DF004E74DB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -356,6 +390,7 @@
 				5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */,
 				5BBCD6D027A3328400A743A7 /* Assets.xcassets in Resources */,
 				EC5F69A327B58EDC001BC98C /* eggCrush.mp3 in Resources */,
+				5B265F7527B59FB6004E74DB /* GoogleService-Info.plist in Resources */,
 				EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */,
 				EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */,
 				EC5F69A527B58F03001BC98C /* frying.mp3 in Resources */,
@@ -363,6 +398,67 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C6ADB91D169DD2ABFE8D7F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B265F7A27B5C3DF004E74DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		CA6EFA2C49C01C35F4A1A81C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Slap the egg-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5BBCD6C427A3328300A743A7 /* Sources */ = {
@@ -377,6 +473,7 @@
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
 				5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */,
+				5B2C618E27B6DFF7003EA762 /* BannerView.swift in Sources */,
 				5B3BD6A827AC80710061E4B6 /* ShopView.swift in Sources */,
 				5B50323527B32DFC00E7E4F4 /* PowerUpModel.swift in Sources */,
 				5B265F7727B5A90C004E74DB /* Toaster.swift in Sources */,
@@ -391,13 +488,16 @@
 				5B50323B27B420A100E7E4F4 /* BackgroundCard.swift in Sources */,
 				5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */,
 				5B50323327B32DE400E7E4F4 /* EggModel.swift in Sources */,
+				5B2C618C27B6BE9F003EA762 /* AdRewardManager.swift in Sources */,
 				5B3BD69D27AC550F0061E4B6 /* PlayerData.swift in Sources */,
 				5BBCD6CE27A3328300A743A7 /* ContentView.swift in Sources */,
 				5B50323127B312D100E7E4F4 /* CosmeticsBank.swift in Sources */,
+				5B2C619027B6E087003EA762 /* AdMobID.swift in Sources */,
 				ECDE211127AB0EFD0091AAF1 /* MenuLabel.swift in Sources */,
 				ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */,
 				5B50323E27B43B6C00E7E4F4 /* PowerUpCard.swift in Sources */,
 				5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */,
+				5B265F7927B5C0BB004E74DB /* AnalyticsManager.swift in Sources */,
 				5B50322827B3081200E7E4F4 /* BackgroundView.swift in Sources */,
 				ECF2CB4B27B59D64006F6439 /* HapticManager.swift in Sources */,
 				5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */,
@@ -525,11 +625,13 @@
 		};
 		5BBCD6D727A3328400A743A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05D25F117FD9FEAFC3C3F384 /* Pods-Slap the egg.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Slap the egg/Preview Content\"";
 				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
@@ -539,6 +641,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -557,6 +660,7 @@
 		};
 		5BBCD6D827A3328400A743A7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67888E86A347194B2ED56BD0 /* Pods-Slap the egg.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -571,6 +675,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
