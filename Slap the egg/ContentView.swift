@@ -100,6 +100,9 @@ struct ContentView: View {
                 gameManager.updateData()
                 if playing {
                     gameManager.clearPowerUps()
+                    if gameManager.hasSeenAd {
+                        gameManager.hasDied = true
+                    }
                 }
                 playing = false
     
@@ -110,6 +113,11 @@ struct ContentView: View {
                 gameManager.scene.soundEnabled = gameManager.playerData.preferences.soundEnable
                 playing = true
                 multiplier = gameManager.getBiggestMultiplier()
+            } else if status == .intro {
+                if gameManager.hasSeenAd && gameManager.hasDied {
+                    gameManager.hasSeenAd = false
+                    gameManager.hasDied = false
+                }
             }
         })
         .onAppear {
@@ -188,6 +196,8 @@ struct ContentView: View {
                                 .frame(maxWidth: 330)
                                 .padding(.vertical)
                             }
+                            .disabled(gameManager.hasSeenAd)
+                            .opacity(gameManager.hasSeenAd ? 0.3 : 1)
                         }
                     }
                     .padding(.bottom)

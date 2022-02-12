@@ -33,6 +33,10 @@ class GameManager: ObservableObject {
     
     @Published var playerData: PlayerData
     
+    @Published var hasSeenAd: Bool = false
+    
+    var hasDied: Bool = false
+    
     @Published var score = 0
     
     @Published var gameStatus: GameStatus = .menu
@@ -233,6 +237,7 @@ class GameManager: ObservableObject {
     
     func revive() {
         scene.reviveScene()
+        hasSeenAd = true
     }
     
     func getAdPowerUp(powerUp: PowerUpType) {
