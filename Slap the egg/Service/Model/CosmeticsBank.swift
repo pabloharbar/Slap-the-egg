@@ -9,11 +9,11 @@ import Foundation
 
 struct PowerUpsAvailable {
     static let powerUps: [PowerUp] = [
-        PowerUp(name: "Double Points", description: "For one try, your egg shell earnings are doubled", type: .multiplicate2x, value: 2, eggShellCost: 50, shopAvailable: true, image: "doubleIcon"),
-        PowerUp(name: "Triple Points", description: "For one try, your egg shell earnings are triplicated", type: .multiplicate3x, value: 3),
-        PowerUp(name: "Quintuple Points", description: "For one try, you egg shell earnings are quintuplicated", type: .multiplicate5x, value: 5),
-        PowerUp(name: "One more Life", description: "In the next session, if the egg gets cracked it ignores one time", type: .revive1, value: 1, eggShellCost: 25, shopAvailable: true, image: "shieldIcon"),
-        PowerUp(name: "Two more Life", description: "In the next session, if the egg gets cracked it ignores two times", type: .revive2, value: 2)
+        PowerUp(name: NSLocalizedString("Double Points", comment: ""), description: NSLocalizedString("For one try, your egg shell earnings are doubled", comment: ""), type: .multiplicate2x, value: 2, eggShellCost: 50, shopAvailable: true, image: "doubleIcon"),
+        PowerUp(name: NSLocalizedString("Triple Points", comment: ""), description: NSLocalizedString("For one try, your egg shell earnings are triplicated", comment: ""), type: .multiplicate3x, value: 3),
+        PowerUp(name: NSLocalizedString("Quintuple Points", comment: ""), description: NSLocalizedString("For one try, you egg shell earnings are quintuplicated", comment: ""), type: .multiplicate5x, value: 5),
+        PowerUp(name: NSLocalizedString("One More Life", comment: ""), description: NSLocalizedString("In the next session, if the egg gets cracked it ignores one time", comment: ""), type: .revive1, value: 1, eggShellCost: 25, shopAvailable: true, image: "shieldIcon"),
+        PowerUp(name: NSLocalizedString("Two More Lives", comment: ""), description: NSLocalizedString("In the next session, if the egg gets cracked it ignores two times", comment: ""), type: .revive2, value: 2)
     ]
 }
 
@@ -23,19 +23,19 @@ class CosmeticsBank {
     let powerUpsAvailable: [PowerUp] = PowerUpsAvailable.powerUps.filter { $0.shopAvailable == true }
     
     let eggsAvailable: [Egg] = [
-        Egg(animal: "Chicken",
+        Egg(animal: NSLocalizedString("Chicken", comment: ""),
             image: "chickenEgg",
             powerUp: [],
             cosmeticsType: .chicken,
             eggShellCost: 0,
             size: .medium),
-        Egg(animal: "Quail",
+        Egg(animal: NSLocalizedString("Quail", comment: ""),
             image: "quailEgg",
             powerUp: [],
             cosmeticsType: .quail,
             eggShellCost: 100,
             size: .small),
-        Egg(animal: "Crocodile",
+        Egg(animal: NSLocalizedString("Crocodile", comment: ""),
             image: "crocodileEgg",
             powerUp: [
                 PowerUpsAvailable.powerUps[0],
@@ -44,7 +44,7 @@ class CosmeticsBank {
             cosmeticsType: .crocodile,
             eggShellCost: 250,
             size: .medium),
-        Egg(animal: "Ostrich",
+        Egg(animal: NSLocalizedString("Ostrich", comment: ""),
             image: "ostrichEgg",
             powerUp: [
                 PowerUpsAvailable.powerUps[1],
@@ -53,7 +53,7 @@ class CosmeticsBank {
             cosmeticsType: .ostrich,
             eggShellCost: 500,
             size: .big),
-        Egg(animal: "T-Rex",
+        Egg(animal: NSLocalizedString("T-Rex", comment: ""),
             image: "dinoEgg",
             powerUp: [
                 PowerUpsAvailable.powerUps[2],
@@ -65,9 +65,9 @@ class CosmeticsBank {
     ]
     
     let backgroundsAvailable: [BackgroundModel] = [
-        BackgroundModel(name: "Bricks", image: "bricksBackground", type: .bricks),
-        BackgroundModel(name: "Tiles", image: "tilesBackground", eggShellCost: 25, type: .tiles),
-        BackgroundModel(name: "Sky", image: "skyBackground", eggShellCost: 40, type: .sky),
-        BackgroundModel(name: "Space", image: "spaceBackground", eggShellCost: 100, type: .space),
+        BackgroundModel(name: NSLocalizedString("Bricks", comment: ""), image: "bricksBackground", type: .bricks),
+        BackgroundModel(name: NSLocalizedString("Tiles", comment: ""), image: "tilesBackground", eggShellCost: 25, type: .tiles),
+        BackgroundModel(name: NSLocalizedString("Sky", comment: ""), image: "skyBackground", eggShellCost: 40, type: .sky),
+        BackgroundModel(name: NSLocalizedString("Space", comment: ""), image: "spaceBackground", eggShellCost: 100, type: .space),
     ]
 }

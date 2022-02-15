@@ -9,6 +9,10 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var gameManager: GameManager
+    let settingsTitle:LocalizedStringKey = "settingsTitle"
+    let difficulty:LocalizedStringKey = "difficulty"
+    let sounds:LocalizedStringKey = "sounds"
+    let vibration:LocalizedStringKey = "vibration"
     var body: some View {
         ZStack {
             BackgroundView(Colors: [
@@ -17,11 +21,11 @@ struct SettingsView: View {
                 "settingsLightestColor"
             ], width: 332, height: 400)
             VStack(spacing: 32) {
-                Text("Settings ")
+                Text(settingsTitle)
                     .font(.custom("Bangers-Regular", size: 64))
                 VStack(spacing: 45) {
                     HStack {
-                        Text("Difficulty ")
+                        Text(difficulty)
                         Spacer()
                         Button(action: {
                             switch gameManager.difficultySelected {
@@ -42,7 +46,7 @@ struct SettingsView: View {
                         .padding(.trailing)
                     }
                     HStack {
-                        Text("Sounds ")
+                        Text(sounds)
                         Spacer()
                         Button(action: {
                             let data = gameManager.playerData
@@ -62,7 +66,7 @@ struct SettingsView: View {
                         .padding(.trailing)
                     }
                     HStack {
-                        Text("Vibration ")
+                        Text(vibration)
                         Spacer()
                         Button(action: {
                             let data = gameManager.playerData

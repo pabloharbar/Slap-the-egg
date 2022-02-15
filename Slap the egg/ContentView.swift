@@ -154,8 +154,8 @@ struct ContentView: View {
                    
                     VStack {
                         ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
-                            .padding(.bottom,10)
-                        Text(" Highest: \(gameManager.playerData.highscore) ")
+                            .padding(.bottom,20)
+                        Text("\(NSLocalizedString("Highest:", comment: "")) \(gameManager.playerData.highscore) ")
                             .font(.custom("Bangers-Regular", size: 36))
                         MenuLabel()
                             .environmentObject(gameManager)
@@ -206,7 +206,7 @@ struct ContentView: View {
             .opacity(gameManager.displayRecord())
         } else {
             VStack(spacing: 0) {
-                Text(" Highest: \(gameManager.playerData.highscore) ")
+                Text("\(NSLocalizedString("Highest:", comment: "")) \(gameManager.playerData.highscore) ")
                     .font(.custom("Bangers-Regular", size: 36))
                 MenuLabel()
                     .padding(.bottom,40)

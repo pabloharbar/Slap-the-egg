@@ -11,6 +11,7 @@ struct ShopView: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var adManager: AdRewardManager
     @StateObject var shopManager = ShopManager()
+    let storeTitle:LocalizedStringKey = "storeTitle"
     var body: some View {
         ZStack {
             BackgroundView(Colors: [
@@ -19,14 +20,14 @@ struct ShopView: View {
                 "shopLightestColor"
             ], width: 360, height: 500)
             VStack(spacing: 0) {
-                Text("Store ")
+                Text(storeTitle)
                     .font(.custom("Bangers-Regular", size: 64))
                     .foregroundColor(Color("menuLabelColor"))
                     .padding(.vertical)
                 HStack {
-                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 0, label: "Eggs")
-                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 1, label: "Power Ups")
-                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 2, label: "Backgrounds")
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 0, label: NSLocalizedString("Eggs", comment: ""))
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 1, label: NSLocalizedString("Power ups", comment: ""))
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 2, label: NSLocalizedString("Backgrounds", comment: ""))
                     Spacer()
                 }
                 ZStack(alignment: .topLeading) {

@@ -14,10 +14,10 @@ struct ScoreReviewLabel: View {
         ZStack {
             Image("sessionLabel")
             VStack {
-                Text("\(sessionScore) Points ")
+                Text("\(sessionScore) \(NSLocalizedString("Points", comment: ""))")
                     .font(Font.custom("Bangers-Regular", size: 64))
                     .foregroundColor(Color("scoreYellow"))
-                Text("+ \(multiplier * sessionScore/10) Eggshells ")
+                Text("+ \(multiplier * sessionScore/10) \(NSLocalizedString("Eggshells", comment: ""))")
                     .font(Font.custom("Bangers-Regular", size: 24))
                     .foregroundColor(Color("menuLightColor"))
             }

@@ -11,6 +11,8 @@ struct PowerUpCard: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var adManager: AdRewardManager
     let powerUp: PowerUp
+    let active:LocalizedStringKey = "active"
+    let ad:LocalizedStringKey = "ad"
     var body: some View {
         HStack(spacing: 20) {
             ZStack {
@@ -34,7 +36,7 @@ struct PowerUpCard: View {
                     .font(.system(size: 10, weight: .semibold))
                     .multilineTextAlignment(.center)
                 if gameManager.playerData.activePowerUps.contains(powerUp.powerUpType) {
-                    Text("Active ")
+                    Text(active)
                         .font(.custom("Bangers-Regular", size: 14))
                         .frame(maxWidth: 200, maxHeight: 15)
                         .background(
@@ -60,7 +62,7 @@ struct PowerUpCard: View {
                                 Image(systemName: "play.fill")
                                     .resizable()
                                     .frame(width: 12.75, height: 13.5)
-                                Text("Ad ")
+                                Text(ad)
                                     .font(.custom("Bangers-Regular", size: 14))
                             }
                             .padding(.horizontal)
