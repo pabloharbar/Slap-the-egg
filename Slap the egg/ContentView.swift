@@ -129,7 +129,7 @@ struct ContentView: View {
                     VStack {
                         ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
                             .padding(.bottom,20)
-                        Text(" Highest: \(gameManager.playerData.highscore) ")
+                        Text("\(NSLocalizedString("Highest:", comment: "")) \(gameManager.playerData.highscore) ")
                             .font(.custom("Bangers-Regular", size: 36))
                         MenuLabel()
                             .environmentObject(gameManager)
@@ -144,7 +144,7 @@ struct ContentView: View {
                                 HStack {
                                     Image("double")
                                         .scaleEffect(0.8)
-                                    Text("watch a short ad to double your coins!")
+                                    Text("\(NSLocalizedString("Watch a short ad to double your coins!", comment: ""))")
                                         .foregroundColor(Color("menuLightColor"))
                                         .font(Font.custom("Bangers-Regular", size: 22))
                                     Image("spikeGreen")
@@ -177,7 +177,7 @@ struct ContentView: View {
             .opacity(gameManager.displayRecord())
         } else {
             VStack(spacing: 0) {
-                Text(" Highest: \(gameManager.playerData.highscore) ")
+                Text("\(NSLocalizedString("Highest:", comment: "")) \(gameManager.playerData.highscore) ")
                     .font(.custom("Bangers-Regular", size: 36))
                 MenuLabel()
                     .padding(.bottom,40)

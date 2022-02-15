@@ -24,9 +24,9 @@ struct ShopView: View {
                     .foregroundColor(Color("menuLabelColor"))
                     .padding(.vertical)
                 HStack {
-                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 0, label: "Eggs")
-                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 1, label: "Power Ups")
-                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 2, label: "Backgrounds")
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 0, label: NSLocalizedString("Eggs", comment: ""))
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 1, label: NSLocalizedString("Power ups", comment: ""))
+                    ShopTabButton(pageSelected: $shopManager.cosmeticPage, pageIndex: 2, label: NSLocalizedString("Backgrounds", comment: ""))
                     Spacer()
                 }
                 ZStack(alignment: .topLeading) {

@@ -108,7 +108,7 @@ class Player {
             } else {
                 let missNode = SKLabelNode()
                 let fadeOut = SKAction.fadeOut(withDuration: 1)
-                missNode.text = "miss"
+                missNode.text = NSLocalizedString("missed", comment: "")
                 missNode.fontName = "Bangers-Regular"
                 missNode.fontSize = 40
                 missNode.fontColor = .red
