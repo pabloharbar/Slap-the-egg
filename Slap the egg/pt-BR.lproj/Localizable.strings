@@ -22,6 +22,8 @@
 "vibration" = "vibração";
 "Easy" = "fácil";
 "Hard" = "difícil";
+"On" = "On";
+"Off" = "Off";
 
 //ShopEggCard
 "eggSize"= "tamanho";
@@ -61,4 +63,7 @@
 
 //ContentView
 "Highest:" = "Recorde:";
-"Watch a short ad to double your coins!" = "Assista um vídeo rápido para duplicar seus pontos!";
+"Watch a short ad to revive!" = "Assista um vídeo rápido para reviver!";
+
+//GameScene
+"Tap to play" = "Pressione para jogar";

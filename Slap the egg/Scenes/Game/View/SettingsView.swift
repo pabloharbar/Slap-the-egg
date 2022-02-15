@@ -9,10 +9,14 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var gameManager: GameManager
-    let settingsTitle:LocalizedStringKey = "settingsTitle"
-    let difficulty:LocalizedStringKey = "difficulty"
-    let sounds:LocalizedStringKey = "sounds"
-    let vibration:LocalizedStringKey = "vibration"
+    let settingsTitle: LocalizedStringKey = "settingsTitle"
+    let difficulty: LocalizedStringKey = "difficulty"
+    let sounds: LocalizedStringKey = "sounds"
+    let vibration: LocalizedStringKey = "vibration"
+    let on: LocalizedStringKey = "On"
+    let off: LocalizedStringKey = "Off"
+    let easyDiffilculty: LocalizedStringKey = "Easy"
+    let hardDiffilculty: LocalizedStringKey = "Hard"
     var body: some View {
         ZStack {
             BackgroundView(Colors: [
@@ -39,7 +43,7 @@ struct SettingsView: View {
                                 Ellipse()
                                     .frame(width: 85, height: 50)
                                     .foregroundColor(gameManager.difficultySelected == .easy ? Color("settingsOffColor") : Color("settingsOnColor"))
-                                Text("\(gameManager.difficultySelected.rawValue) ")
+                                Text(gameManager.difficultySelected == .easy ? easyDiffilculty : hardDiffilculty)
                                     .foregroundColor(gameManager.difficultySelected == .easy ? Color("settingsOnColor") : Color("settingsOffColor"))
                             }
                         }
@@ -59,7 +63,7 @@ struct SettingsView: View {
                                 Ellipse()
                                     .frame(width: 85, height: 50)
                                     .foregroundColor(gameManager.playerData.preferences.soundEnable ? Color("settingsOnColor") : Color("settingsOffColor"))
-                                Text(gameManager.playerData.preferences.soundEnable ? "On " : "Off ")
+                                Text(gameManager.playerData.preferences.soundEnable ? on : off)
                                     .foregroundColor(gameManager.playerData.preferences.soundEnable ? Color("settingsOffColor") : Color("settingsOnColor"))
                             }
                         }
@@ -79,7 +83,7 @@ struct SettingsView: View {
                                 Ellipse()
                                     .frame(width: 85, height: 50)
                                     .foregroundColor(gameManager.playerData.preferences.vibrationEnable ? Color("settingsOnColor") : Color("settingsOffColor"))
-                                Text(gameManager.playerData.preferences.vibrationEnable ? "On " : "Off ")
+                                Text(gameManager.playerData.preferences.vibrationEnable ? on : off)
                                     .foregroundColor(gameManager.playerData.preferences.vibrationEnable ? Color("settingsOffColor") : Color("settingsOnColor"))
                             }
                         }

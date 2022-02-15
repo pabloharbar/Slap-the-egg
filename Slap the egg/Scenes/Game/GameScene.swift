@@ -87,6 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         title = self.childNode(withName: "title")!
         titleLabel = self.childNode(withName: "menuLabel") as? SKLabelNode
         titleLabel.fontName = "Bangers-Regular"
+        titleLabel.text = NSLocalizedString("Tap to play", comment: "")
         
         touchIndicator = self.childNode(withName: "touch") as? SKSpriteNode
         touchIndicator.removeFromParent()

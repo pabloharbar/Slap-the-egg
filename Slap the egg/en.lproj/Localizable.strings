@@ -7,7 +7,7 @@
 */
 //ScoreReviewLabel
 "Points" = "Points";
-"Eggshelss" = "Eggshells";
+"Eggshells" = "Eggshells";
 
 //Shopview
 "storeTitle" = "store";
@@ -20,8 +20,10 @@
 "difficulty" = "difficulty";
 "sounds" = "sounds";
 "vibration" = "vibration";
-"Easy" = "easy";
-"Hard" = "hard";
+"Easy" = "Easy";
+"Hard" = "Hard";
+"On" = "On";
+"Off" = "Off";
 
 //ShopEggCard
 "eggSize"= "size";
@@ -61,4 +63,7 @@
 
 //ContentView
 "Highest:" = "Highest:";
-"Watch a short ad to double your coins!" = "Watch a short ad to double your coins!";
+"Watch a short ad to revive!" = "Watch a short ad to revive!";
+
+//GameScene
+"Tap to play" = "Tap to play";

@@ -38,7 +38,7 @@ final class AdRewardManager: NSObject, GADFullScreenContentDelegate, ObservableO
         if let ad = rewardedAd {
             self.rewardFunction = rewardFunction
             ad.present(fromRootViewController: root!, userDidEarnRewardHandler: {
-                let reward = ad.adReward
+//                let reward = ad.adReward
                 rewardFunction()
             })
         }
