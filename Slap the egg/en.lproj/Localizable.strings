@@ -6,64 +6,64 @@
   
 */
 //ScoreReviewLabel
-"Points" = "Points";
-"Eggshells" = "Eggshells";
+"Points" = "Points ";
+"Eggshells" = "Eggshells ";
 
 //Shopview
-"storeTitle" = "store";
-"Eggs" = "Eggs";
-"Power ups" = "Power ups";
-"Backgrounds" = "Backgrounds";
+"storeTitle" = "store ";
+"Eggs" = "Eggs ";
+"Power ups" = "Power ups ";
+"Backgrounds" = "Backgrounds ";
 
 //SettingsView
-"settingsTitle" = "settings";
-"difficulty" = "difficulty";
-"sounds" = "sounds";
-"vibration" = "vibration";
-"Easy" = "Easy";
-"Hard" = "Hard";
-"On" = "On";
-"Off" = "Off";
+"settingsTitle" = "settings ";
+"difficulty" = "difficulty ";
+"sounds" = "sounds ";
+"vibration" = "vibration ";
+"Easy" = "Easy ";
+"Hard" = "Hard ";
+"On" = "On ";
+"Off" = "Off ";
 
 //ShopEggCard
-"eggSize"= "size";
-"selectedItem" = "selected";
-"life" = "life";
-"pointCount" = "points";
+"eggSize"= "size ";
+"selectedItem" = "selected ";
+"life" = "life ";
+"pointCount" = "points ";
 
 //PowerUpCard
-"active" = "active";
-"ad" = "ad";
+"active" = "active ";
+"ad" = "ad ";
 
 //Player
-"missed" = "miss";
+"missed" = "miss ";
 
 //CosmeticsBank
 //PowerUpsAvailable class
-"For one try, your egg shell earnings are doubled" = "For one try, your egg shell earnings are doubled";
-"Double Points" = "double points";
-"Triple Points" = "Triple Points";
-"For one try, your egg shell earnings are triplicated" = "For one try, your egg shell earnings are triplicated";
-"Quintuple Points" = "Quintuple Points";
-"For one try, you egg shell earnings are quintuplicated" = "For one try, you egg shell earnings are quintuplicated";
-"One More Life" = "One More Life";
-"In the next session, if the egg gets cracked it ignores one time" = "In the next session, if the egg gets cracked it ignores one time";
-"Two More Lives" = "Two More Lives";
-"In the next session, if the egg gets cracked it ignores two times" = "In the next session, if the egg gets cracked it ignores two times";
+"For one try, your egg shell earnings are doubled" = "For one try, your egg shell earnings are doubled ";
+"Double Points" = "double points ";
+"Triple Points" = "Triple Points ";
+"For one try, your egg shell earnings are triplicated" = "For one try, your egg shell earnings are triplicated ";
+"Quintuple Points" = "Quintuple Points ";
+"For one try, you egg shell earnings are quintuplicated" = "For one try, you egg shell earnings are quintuplicated ";
+"One More Life" = "One More Life ";
+"Two More Lives" = "Two More Lives ";
+"In the next session, if the egg gets cracked it ignores one time" = "In the next session, if the egg gets cracked it ignores one time ";
+"In the next session, if the egg gets cracked it ignores two times" = "In the next session, if the egg gets cracked it ignores two times ";
 //CosmeticsBank class
-"Chicken" = "Chicken";
-"Quail" = "Quail";
-"Crocodile" = "Crocodile";
-"Ostrich" = "Ostrich";
-"T-Rex" = "T-Rex";
-"Bricks" = "Bricks";
-"Tiles" = "Tiles";
-"Sky" = "Sky";
-"Space" = "Space";
+"Chicken" = "Chicken ";
+"Quail" = "Quail ";
+"Crocodile" = "Crocodile ";
+"Ostrich" = "Ostrich ";
+"T-Rex" = "T-Rex ";
+"Bricks" = "Bricks ";
+"Tiles" = "Tiles ";
+"Sky" = "Sky ";
+"Space" = "Space ";
 
 //ContentView
 "Highest:" = "Highest:";
-"Watch a short ad to revive!" = "Watch a short ad to revive!";
+"Watch a short ad to revive!" = "Watch a short ad to revive! ";
 
 //GameScene
-"Tap to play" = "Tap to play";
+"Tap to play" = "Tap to play ";

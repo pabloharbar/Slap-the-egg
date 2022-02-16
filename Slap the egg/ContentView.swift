@@ -94,11 +94,12 @@ struct ContentView: View {
             }
         })
         .onReceive(gameManager.scene.statusPublisher, perform: { status in
-            gameManager.gameStatus = status
             gameManager.scene.difficulty = gameManager.difficultySelected
             if status == .gameOver {
+                withAnimation() {gameManager.gameStatus = status}
                 gameManager.updateData()
                 if playing {
+                    gameManager.timeOutTouches()
                     gameManager.clearPowerUps()
                     if gameManager.hasSeenAd {
                         gameManager.hasDied = true
@@ -107,6 +108,7 @@ struct ContentView: View {
                 playing = false
     
             } else if status == .playing {
+                gameManager.gameStatus = status
                 print(gameManager.playerData.activePowerUps)
                 gameManager.applyPowerUps()
                 gameManager.scene.vibrationEnabled = gameManager.playerData.preferences.vibrationEnable
@@ -114,16 +116,22 @@ struct ContentView: View {
                 playing = true
                 multiplier = gameManager.getBiggestMultiplier()
             } else if status == .intro {
+                gameManager.gameStatus = status
                 if gameManager.hasSeenAd && gameManager.hasDied {
                     gameManager.hasSeenAd = false
                     gameManager.hasDied = false
                 }
+            } else {
+                gameManager.gameStatus = status
             }
         })
         .onAppear {
             gameManager.authenticatePlayer()
             adManager.LoadRewarded()
         }
+        .disabled(
+            gameManager.timeOut
+        )
     }
     
     @ViewBuilder func menuDisplay() -> some View {

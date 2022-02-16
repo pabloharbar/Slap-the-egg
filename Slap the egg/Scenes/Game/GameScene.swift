@@ -8,6 +8,7 @@
 import SpriteKit
 import Foundation
 import Combine
+import SwiftUI
 
 enum GameStatus {
     case menu
@@ -136,14 +137,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case .intro:
             start()
             player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
+            touchAnimation(pos: pos)
         case .playing:
             player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
+            touchAnimation(pos: pos)
+            
         case .gameOver:
             reset()
         case .wait:
             break
         }
 
+    }
+    
+    func touchAnimation(pos: CGPoint) {
+        let duration: TimeInterval = 0.5
+//        let scaleAnimation = SKAction.scale(to: 2, duration: duration)
+        let lineAnimation = SKAction.customAction(withDuration: duration, actionBlock: { node, timePassed in
+            let circleNode = node as! SKShapeNode
+            circleNode.lineWidth = 10 - 2 * timePassed * 10
+            circleNode.setScale(1 + 4 * timePassed)
+            let r = 230/255 + 2 * timePassed * (176/255 - 230/255)
+            let g = 78/255  + 2 * timePassed * (195/255 -  78/255)
+            let b = 100/255 + 2 * timePassed * (49/255  - 100/255)
+            circleNode.strokeColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+        })
+        let touchNode = SKShapeNode(circleOfRadius: 10)
+        touchNode.fillColor = .clear
+        touchNode.lineWidth = 4
+        let fadeOut = SKAction.fadeOut(withDuration: duration)
+        touchNode.position = pos
+        touchNode.zPosition = 10
+        self.addChild(touchNode)
+//        touchNode.run(scaleAnimation)
+        touchNode.run(lineAnimation, completion: {
+            touchNode.run(fadeOut, completion: {
+                touchNode.removeFromParent()
+            })
+        })
+        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -167,7 +199,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         pan.reset()
         player.reset(parent: self)
         spawner.reset()
-        deadEgg.removeFromParent()
+        if deadEgg.parent == self {
+            deadEgg.removeFromParent()
+        }
+//        deadEgg.removeFromParent()
     }
     
     func reset() {
@@ -192,7 +227,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         player.reset(parent: self)
         spawner.reset()
         pan.reset()
-        deadEgg.removeFromParent()
+        if deadEgg.parent == self {
+            deadEgg.removeFromParent()
+        }
+//        deadEgg.removeFromParent()
         currentScore = 0
         speedMultiplier = 1
     }

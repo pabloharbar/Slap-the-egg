@@ -35,6 +35,9 @@ class GameManager: ObservableObject {
     
     @Published var hasSeenAd: Bool = false
     
+    @Published var timeOut: Bool = false
+    let timeOutInterval = TimeInterval(2)
+    
     var hasDied: Bool = false
     
     @Published var score = 0
@@ -243,5 +246,12 @@ class GameManager: ObservableObject {
     func getAdPowerUp(powerUp: PowerUpType) {
         playerData.activePowerUps.append(powerUp)
         saveData()
+    }
+    
+    func timeOutTouches() {
+        timeOut = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeOutInterval) {
+            self.timeOut = false
+        }
     }
 }
