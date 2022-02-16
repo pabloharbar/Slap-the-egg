@@ -185,7 +185,7 @@ struct ContentView: View {
                                                 .font(.system(size: 48)).foregroundColor(Color("settingsLightestColor"))
                                                 .offset(x: 0.5, y: -3)
                                         )
-                                    Text(NSLocalizedString("Watch a short ad to double your coins!", comment: ""))
+                                    Text(NSLocalizedString("Watch a short ad to revive!", comment: ""))
                                         .foregroundColor(Color("menuLightColor"))
                                         .font(Font.custom("Bangers-Regular", size: 22))
                                     Image("spikePink")
