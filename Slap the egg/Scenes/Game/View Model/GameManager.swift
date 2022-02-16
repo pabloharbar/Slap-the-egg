@@ -42,7 +42,17 @@ class GameManager: ObservableObject {
     
     @Published var score = 0
     
-    @Published var gameStatus: GameStatus = .menu
+    @Published var gameStatus: GameStatus = .menu {
+        didSet {
+            if self.gameStatus == .playing && !hasSeenAd {
+                AnalyticsManager.logEventWithValue(eventName: AnalyticsEvents.playWithEgg.rawValue, value: CGFloat(playerData.selectedEgg.rawValue))
+                AnalyticsManager.logEventWithValue(eventName: AnalyticsEvents.playWithBackground.rawValue, value: CGFloat(playerData.selectedBackground.rawValue))
+                if difficultySelected == .hard {
+                    AnalyticsManager.logEvent(eventName: AnalyticsEvents.playedInHardMode.rawValue)
+                }
+            }
+        }
+    }
     
     @Published var menuStatus: MenuList = .hidden
     
@@ -65,8 +75,14 @@ class GameManager: ObservableObject {
         } else {
             let item = CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == egg }.first!
             if playerData.money >= item.eggShellCost {
+                // Analytics - Compra do 1 ovo
+                if playerData.eggsUnlocked.count <= 1 {
+                    AnalyticsManager.logEvent(eventName: AnalyticsEvents.firstEggPurchase.rawValue)
+                }
+                
                 playerData.money -= item.eggShellCost
                 playerData.eggsUnlocked.append(egg)
+                AnalyticsManager.logEvent(eventName: AnalyticsEvents.eggPurchase.rawValue)
                 saveData()
             }
         }
@@ -82,8 +98,14 @@ class GameManager: ObservableObject {
         } else {
             let item = CosmeticsBank.shared.backgroundsAvailable.filter { $0.cosmeticsType == background }.first!
             if playerData.money >= item.eggShellCost {
+                // Analytics - 1 background
+                if playerData.backgroundsUnlocked.count <= 1 {
+                    AnalyticsManager.logEvent(eventName: AnalyticsEvents.firstBackgroundPurchase.rawValue)
+                }
+                
                 playerData.money -= item.eggShellCost
                 playerData.backgroundsUnlocked.append(background)
+                AnalyticsManager.logEvent(eventName: AnalyticsEvents.backgroundPurchase.rawValue)
                 saveData()
             }
         }
@@ -94,6 +116,13 @@ class GameManager: ObservableObject {
         if !playerData.activePowerUps.contains(powerUp) && playerData.money >= cost {
             let data = playerData
             data.activePowerUps.append(powerUp)
+            // Analytics
+            if powerUp == .revive1 {
+                AnalyticsManager.logEvent(eventName: AnalyticsEvents.purchaseRevivePowerUp.rawValue)
+            } else if powerUp == .multiplicate2x {
+                AnalyticsManager.logEvent(eventName: AnalyticsEvents.purchaseDoublePowerUp.rawValue)
+            }
+            
             for powerUp in data.activePowerUps {
                 switch powerUp {
                 case .multiplicate2x:
@@ -112,6 +141,8 @@ class GameManager: ObservableObject {
             saveData()
         }
     }
+    
+    
     
     func applyPowerUps() {
         let eggData = CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == playerData.selectedEgg}.first!

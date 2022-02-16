@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-enum Backgrounds: CaseIterable, Codable {
-    case bricks
-    case tiles
-    case sky
-    case space
+enum Backgrounds: Int, CaseIterable, Codable {
+    case bricks = 0
+    case tiles = 1
+    case sky = 2
+    case space = 3
 }
-enum Eggs: CaseIterable, Codable {
-    case chicken
-    case quail
-    case crocodile
-    case ostrich
-    case dinossaur
+enum Eggs: Int, CaseIterable, Codable {
+    case chicken = 0
+    case quail = 1
+    case crocodile = 2
+    case ostrich = 3
+    case dinossaur = 4
 }
 
 struct Preferences: Codable {

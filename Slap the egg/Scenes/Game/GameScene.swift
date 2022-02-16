@@ -157,9 +157,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             let circleNode = node as! SKShapeNode
             circleNode.lineWidth = 10 - 2 * timePassed * 10
             circleNode.setScale(1 + 4 * timePassed)
-            let r = 230/255 + 2 * timePassed * (176/255 - 230/255)
-            let g = 78/255  + 2 * timePassed * (195/255 -  78/255)
-            let b = 100/255 + 2 * timePassed * (49/255  - 100/255)
+            let passo = Double(timePassed/duration)
+            let r = 230/255 + passo * (176-230)/255
+            let g = 78/255  + passo * (195-78)/255
+            let b = 100/255 + passo * (49-100)/255
             circleNode.strokeColor = UIColor(red: r, green: g, blue: b, alpha: 1)
         })
         let touchNode = SKShapeNode(circleOfRadius: 10)
@@ -307,7 +308,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let eggTouchedPan = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)
-        let eggTouchedEnemy = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
+        
+        let eggTouchedKnife = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedSpoon = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 8) || (contact.bodyA.categoryBitMask == 8 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedSpatula = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 16) || (contact.bodyA.categoryBitMask == 16 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedToast = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 32) || (contact.bodyA.categoryBitMask == 32 && contact.bodyB.categoryBitMask == 1)
+        
+        // Analytics
+        if eggTouchedPan {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToPan.rawValue)
+        }
+        if eggTouchedToast {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToToaster.rawValue)
+        }
+        if eggTouchedKnife {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToKnife.rawValue)
+        }
+        if eggTouchedSpoon {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpoon.rawValue)
+        }
+        if eggTouchedSpatula {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpatula.rawValue)
+        }
+        
+        
+        let eggTouchedEnemy = eggTouchedKnife || eggTouchedSpoon || eggTouchedSpatula || eggTouchedToast
+        
         if eggTouchedPan || eggTouchedEnemy {
             if revive <= 0 {
                 if status == .playing {

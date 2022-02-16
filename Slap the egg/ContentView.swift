@@ -174,6 +174,7 @@ struct ContentView: View {
                                 SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                                 adManager.showAd {
                                     gameManager.revive()
+                                    AnalyticsManager.logEvent(eventName: AnalyticsEvents.adRevive.rawValue)
                                 }
                             }) {
                                 HStack {

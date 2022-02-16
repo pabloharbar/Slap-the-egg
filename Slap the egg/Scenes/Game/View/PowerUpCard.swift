@@ -56,6 +56,11 @@ struct PowerUpCard: View {
                         Button(action: {
                             adManager.showAd(rewardFunction: {
                                 gameManager.getAdPowerUp(powerUp: powerUp.powerUpType)
+                                if powerUp.powerUpType == .revive1 {
+                                    AnalyticsManager.logEvent(eventName: AnalyticsEvents.adShield.rawValue)
+                                } else if powerUp.powerUpType == .multiplicate2x {
+                                    AnalyticsManager.logEvent(eventName: AnalyticsEvents.adDouble.rawValue)
+                                }
                             })
                         }) {
                             HStack {
