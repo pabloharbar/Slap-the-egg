@@ -67,3 +67,5 @@
 
 //GameScene
 "Tap to play" = "Tap to play ";
+//Intro image
+"introImage" = "introImage";

@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "eggShell@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "eggShell@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

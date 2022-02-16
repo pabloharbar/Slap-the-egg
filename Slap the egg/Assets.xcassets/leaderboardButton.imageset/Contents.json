@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "intro.png",
+      "filename" : "leaderboardButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "leaderboardButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "leaderboardButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

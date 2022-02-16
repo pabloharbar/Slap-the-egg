@@ -86,6 +86,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         
         // label setup
         title = self.childNode(withName: "title")!
+        let titleImage = title.childNode(withName: "intro") as! SKSpriteNode
+        titleImage.texture = SKTexture(imageNamed: NSLocalizedString("introImage", comment: ""))
         titleLabel = self.childNode(withName: "menuLabel") as? SKLabelNode
         titleLabel.fontName = "Bangers-Regular"
         titleLabel.text = NSLocalizedString("Tap to play", comment: "")
@@ -137,10 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case .intro:
             start()
             player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
-            touchAnimation(pos: pos)
+//            touchAnimation(pos: pos)
         case .playing:
             player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
-            touchAnimation(pos: pos)
+//            touchAnimation(pos: pos)
             
         case .gameOver:
             reset()

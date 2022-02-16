@@ -66,8 +66,8 @@ class CosmeticsBank {
     
     let backgroundsAvailable: [BackgroundModel] = [
         BackgroundModel(name: NSLocalizedString("Bricks", comment: ""), image: "bricksBackground", type: .bricks),
-        BackgroundModel(name: NSLocalizedString("Tiles", comment: ""), image: "tilesBackground", eggShellCost: 25, type: .tiles),
-        BackgroundModel(name: NSLocalizedString("Sky", comment: ""), image: "skyBackground", eggShellCost: 40, type: .sky),
-        BackgroundModel(name: NSLocalizedString("Space", comment: ""), image: "spaceBackground", eggShellCost: 100, type: .space),
+        BackgroundModel(name: NSLocalizedString("Tiles", comment: ""), image: "tilesBackground", eggShellCost: 40, type: .tiles),
+        BackgroundModel(name: NSLocalizedString("Sky", comment: ""), image: "skyBackground", eggShellCost: 150, type: .sky),
+        BackgroundModel(name: NSLocalizedString("Space", comment: ""), image: "spaceBackground", eggShellCost: 500, type: .space),
     ]
 }

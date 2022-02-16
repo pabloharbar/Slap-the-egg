@@ -8,6 +8,11 @@
 import Foundation
 
 struct AdMobId {
+    #if DEBUG
     static let bannerID = "ca-app-pub-3940256099942544/2934735716"
     static let rewardID = "ca-app-pub-3940256099942544/1712485313"
+    #else
+    static let bannerID = "ca-app-pub-8373172508343670/7123117443"
+    static let rewardID = "ca-app-pub-8373172508343670/4608403231"
+    #endif
 }

@@ -37,6 +37,7 @@
 		5B50323E27B43B6C00E7E4F4 /* PowerUpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50323D27B43B6C00E7E4F4 /* PowerUpCard.swift */; };
 		5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62127AACD7600B74A7C /* GameManager.swift */; };
 		5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */; };
+		5B670B6327BDA7A3005E9D5E /* frying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B670B6227BDA7A3005E9D5E /* frying.mp3 */; };
 		5BBCD6CC27A3328300A743A7 /* Slap_the_eggApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */; };
 		5BBCD6CE27A3328300A743A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CD27A3328300A743A7 /* ContentView.swift */; };
 		5BBCD6D027A3328400A743A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD6CF27A3328400A743A7 /* Assets.xcassets */; };
@@ -49,7 +50,6 @@
 		EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F699E27B5864D001BC98C /* faceSlap.mp3 */; };
 		EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A027B58672001BC98C /* mouthPop.mp3 */; };
 		EC5F69A327B58EDC001BC98C /* eggCrush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A227B58EDC001BC98C /* eggCrush.mp3 */; };
-		EC5F69A527B58F03001BC98C /* frying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A427B58F03001BC98C /* frying.mp3 */; };
 		EC93796727B6F18F001EE027 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC93796927B6F18F001EE027 /* Localizable.strings */; };
 		ECDE210D27AAF8810091AAF1 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */; };
 		ECDE210F27AB093E0091AAF1 /* EggShellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */; };
@@ -90,6 +90,7 @@
 		5B50323D27B43B6C00E7E4F4 /* PowerUpCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpCard.swift; sourceTree = "<group>"; };
 		5B5CD62127AACD7600B74A7C /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		5B5CD62627AB24F400B74A7C /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		5B670B6227BDA7A3005E9D5E /* frying.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = frying.mp3; path = ../../../../../../../../../Downloads/frying.mp3; sourceTree = "<group>"; };
 		5BBCD6C827A3328300A743A7 /* Slap the egg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slap the egg.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBCD6CB27A3328300A743A7 /* Slap_the_eggApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slap_the_eggApp.swift; sourceTree = "<group>"; };
 		5BBCD6CD27A3328300A743A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		EC5F699E27B5864D001BC98C /* faceSlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = faceSlap.mp3; sourceTree = "<group>"; };
 		EC5F69A027B58672001BC98C /* mouthPop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouthPop.mp3; sourceTree = "<group>"; };
 		EC5F69A227B58EDC001BC98C /* eggCrush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = eggCrush.mp3; sourceTree = "<group>"; };
-		EC5F69A427B58F03001BC98C /* frying.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frying.mp3; sourceTree = "<group>"; };
 		EC93796827B6F18F001EE027 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC93796A27B6F192001EE027 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		ECDE210C27AAF8810091AAF1 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 		EC5F699B27B4483C001BC98C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				EC5F69A427B58F03001BC98C /* frying.mp3 */,
+				5B670B6227BDA7A3005E9D5E /* frying.mp3 */,
 				EC5F69A227B58EDC001BC98C /* eggCrush.mp3 */,
 				EC5F699E27B5864D001BC98C /* faceSlap.mp3 */,
 				EC5F69A027B58672001BC98C /* mouthPop.mp3 */,
@@ -394,12 +394,12 @@
 				5BBCD6D327A3328400A743A7 /* Preview Assets.xcassets in Resources */,
 				5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */,
 				5BBCD6D027A3328400A743A7 /* Assets.xcassets in Resources */,
+				5B670B6327BDA7A3005E9D5E /* frying.mp3 in Resources */,
 				EC5F69A327B58EDC001BC98C /* eggCrush.mp3 in Resources */,
 				EC93796727B6F18F001EE027 /* Localizable.strings in Resources */,
 				5B265F7527B59FB6004E74DB /* GoogleService-Info.plist in Resources */,
 				EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */,
 				EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */,
-				EC5F69A527B58F03001BC98C /* frying.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

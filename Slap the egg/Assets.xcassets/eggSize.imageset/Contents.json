@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "eggSize@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "eggSize@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

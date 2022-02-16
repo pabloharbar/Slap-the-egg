@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "leftFridge@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "leftFridge@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
