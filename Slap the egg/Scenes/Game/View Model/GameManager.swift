@@ -23,6 +23,8 @@ enum Difficulty: String, Codable {
 
 class GameManager: ObservableObject {
     
+    var intertitialManager = InterstitialManager()
+    
     @Published var difficultySelected: Difficulty = .easy
     
     static var gameSpeed = CGFloat(500)
@@ -30,8 +32,6 @@ class GameManager: ObservableObject {
     var PowerUpMultiplicator = 1
     
     var scene: GameScene
-    
-    var interstitialEnabled = true
     
     @Published var playerData: PlayerData
     
@@ -286,5 +286,9 @@ class GameManager: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeOutInterval) {
             self.timeOut = false
         }
+    }
+    
+    func interstitialDisplay() {
+        
     }
 }

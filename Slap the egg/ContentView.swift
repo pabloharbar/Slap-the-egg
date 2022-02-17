@@ -105,6 +105,7 @@ struct ContentView: View {
                     if gameManager.hasSeenAd {
                         gameManager.hasDied = true
                     }
+                    gameManager.intertitialManager.showAd()
                 }
                 playing = false
     
@@ -128,6 +129,7 @@ struct ContentView: View {
         })
         .onAppear {
             gameManager.authenticatePlayer()
+            gameManager.intertitialManager.LoadInterstitial()
             adManager.LoadRewarded()
         }
         .disabled(
