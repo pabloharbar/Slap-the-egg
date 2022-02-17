@@ -31,6 +31,8 @@ class GameManager: ObservableObject {
     
     var scene: GameScene
     
+    var interstitialEnabled = true
+    
     @Published var playerData: PlayerData
     
     @Published var hasSeenAd: Bool = false

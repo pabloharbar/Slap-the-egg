@@ -42,6 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     @Published var currentScore = 0 {
         didSet {
             scorePublisher.send(self.currentScore)
+            // Comentar pra ver se para o frame drop
         }
     }
     var scoreLimiter = 0 // auxiliar

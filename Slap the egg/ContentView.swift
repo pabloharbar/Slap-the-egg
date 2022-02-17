@@ -75,6 +75,7 @@ struct ContentView: View {
         }
         .onReceive(gameManager.scene.scorePublisher, perform: { target in
             gameManager.score = target
+            // Alterar atualizacao da view para parar frame drop
         })
         .onReceive(gameManager.scene.revivePublisher, perform: { value in
             if value == 0 && gameManager.gameStatus == .playing {
