@@ -251,6 +251,7 @@ class GameManager: ObservableObject {
                     }
                     else {
                         self.gcDefaultLeaderBoard = leaderboardIdentifer!
+                        // Check IOS 14.8 colocar breakpoint, testar com device
                     }
                  })
                 
