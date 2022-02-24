@@ -7,6 +7,7 @@ target 'Slap the egg' do
 
   # Pods for Slap the egg
   pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics' 
   pod 'Google-Mobile-Ads-SDK'
 
