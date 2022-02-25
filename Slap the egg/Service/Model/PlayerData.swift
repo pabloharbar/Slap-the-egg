@@ -12,6 +12,9 @@ enum Backgrounds: Int, CaseIterable, Codable {
     case tiles = 1
     case sky = 2
     case space = 3
+    case pumpkin = 4
+    case eyes = 5
+    case ghosts = 6
 }
 enum Eggs: Int, CaseIterable, Codable {
     case chicken = 0
@@ -19,6 +22,8 @@ enum Eggs: Int, CaseIterable, Codable {
     case crocodile = 2
     case ostrich = 3
     case dinossaur = 4
+    case mummy = 5
+    case zombie = 6
 }
 
 struct Preferences: Codable {
