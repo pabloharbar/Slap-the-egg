@@ -7,8 +7,14 @@ target 'Slap the egg' do
 
   # Pods for Slap the egg
   pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics' 
   pod 'Google-Mobile-Ads-SDK'
+  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
 
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
 end
