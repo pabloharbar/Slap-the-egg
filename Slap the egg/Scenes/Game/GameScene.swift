@@ -31,6 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     }
     private var PUmultiplicator = 1
     private var immunity = false
+    private var coinEnabled = false
     
     // Score publisher setup
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
@@ -53,6 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var pan: Pan!
     var background: Background!
     var toaster: Toaster!
+    var coinSpawner: CoinSpawner!
     
     // Labels
     var title: SKNode!
@@ -106,6 +108,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let fadeIn = SKAction.fadeIn(withDuration: 1)
         let animation = SKAction.sequence([fadeOut,fadeIn])
         titleLabel.run(SKAction.repeatForever(animation))
+        
+        // coin Spawner
+        let coinNode = self.childNode(withName: "coinModel") as! SKSpriteNode
+        coinSpawner = CoinSpawner(node: coinNode, parent: self)
         
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
@@ -203,6 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         pan.reset()
         player.reset(parent: self)
         spawner.reset()
+        coinSpawner.reset()
         if deadEgg.parent == self {
             deadEgg.removeFromParent()
         }
@@ -214,6 +221,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         self.addChild(title)
         player.reset(parent: self)
         spawner.reset()
+        coinSpawner.reset()
         pan.reset()
         pan.zoomOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -230,6 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         status = .intro
         player.reset(parent: self)
         spawner.reset()
+        coinSpawner.reset()
         pan.reset()
         if deadEgg.parent == self {
             deadEgg.removeFromParent()
@@ -256,6 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         revive = 0
         PUmultiplicator = 1
         player.die()
+        coinEnabled = false
         status = .gameOver
     }
     
@@ -295,6 +305,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             revive += 1
         case .revive2:
             revive += 2
+        case .coinsSpawn:
+            // TODO: Coins spawner
+            coinEnabled = true
+        case .shovelEnemy:
+            // TODO: Shovel spawner
+            break
         }
 //        }
     }
@@ -381,6 +397,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             background.update(deltaTime: deltaTime, multiplier: speedMultiplier)
             spawner.update(deltaTime: deltaTime, multiplier: speedMultiplier)
             toaster.update(deltaTime: deltaTime)
+            
+            if coinEnabled {
+                coinSpawner.update(deltaTime: deltaTime, multiplier: speedMultiplier)
+            }
+            
             //Score counting
             speedMultiplier = 1 + CGFloat(currentScore)/500
             scoreLimiter += 1

@@ -156,7 +156,7 @@ class GameManager: ObservableObject {
                 PowerUpMultiplicator = 3
             case .multiplicate5x:
                 PowerUpMultiplicator = 5
-            case .revive1, .revive2:
+            case .revive1, .revive2, .shovelEnemy, .coinsSpawn:
                 scene.applyPowerUp(item: powerUp.powerUpType)
             }
             let data = playerData

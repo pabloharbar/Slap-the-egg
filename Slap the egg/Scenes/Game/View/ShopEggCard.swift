@@ -113,6 +113,8 @@ struct PowerUpView: View {
                             .font(.system(size: 12))
                             .foregroundColor(.white)
                     }
+                case .coinsSpawn, .shovelEnemy:
+                    EmptyView()
                 }
             }
         }

@@ -33,4 +33,6 @@ enum PowerUpType: Codable {
     case multiplicate5x
     case revive1
     case revive2
+    case coinsSpawn
+    case shovelEnemy
 }
