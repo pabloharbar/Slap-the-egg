@@ -9,7 +9,13 @@ import SwiftUI
 
 class ShopManager: ObservableObject {
     @Published var cosmeticPage = 0
-    
+//    let defaultEgg = Egg(animal: NSLocalizedString("Chicken", comment: ""),
+//                         image: "chickenEgg",
+//                         powerUp: [],
+//                         cosmeticsType: .chicken,
+//                         eggShellCost: 0,
+//                         size: .medium)
+     
     init() {
         
     }
@@ -19,10 +25,8 @@ class ShopManager: ObservableObject {
             VStack {
                 switch cosmeticPage {
                 case 0:
-                    ForEach(Eggs.allCases, id: \.self) { egg in
-                        ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable.filter {
-                            $0.cosmeticsType == egg
-                        }.first!)
+                    ForEach(CosmeticsBank.shared.eggsAvailable, id: \.self) { egg in
+                        ShopEggCard(egg: egg)
                     }
                 case 1:
                     let powerUpsShopable = PowerUpsAvailable.powerUps.filter { $0.shopAvailable == true }
@@ -30,14 +34,12 @@ class ShopManager: ObservableObject {
                         PowerUpCard(powerUp: powerUp)
                     }
                 case 2:
-                    ForEach(Backgrounds.allCases, id: \.self) { background in
-                        BackgroundCard(background: CosmeticsBank.shared.backgroundsAvailable.filter {
-                            $0.cosmeticsType == background
-                        }.first!)
+                    ForEach(CosmeticsBank.shared.backgroundsAvailable, id: \.self) { background in
+                        BackgroundCard(background: background)
                     }
                 default:
-                    ForEach(Eggs.allCases, id: \.self) { egg in
-                        ShopEggCard(egg: CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == egg }.first!)
+                    ForEach(CosmeticsBank.shared.eggsAvailable, id: \.self) { egg in
+                        ShopEggCard(egg: egg)
                     }
                 }
             }

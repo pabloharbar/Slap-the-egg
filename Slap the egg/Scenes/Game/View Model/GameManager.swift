@@ -13,12 +13,29 @@ enum MenuList {
     case hidden
     case shop
     case leaderboard
+    case achievements
     case settings
 }
 
 enum Difficulty: String, Codable {
     case easy = "Easy"
     case hard = "Hard"
+}
+
+enum Achievements: Int, Codable {
+    case hundredPoints = 1
+    case fiveHundredPoints = 2
+    case thousandPoints = 3
+    case tenDeaths = 4
+    case hundredDeaths = 5
+    case tenFry = 6
+    case tenSpoon = 7
+    case tenSpatula = 8
+    case tenKnife = 9
+    case tenToaster = 10
+    case allEggs = 11
+    case allBackgrounds = 12
+    case tenPowerUps = 13
 }
 
 class GameManager: ObservableObject {
@@ -217,8 +234,28 @@ class GameManager: ObservableObject {
         if score > playerData.highscore {
             playerData.highscore = score
         }
+        //Achievements related to score
+        if score >= 100 {
+            if !playerData.achievements.contains(Achievements.hundredPoints) {
+                playerData.achievements.append(Achievements.hundredPoints)
+                unlockAchievement(achievement: Achievements.hundredPoints)
+            }
+            if score >= 500 {
+                if !playerData.achievements.contains(Achievements.fiveHundredPoints) {
+                    playerData.achievements.append(Achievements.fiveHundredPoints)
+                    unlockAchievement(achievement: Achievements.fiveHundredPoints)
+                }
+                if score >= 1000 {
+                    if !playerData.achievements.contains(Achievements.thousandPoints) {
+                        playerData.achievements.append(Achievements.thousandPoints)
+                        unlockAchievement(achievement: Achievements.thousandPoints)
+                    }
+                }
+            }
+        }
         saveData()
         saveRecord(with: playerData.highscore)
+        
     }
     
     func saveData() {
@@ -289,7 +326,14 @@ class GameManager: ObservableObject {
         }
     }
     
-    func interstitialDisplay() {
-        
+    func unlockAchievement(achievement: Achievements) {
+        let achievement = GKAchievement(identifier: "achievement\(achievement.rawValue)")
+        GKAchievement.report([achievement]) { error in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            print("done!")
+        }
     }
 }

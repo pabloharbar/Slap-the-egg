@@ -30,5 +30,27 @@
 	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:181918107758:ios:11a2a714ea71060619fe7f</string>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb731651731136155</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>731651731136155</string>
+    <key>FacebookDisplayName</key>
+    <string>Slap the Egg</string>
+    <key>FacebookAdvertiserIDCollectionEnabled</key>
+    <string>FALSE</string>
+    <key>FacebookAutoLogAppEventsEnabled</key>
+    <string>FALSE</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>Need tracking for analytics and to deliver custom ads</string>
+    <key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
+        <false/>
 </dict>
 </plist>

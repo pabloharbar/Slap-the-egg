@@ -13,7 +13,7 @@ enum EggSizes {
     case big
 }
 
-struct Egg {
+struct Egg: Hashable {
     let animal: String
     let image: String
     let powerUp: [PowerUp]

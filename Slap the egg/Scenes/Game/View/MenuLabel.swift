@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuLabel: View {
     @EnvironmentObject var gameManager: GameManager
     var body: some View {
-        HStack(spacing: 28) {
+        HStack(spacing: 14) {
             Button(action: {
                 SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                 gameManager.menuStatus = .shop
@@ -23,6 +23,12 @@ struct MenuLabel: View {
                 gameManager.menuStatus = .leaderboard
             }) {
                 Image("leaderboardButton")
+            }
+            Button(action: {
+                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
+                gameManager.menuStatus = .achievements
+            }) {
+                Image("achievementsButton")
             }
             Button(action: {
                 SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
