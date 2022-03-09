@@ -38,11 +38,13 @@ struct ShopView: View {
                             .cornerRadius(42, corners: [.bottomLeft,.bottomRight])
                         Spacer()
                     }
-                    shopManager.getShopItemsCategory()
-                        .padding()
-                        .frame(maxHeight: 480)
-                        .environmentObject(gameManager)
-                        .environmentObject(adManager)
+                    if gameManager.menuStatus == .shop {
+                        shopManager.getShopItemsCategory()
+                            .padding()
+                            .frame(maxHeight: 480)
+                            .environmentObject(gameManager)
+                            .environmentObject(adManager)
+                    }
                 }
             }
             .foregroundColor(.white)

@@ -47,6 +47,7 @@ class PlayerData: Codable {
     var selectedEgg: Eggs
     var selectedBackground: Backgrounds
     var activePowerUps: [PowerUpType]
+    var achievements: [Achievements]
     
     init(highscore: Int, money: Int) {
         self.highscore = highscore
@@ -57,5 +58,6 @@ class PlayerData: Codable {
         self.selectedEgg = .chicken
         self.selectedBackground = .bricks
         self.activePowerUps = []
+        self.achievements = []
     }
 }

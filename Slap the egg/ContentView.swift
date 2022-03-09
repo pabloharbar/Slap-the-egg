@@ -250,6 +250,9 @@ struct ContentView: View {
                 .environmentObject(gameManager)
         case .hidden:
             HStack {}
+        case .achievements:
+            // TODO: viewstate .achievements
+            AchievementsView(menuStatus: $gameManager.menuStatus)
         }
     }
 }

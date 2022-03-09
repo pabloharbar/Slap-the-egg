@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BackgroundModel {
+struct BackgroundModel: Hashable {
     let name: String
     let image: String
     let eggShellCost: Int
