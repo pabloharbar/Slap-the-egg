@@ -24,12 +24,12 @@ struct MenuLabel: View {
             }) {
                 Image("leaderboardButton")
             }
-            Button(action: {
-                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
-                gameManager.menuStatus = .achievements
-            }) {
-                Image("achievementsButton")
-            }
+//            Button(action: {
+//                SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
+//                gameManager.menuStatus = .achievements
+//            }) {
+//                Image("achievementsButton")
+//            }
             Button(action: {
                 SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
                 gameManager.menuStatus = .settings

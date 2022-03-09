@@ -235,24 +235,24 @@ class GameManager: ObservableObject {
             playerData.highscore = score
         }
         //Achievements related to score
-        if score >= 100 {
-            if !playerData.achievements.contains(Achievements.hundredPoints) {
-                playerData.achievements.append(Achievements.hundredPoints)
-                unlockAchievement(achievement: Achievements.hundredPoints)
-            }
-            if score >= 500 {
-                if !playerData.achievements.contains(Achievements.fiveHundredPoints) {
-                    playerData.achievements.append(Achievements.fiveHundredPoints)
-                    unlockAchievement(achievement: Achievements.fiveHundredPoints)
-                }
-                if score >= 1000 {
-                    if !playerData.achievements.contains(Achievements.thousandPoints) {
-                        playerData.achievements.append(Achievements.thousandPoints)
-                        unlockAchievement(achievement: Achievements.thousandPoints)
-                    }
-                }
-            }
-        }
+//        if score >= 100 {
+//            if !playerData.achievements.contains(Achievements.hundredPoints) {
+//                playerData.achievements.append(Achievements.hundredPoints)
+//                unlockAchievement(achievement: Achievements.hundredPoints)
+//            }
+//            if score >= 500 {
+//                if !playerData.achievements.contains(Achievements.fiveHundredPoints) {
+//                    playerData.achievements.append(Achievements.fiveHundredPoints)
+//                    unlockAchievement(achievement: Achievements.fiveHundredPoints)
+//                }
+//                if score >= 1000 {
+//                    if !playerData.achievements.contains(Achievements.thousandPoints) {
+//                        playerData.achievements.append(Achievements.thousandPoints)
+//                        unlockAchievement(achievement: Achievements.thousandPoints)
+//                    }
+//                }
+//            }
+//        }
         saveData()
         saveRecord(with: playerData.highscore)
         
