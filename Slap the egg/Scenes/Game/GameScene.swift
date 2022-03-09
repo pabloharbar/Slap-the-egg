@@ -9,6 +9,7 @@ import SpriteKit
 import Foundation
 import Combine
 import SwiftUI
+import GameKit
 
 enum GameStatus {
     case menu
@@ -37,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
     public let statusPublisher = CurrentValueSubject<GameStatus, Never>(.menu)
     public let revivePublisher = CurrentValueSubject<Int, Never>(0)
+    public let deathPublisher = CurrentValueSubject<Int, Never>(0)
 //    private var cancellableSet = Set<AnyCancellable>()
     
 //    @Published var target = 0 // Talvez nao precise do target
@@ -336,18 +338,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         // Analytics
         if eggTouchedPan {
             AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToPan.rawValue)
+            deathPublisher.send(0)
         }
         if eggTouchedToast {
             AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToToaster.rawValue)
+            deathPublisher.send(1)
         }
         if eggTouchedKnife {
             AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToKnife.rawValue)
+            deathPublisher.send(2)
         }
         if eggTouchedSpoon {
             AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpoon.rawValue)
+            deathPublisher.send(3)
         }
         if eggTouchedSpatula {
             AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpatula.rawValue)
+            deathPublisher.send(4)
         }
         
         

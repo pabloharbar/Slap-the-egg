@@ -36,25 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase
         FirebaseApp.configure()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.requestDataPermission()
-            print("oh yeah")
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(requestDataPermission), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            self.requestDataPermission()
+//            print("oh yeah")
+//        }
+        
+        // Chamar linha (ver com a Naomi)
         
         ApplicationDelegate.shared.application(
                             application,
                             didFinishLaunchingWithOptions: launchOptions)
         return true
-    }
-    
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        requestDataPermission()
-        print("oh yeah")
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        requestDataPermission()
-        print("ativou")
     }
     
     func application(
@@ -69,9 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             annotation: options[UIApplication.OpenURLOptionsKey.annotation]
         )
     }
-//
+
     // Remaining contents of your AppDelegate Class...
-    func requestDataPermission() {
+    @objc func requestDataPermission() {
         print("\n\nRequestDataPermission\n\n\n")
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
@@ -79,7 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .authorized:
                     // Tracking authorization dialog was shown
                     // and we are authorized
-//                    Settings.setAdvertiserTrackingEnabled(true)
                     Settings.shared.isAdvertiserTrackingEnabled = true
                     Settings.shared.isAutoLogAppEventsEnabled = true
                     Settings.shared.isAdvertiserIDCollectionEnabled = true
@@ -90,8 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .denied:
                     // Tracking authorization dialog was
                     // shown and permission is denied
-                    
-//                    Settings.setAdvertiserTrackingEnabled(false)
                     Settings.shared.isAdvertiserTrackingEnabled = false
                     Settings.shared.isAutoLogAppEventsEnabled = false
                     Settings.shared.isAdvertiserIDCollectionEnabled = false

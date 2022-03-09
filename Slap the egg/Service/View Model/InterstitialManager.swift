@@ -11,6 +11,7 @@ import GoogleMobileAds
 
 final class InterstitialManager: NSObject, GADFullScreenContentDelegate {
     var interstitialEnabled = true
+    var deathCounts = 0
     
     var interstitial: GADInterstitialAd?
     
@@ -34,15 +35,20 @@ final class InterstitialManager: NSObject, GADFullScreenContentDelegate {
     
     func showAd() {
         if !interstitialEnabled {
+            deathCounts += 1
+            if deathCounts >= 2 {
+                interstitialEnabled = true
+                deathCounts = 0
+            }
             return
         }
         if interstitial != nil {
             let root = UIApplication.shared.windows.first?.rootViewController
             interstitial!.present(fromRootViewController: root!)
             interstitialEnabled = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
-                self.interstitialEnabled = true
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+//                self.interstitialEnabled = true
+//            }
         }
         else {
             print("Not Ready")

@@ -49,6 +49,14 @@ class PlayerData: Codable {
     var activePowerUps: [PowerUpType]
     var achievements: [Achievements]
     
+    // Achievements data
+    var deadToPanTimes = 0
+    var deadToSpoonTimes = 0
+    var deadToKnife = 0
+    var deadToSpatula = 0
+    var deadToToast = 0
+    var powerUpsBought = 0
+    
     init(highscore: Int, money: Int) {
         self.highscore = highscore
         self.money = money

@@ -102,6 +102,10 @@ class GameManager: ObservableObject {
                 playerData.money -= item.eggShellCost
                 playerData.eggsUnlocked.append(egg)
                 AnalyticsManager.logEvent(eventName: AnalyticsEvents.eggPurchase.rawValue)
+                if playerData.eggsUnlocked.count == CosmeticsBank.shared.eggsAvailable.count {
+                    unlockAchievement(achievement: .allEggs)
+                    playerData.achievements.append(.allEggs)
+                }
                 saveData()
             }
         }
@@ -125,6 +129,10 @@ class GameManager: ObservableObject {
                 playerData.money -= item.eggShellCost
                 playerData.backgroundsUnlocked.append(background)
                 AnalyticsManager.logEvent(eventName: AnalyticsEvents.backgroundPurchase.rawValue)
+                if playerData.backgroundsUnlocked.count == CosmeticsBank.shared.backgroundsAvailable.count {
+                    unlockAchievement(achievement: .allBackgrounds)
+                    playerData.achievements.append(.allBackgrounds)
+                }
                 saveData()
             }
         }
@@ -157,6 +165,13 @@ class GameManager: ObservableObject {
             data.money -= cost
             scene.loadPlayerData(data: data)
             playerData = data
+            playerData.powerUpsBought += 1
+            if playerData.powerUpsBought <= 10 {
+                updateAchievements(achievement: .tenPowerUps, percentage: Double(playerData.powerUpsBought) / 10.0)
+                if playerData.powerUpsBought == 10 {
+                    playerData.achievements.append(.tenPowerUps)
+                }
+            }
             saveData()
         }
     }
@@ -235,27 +250,27 @@ class GameManager: ObservableObject {
             playerData.highscore = score
         }
         //Achievements related to score
-//        if score >= 100 {
-//            if !playerData.achievements.contains(Achievements.hundredPoints) {
-//                playerData.achievements.append(Achievements.hundredPoints)
-//                unlockAchievement(achievement: Achievements.hundredPoints)
-//            }
-//            if score >= 500 {
-//                if !playerData.achievements.contains(Achievements.fiveHundredPoints) {
-//                    playerData.achievements.append(Achievements.fiveHundredPoints)
-//                    unlockAchievement(achievement: Achievements.fiveHundredPoints)
-//                }
-//                if score >= 1000 {
-//                    if !playerData.achievements.contains(Achievements.thousandPoints) {
-//                        playerData.achievements.append(Achievements.thousandPoints)
-//                        unlockAchievement(achievement: Achievements.thousandPoints)
-//                    }
-//                }
-//            }
-//        }
+        if score >= 100 {
+            if !playerData.achievements.contains(Achievements.hundredPoints) {
+                playerData.achievements.append(Achievements.hundredPoints)
+                unlockAchievement(achievement: Achievements.hundredPoints)
+            }
+            if score >= 500 {
+                if !playerData.achievements.contains(Achievements.fiveHundredPoints) {
+                    playerData.achievements.append(Achievements.fiveHundredPoints)
+                    unlockAchievement(achievement: Achievements.fiveHundredPoints)
+                }
+                if score >= 1000 {
+                    if !playerData.achievements.contains(Achievements.thousandPoints) {
+                        playerData.achievements.append(Achievements.thousandPoints)
+                        unlockAchievement(achievement: Achievements.thousandPoints)
+                    }
+                }
+            }
+        }
         saveData()
         saveRecord(with: playerData.highscore)
-        
+//        print(playerData.achievements)
     }
     
     func saveData() {
@@ -327,13 +342,102 @@ class GameManager: ObservableObject {
     }
     
     func unlockAchievement(achievement: Achievements) {
-        let achievement = GKAchievement(identifier: "achievement\(achievement.rawValue)")
-        GKAchievement.report([achievement]) { error in
+        let achievementItem = GKAchievement(identifier: "achievement\(achievement.rawValue)")
+        achievementItem.percentComplete = 100
+        achievementItem.showsCompletionBanner = true
+        GKAchievement.report([achievementItem]) { error in
             guard error == nil else {
                 print(error?.localizedDescription ?? "")
                 return
             }
             print("done!")
+            print(self.playerData.achievements)
+            print(achievementItem)
+        }
+    }
+    
+    func handleDeathEvents(value: Int) {
+        switch value {
+        case 0:
+            // Pan
+            playerData.deadToPanTimes += 1
+            if playerData.deadToPanTimes <= 10 {
+                updateAchievements(achievement: .tenFry, percentage: Double(playerData.deadToPanTimes) / 10.0)
+                if playerData.deadToPanTimes == 10 {
+                    playerData.achievements.append(.tenFry)
+                }
+            }
+        case 1:
+            // Toast
+            playerData.deadToToast += 1
+            if playerData.deadToToast <= 10 {
+                updateAchievements(achievement: .tenToaster, percentage: Double(playerData.deadToToast) / 10.0)
+                if playerData.deadToToast == 10 {
+                    playerData.achievements.append(.tenToaster)
+                }
+            }
+        case 2:
+            // Knife
+            playerData.deadToKnife += 1
+            if playerData.deadToKnife <= 10 {
+                updateAchievements(achievement: .tenKnife, percentage: Double(playerData.deadToKnife) / 10.0)
+                if playerData.deadToKnife == 10 {
+                    playerData.achievements.append(.tenKnife)
+                }
+            }
+        case 3:
+            // Spoon
+            playerData.deadToSpoonTimes += 1
+            if playerData.deadToSpoonTimes <= 10 {
+                updateAchievements(achievement: .tenSpoon, percentage: Double(playerData.deadToSpoonTimes) / 10.0)
+                if playerData.deadToSpoonTimes == 10 {
+                    playerData.achievements.append(.tenSpoon)
+                }
+            }
+        case 4:
+            // Spatula
+            playerData.deadToSpatula += 1
+            if playerData.deadToSpatula <= 10 {
+                updateAchievements(achievement: .tenSpatula, percentage: Double(playerData.deadToSpatula) / 10.0)
+                if playerData.deadToSpatula == 10 {
+                    playerData.achievements.append(.tenSpatula)
+                }
+            }
+        default:
+            break
+        }
+        let totalDeaths = playerData.deadToKnife + playerData.deadToToast + playerData.deadToSpatula + playerData.deadToSpoonTimes + playerData.deadToPanTimes
+        if totalDeaths <= 10 {
+            updateAchievements(achievement: .tenDeaths, percentage: Double(totalDeaths)/10.0)
+            updateAchievements(achievement: .hundredDeaths, percentage: Double(totalDeaths)/100.0)
+            if totalDeaths == 10 {
+                playerData.achievements.append(.tenDeaths)
+            }
+        } else if totalDeaths <= 100 {
+            updateAchievements(achievement: .hundredDeaths, percentage: Double(totalDeaths)/100.0)
+            if totalDeaths == 100 {
+                playerData.achievements.append(.hundredDeaths)
+            }
+        }
+        saveData()
+    }
+    
+    func updateAchievements(achievement: Achievements, percentage: Double) {
+        let achievementItem = GKAchievement(identifier: "achievement\(achievement.rawValue)")
+        achievementItem.percentComplete = 100 * percentage
+        
+        print("\(100 * percentage)")
+        print(percentage)
+        achievementItem.showsCompletionBanner = true
+        GKAchievement.report([achievementItem]) { error in
+            print("update achievement")
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            print("done!")
+            print(self.playerData.achievements)
+            print(self.playerData)
         }
     }
 }

@@ -8,6 +8,17 @@
 import Foundation
 
 struct PowerUpsAvailable {
+    #if DEBUG
+    static let powerUps: [PowerUp] = [
+        PowerUp(name: NSLocalizedString("Double Points", comment: ""), description: NSLocalizedString("For one try, your egg shell earnings are doubled", comment: ""), type: .multiplicate2x, value: 2, eggShellCost: 0, shopAvailable: true, image: "doubleIcon"),
+        PowerUp(name: NSLocalizedString("Triple Points", comment: ""), description: NSLocalizedString("For one try, your egg shell earnings are triplicated", comment: ""), type: .multiplicate3x, value: 3),
+        PowerUp(name: NSLocalizedString("Quintuple Points", comment: ""), description: NSLocalizedString("For one try, you egg shell earnings are quintuplicated", comment: ""), type: .multiplicate5x, value: 5),
+        PowerUp(name: NSLocalizedString("One More Life", comment: ""), description: NSLocalizedString("In the next session, if the egg gets cracked it ignores one time", comment: ""), type: .revive1, value: 1, eggShellCost: 0, shopAvailable: true, image: "shieldIcon"),
+        PowerUp(name: NSLocalizedString("Two More Lives", comment: ""), description: NSLocalizedString("In the next session, if the egg gets cracked it ignores two times", comment: ""), type: .revive2, value: 2),
+        PowerUp(name: NSLocalizedString("Eggshells spawn", comment: ""), description: NSLocalizedString("While using this egg, coins can spawn", comment: ""), type: .coinsSpawn, value: 1),
+        PowerUp(name: NSLocalizedString("Different Enemy", comment: ""), description: NSLocalizedString("While using this egg, a new type of enemy spawn.", comment: ""), type: .shovelEnemy, value: 1),
+    ]
+    #else
     static let powerUps: [PowerUp] = [
         PowerUp(name: NSLocalizedString("Double Points", comment: ""), description: NSLocalizedString("For one try, your egg shell earnings are doubled", comment: ""), type: .multiplicate2x, value: 2, eggShellCost: 50, shopAvailable: true, image: "doubleIcon"),
         PowerUp(name: NSLocalizedString("Triple Points", comment: ""), description: NSLocalizedString("For one try, your egg shell earnings are triplicated", comment: ""), type: .multiplicate3x, value: 3),
@@ -17,6 +28,8 @@ struct PowerUpsAvailable {
         PowerUp(name: NSLocalizedString("Eggshells spawn", comment: ""), description: NSLocalizedString("While using this egg, coins can spawn", comment: ""), type: .coinsSpawn, value: 1),
         PowerUp(name: NSLocalizedString("Different Enemy", comment: ""), description: NSLocalizedString("While using this egg, a new type of enemy spawn.", comment: ""), type: .shovelEnemy, value: 1),
     ]
+    #endif
+    
 }
 
 class CosmeticsBank {

@@ -127,6 +127,9 @@ struct ContentView: View {
                 gameManager.gameStatus = status
             }
         })
+        .onReceive(gameManager.scene.deathPublisher, perform: { value in
+            gameManager.handleDeathEvents(value: value)
+        })
         .onAppear {
             gameManager.authenticatePlayer()
             gameManager.intertitialManager.LoadInterstitial()
