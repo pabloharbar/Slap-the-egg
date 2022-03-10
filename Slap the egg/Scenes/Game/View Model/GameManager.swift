@@ -55,7 +55,7 @@ class GameManager: ObservableObject {
     @Published var hasSeenAd: Bool = false
     
     @Published var timeOut: Bool = false
-    let timeOutInterval = TimeInterval(2)
+    let timeOutInterval = TimeInterval(1)
     
     var hasDied: Bool = false
     

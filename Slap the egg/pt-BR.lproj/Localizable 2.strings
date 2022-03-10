@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  Slap the egg
+
+  Created by Luísa Bacichett Trabulci on 11/02/22.
+  
+*/
+//ScoreReviewLabel
+"Points" = "Pontos ";
+"Eggshells" = "Cascas de ovo ";
+
+//ShopView
+"storeTitle" = "loja ";
+"Eggs" = "Ovos ";
+"Power ups" = "Power ups ";
+"Backgrounds" = "Fundos ";
+
+//SettingsView
+"settingsTitle" = "ajustes ";
+"difficulty" = "dificuldade ";
+"sounds" = "sons ";
+"vibration" = "vibração ";
+"Easy" = "fácil ";
+"Hard" = "difícil ";
+"On" = "On ";
+"Off" = "Off ";
+
+//ShopEggCard
+"eggSize"= "tamanho ";
+"selectedItem" = "selecionado ";
+"life" = "vida ";
+"pointCount" = "pontos ";
+
+//PowerUpCard
+"active" = "ativado ";
+"ad" = "ad ";
+
+//Player
+"missed" = "errou ";
+
+//CosmeticsBank
+//PowerUpsAvailable class
+"For one try, your egg shell earnings are doubled" = "Por uma rodada, seus ganhos de cascas de ovos são duplicados ";
+"Double Points" = "Pontos Duplicados ";
+"Triple Points" = "Pontos Triplicados ";
+"For one try, your egg shell earnings are triplicated" = "Por uma rodada, seus ganhos de cascas de ovos são triplicados ";
+"Quintuple Points" = "Pontos Quintuplicados ";
+"For one try, you egg shell earnings are quintuplicated" = "Por uma rodada, seus ganhos de cascas de ovos são quintuplicados ";
+"One More Life" = "Mais uma vida ";
+"In the next session, if the egg gets cracked it ignores one time" = "Na próxima rodada a colisão (ou o dano?) do ovo é ignorada uma vez ";
+"Two More Lives" = "Mais duas vidas ";
+"In the next session, if the egg gets cracked it ignores two times" = "Na próxima rodada a colisão (ou o dano?) do ovo é ignorada duas vezes ";
+//CosmeticsBank class
+"Chicken" = "galinha ";
+"Quail" = "Codorna ";
+"Crocodile" = "Crocodilo ";
+"Ostrich" = "Avestruz ";
+"T-Rex" = "T-Rex ";
+"Bricks" = "Tijolos ";
+"Tiles" = "Azulejos ";
+"Sky" = "Céu ";
+"Space" = "Espaço ";
+
+//ContentView
+"Highest:" = "Recorde: ";
+"Watch a short ad to revive!" = "Assista um vídeo rápido para reviver! ";
+
+//GameScene
+"Tap to play" = "Pressione para jogar ";
+//Intro image
+"introImage" = "introImagem";

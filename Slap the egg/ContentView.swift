@@ -105,7 +105,7 @@ struct ContentView: View {
                     if gameManager.hasSeenAd {
                         gameManager.hasDied = true
                     }
-                    gameManager.intertitialManager.showAd()
+//                    gameManager.intertitialManager.showAd()
                 }
                 playing = false
     
@@ -148,6 +148,7 @@ struct ContentView: View {
                         HStack {
                             Button(action: {
                                 SoundsManager.instance.playSound(sound: .mouthPop, soundEnabled: gameManager.playerData.preferences.soundEnable)
+                                gameManager.intertitialManager.showAd()
                                 gameManager.scene.resetToIntro()
                             }) {
                                 Image("retry")

@@ -27,6 +27,8 @@ final class InterstitialManager: NSObject, GADFullScreenContentDelegate {
             if error != nil {
                 print("failed to load ad")
                 return
+            } else {
+                print("ad loaded")
             }
             interstitial = ad
             interstitial?.fullScreenContentDelegate = self
@@ -46,9 +48,7 @@ final class InterstitialManager: NSObject, GADFullScreenContentDelegate {
             let root = UIApplication.shared.windows.first?.rootViewController
             interstitial!.present(fromRootViewController: root!)
             interstitialEnabled = false
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
-//                self.interstitialEnabled = true
-//            }
+            print("Interstitial disabled")
         }
         else {
             print("Not Ready")
