@@ -14,7 +14,7 @@ struct EggShellLabel: View {
             Image("moneyBackground")
             HStack {
                 Image("eggShell")
-                Text("\(money)")
+                Text("\(money) ")
                     .foregroundColor(.white)
                     .font(Font.custom("Bangers-Regular", size: 36))
             }

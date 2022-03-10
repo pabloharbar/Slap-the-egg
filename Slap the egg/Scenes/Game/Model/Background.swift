@@ -22,10 +22,10 @@ class Background {
         parent.addChild(duplicateNode)
     }
     
-    func update(deltaTime: TimeInterval) {
+    func update(deltaTime: TimeInterval, multiplier: CGFloat) {
         // move
-        node.position.y -= 500 * deltaTime
-        duplicateNode.position.y -= 500 * deltaTime
+        node.position.y -= 500 * deltaTime * multiplier
+        duplicateNode.position.y -= 500 * deltaTime * multiplier
         
         if node.position.y <= startPosition.y && !reset {
             duplicateNode.position.y = node.position.y + node.size.height
@@ -36,5 +36,13 @@ class Background {
             node.position.y = duplicateNode.position.y + duplicateNode.size.height
             reset = false
         }
+    }
+    
+    func changeTexture(data: PlayerData) {
+        let target = CosmeticsBank.shared.backgroundsAvailable.filter { $0.cosmeticsType == data.selectedBackground }.first!
+        let image = target.image
+        let texture = SKTexture(image: UIImage(named: image)!)
+        node.texture = texture
+        duplicateNode.texture = texture
     }
 }

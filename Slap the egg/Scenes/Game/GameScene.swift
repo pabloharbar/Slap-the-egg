@@ -8,43 +8,65 @@
 import SpriteKit
 import Foundation
 import Combine
+import SwiftUI
+import GameKit
 
 enum GameStatus {
     case menu
+    case wait
     case intro
     case playing
     case gameOver
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
+    var difficulty: Difficulty = .easy
+    var vibrationEnabled: Bool = true
+    var soundEnabled: Bool = true
+    
+    // Power Ups
+    @Published var revive = 0 {
+        didSet {
+            revivePublisher.send(self.revive)
+        }
+    }
+    private var PUmultiplicator = 1
+    private var immunity = false
+    private var coinEnabled = false
+    
     // Score publisher setup
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
     public let statusPublisher = CurrentValueSubject<GameStatus, Never>(.menu)
+    public let revivePublisher = CurrentValueSubject<Int, Never>(0)
+    public let deathPublisher = CurrentValueSubject<Int, Never>(0)
 //    private var cancellableSet = Set<AnyCancellable>()
     
 //    @Published var target = 0 // Talvez nao precise do target
     @Published var currentScore = 0 {
         didSet {
             scorePublisher.send(self.currentScore)
+            // Comentar pra ver se para o frame drop
         }
     }
     var scoreLimiter = 0 // auxiliar
-    
+    var speedMultiplier: CGFloat = 1
     // Sprites
     var player: Player!
     var spawner: Spawner!
     var pan: Pan!
     var background: Background!
+    var toaster: Toaster!
+    var coinSpawner: CoinSpawner!
     
     // Labels
     var title: SKNode!
     var titleLabel: SKLabelNode!
-    var gameOverNode: SKSpriteNode!
     
     let deadEgg = SKSpriteNode(imageNamed: "deadEgg")
     var touchIndicator: SKSpriteNode!
     
     var lastUpdate = TimeInterval(0)
+    var previousStatus: GameStatus = .menu
     @Published var status: GameStatus = .menu {
         didSet {
             statusPublisher.send(self.status)
@@ -69,8 +91,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         
         // label setup
         title = self.childNode(withName: "title")!
+        let titleImage = title.childNode(withName: "intro") as! SKSpriteNode
+        titleImage.texture = SKTexture(imageNamed: NSLocalizedString("introImage", comment: ""))
         titleLabel = self.childNode(withName: "menuLabel") as? SKLabelNode
         titleLabel.fontName = "Bangers-Regular"
+        titleLabel.text = NSLocalizedString("Tap to play", comment: "")
         
         touchIndicator = self.childNode(withName: "touch") as? SKSpriteNode
         touchIndicator.removeFromParent()
@@ -86,20 +111,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let animation = SKAction.sequence([fadeOut,fadeIn])
         titleLabel.run(SKAction.repeatForever(animation))
         
-        gameOverNode = self.childNode(withName: "gameOver") as? SKSpriteNode
-        gameOverNode.removeFromParent()
+        // coin Spawner
+        let coinNode = self.childNode(withName: "coinModel") as! SKSpriteNode
+        coinSpawner = CoinSpawner(node: coinNode, parent: self)
         
         // background setup
         let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
         background = Background(node: backgroundNode, parent: self)
         
-        // Publisher setup
-//        scorePublisher.sink(receiveValue: { [unowned self] value in
-////            self.target = value
-//        }).store(in: &cancellableSet)
-//        statusPublisher.sink(receiveValue: { [unowned self] value in
-//
-//        })
+        // toaster setup
+        let toasterNode = self.childNode(withName: "toasterModel")!
+        toaster = Toaster(node: toasterNode, parent: self)
+        
+        // Load from user defaults
+        let data = UserDefaultsWrapper.fetchRecord() ?? PlayerData(highscore: 0, money: 0)
+        loadPlayerData(data: data)
+
     }
     
     
@@ -119,17 +146,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 }
             }
         case .intro:
-            if player.checkTouch(at: pos) {
-                start()
-                player.slap(at: pos, parent: self)
-            }
+            start()
+            player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
+//            touchAnimation(pos: pos)
         case .playing:
-            player.slap(at: pos, parent: self)
-//            player.startFlick(position: pos, currentTime: lastUpdate)
+            player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
+//            touchAnimation(pos: pos)
+            
         case .gameOver:
             reset()
+        case .wait:
+            break
         }
 
+    }
+    
+    func touchAnimation(pos: CGPoint) {
+        let duration: TimeInterval = 0.5
+//        let scaleAnimation = SKAction.scale(to: 2, duration: duration)
+        let lineAnimation = SKAction.customAction(withDuration: duration, actionBlock: { node, timePassed in
+            let circleNode = node as! SKShapeNode
+            circleNode.lineWidth = 10 - 2 * timePassed * 10
+            circleNode.setScale(1 + 4 * timePassed)
+            let passo = Double(timePassed/duration)
+            let r = 230/255 + passo * (176-230)/255
+            let g = 78/255  + passo * (195-78)/255
+            let b = 100/255 + passo * (49-100)/255
+            circleNode.strokeColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+        })
+        let touchNode = SKShapeNode(circleOfRadius: 10)
+        touchNode.fillColor = .clear
+        touchNode.lineWidth = 4
+        let fadeOut = SKAction.fadeOut(withDuration: duration)
+        touchNode.position = pos
+        touchNode.zPosition = 10
+        self.addChild(touchNode)
+//        touchNode.run(scaleAnimation)
+        touchNode.run(lineAnimation, completion: {
+            touchNode.run(fadeOut, completion: {
+                touchNode.removeFromParent()
+            })
+        })
+        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -148,12 +206,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         touchIndicator.removeFromParent()
     }
     
+    func reviveScene() {
+        status = .intro
+        pan.reset()
+        player.reset(parent: self)
+        spawner.reset()
+        coinSpawner.reset()
+        if deadEgg.parent == self {
+            deadEgg.removeFromParent()
+        }
+//        deadEgg.removeFromParent()
+    }
+    
     func reset() {
         status = .menu
-        gameOverNode.removeFromParent()
         self.addChild(title)
         player.reset(parent: self)
         spawner.reset()
+        coinSpawner.reset()
         pan.reset()
         pan.zoomOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -163,6 +233,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
         currentScore = 0
         deadEgg.removeFromParent()
+        speedMultiplier = 1
+    }
+    
+    func resetToIntro() {
+        status = .intro
+        player.reset(parent: self)
+        spawner.reset()
+        coinSpawner.reset()
+        pan.reset()
+        if deadEgg.parent == self {
+            deadEgg.removeFromParent()
+        }
+//        deadEgg.removeFromParent()
+        currentScore = 0
+        speedMultiplier = 1
     }
     
     func gameOver(killedByPan: Bool, deathPosition: CGPoint) {
@@ -171,23 +256,127 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
         if killedByPan {
             pan.gameOver()
+            SoundsManager.instance.playSound(sound: .frying, soundEnabled: soundEnabled)
         } else {
+            SoundsManager.instance.playSound(sound: .eggCrush, soundEnabled: soundEnabled)
             deadEgg.position = deathPosition
-            deadEgg.zPosition = -3
+            deadEgg.zPosition = -2
             deadEgg.zRotation = player.getZRotation()
             self.addChild(deadEgg)
         }
-        
+        revive = 0
+        PUmultiplicator = 1
         player.die()
-        self.addChild(gameOverNode)
+        coinEnabled = false
         status = .gameOver
+    }
+    
+    func holdScene() {
+        if status == .menu {
+            previousStatus = .menu
+            status = .wait
+            titleLabel.removeFromParent()
+            title.removeFromParent()
+        } else if status == .gameOver {
+            previousStatus = .gameOver
+            status = .wait
+        }
+    }
+    
+    func loadPlayerData(data: PlayerData) {
+        // Player update, scale and texture
+        player.changeTexture(selectedEgg: data.selectedEgg)
+        // Background update, texture
+        background.changeTexture(data: data)
+        // Apply power ups
+        for powerUp in data.activePowerUps {
+            applyPowerUp(item: powerUp)
+        }
+    }
+    
+    func applyPowerUp(item: PowerUpType) {
+//        for powerUp in items {
+        switch item {
+        case .multiplicate2x:
+            PUmultiplicator = 2
+        case .multiplicate3x:
+            PUmultiplicator = 3
+        case .multiplicate5x:
+            PUmultiplicator = 5
+        case .revive1:
+            revive += 1
+        case .revive2:
+            revive += 2
+        case .coinsSpawn:
+            // TODO: Coins spawner
+            coinEnabled = true
+        case .shovelEnemy:
+            // TODO: Shovel spawner
+            break
+        }
+//        }
+    }
+    
+    func resumeScene() {
+        if previousStatus == .menu {
+            self.addChild(titleLabel)
+            self.addChild(title)
+            status = .menu
+        } else if previousStatus == .gameOver {
+            status = .gameOver
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
         let eggTouchedPan = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)
-        let eggTouchedEnemy = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
+        
+        let eggTouchedKnife = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 4) || (contact.bodyA.categoryBitMask == 4 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedSpoon = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 8) || (contact.bodyA.categoryBitMask == 8 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedSpatula = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 16) || (contact.bodyA.categoryBitMask == 16 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedToast = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 32) || (contact.bodyA.categoryBitMask == 32 && contact.bodyB.categoryBitMask == 1)
+        
+        // Analytics
+        if eggTouchedPan {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToPan.rawValue)
+            deathPublisher.send(0)
+        }
+        if eggTouchedToast {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToToaster.rawValue)
+            deathPublisher.send(1)
+        }
+        if eggTouchedKnife {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToKnife.rawValue)
+            deathPublisher.send(2)
+        }
+        if eggTouchedSpoon {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpoon.rawValue)
+            deathPublisher.send(3)
+        }
+        if eggTouchedSpatula {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpatula.rawValue)
+            deathPublisher.send(4)
+        }
+        
+        
+        let eggTouchedEnemy = eggTouchedKnife || eggTouchedSpoon || eggTouchedSpatula || eggTouchedToast
+        
         if eggTouchedPan || eggTouchedEnemy {
-            gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
+            if revive <= 0 {
+                if status == .playing {
+                    HapticsManager.instance.notification(type: .error, vibrationEnabled: vibrationEnabled)
+                    gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
+                }
+            } else {
+                if !immunity {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.revive -= 1
+                        print(self.revive)
+                        self.immunity = false
+                    }
+                    player.collide(withPan: eggTouchedPan)
+                }
+                immunity = true
+            }
         }
     }
     
@@ -212,16 +401,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case .intro:
             break
         case .playing:
-            background.update(deltaTime: deltaTime)
-            spawner.update(deltaTime: deltaTime)
+            background.update(deltaTime: deltaTime, multiplier: speedMultiplier)
+            spawner.update(deltaTime: deltaTime, multiplier: speedMultiplier)
+            toaster.update(deltaTime: deltaTime)
+            
+            if coinEnabled {
+                coinSpawner.update(deltaTime: deltaTime, multiplier: speedMultiplier)
+            }
             
             //Score counting
+            speedMultiplier = 1 + CGFloat(currentScore)/500
             scoreLimiter += 1
             if scoreLimiter >= 10 {
                 currentScore += 1
                 scoreLimiter = 0
             }
         case .gameOver:
+            break
+        case .wait:
             break
         }
     }

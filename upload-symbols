@@ -1,0 +1,1 @@
+./Pods/FirebaseCrashlytics/upload-symbols -gsp "Slap the egg"/GoogleService-Info.plist -p ios ../ios-dsyms

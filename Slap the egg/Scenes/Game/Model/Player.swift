@@ -47,32 +47,115 @@ class Player {
         parent.addChild(node)
     }
     
-    func slap(at position: CGPoint, parent: SKNode) {
-        if node.contains(position) {
-            let deltaX = node.position.x - position.x
-            let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
-            let vx = deltaX / normalizedWidth * velocityModule
-            node.physicsBody?.velocity.dx = vx
-            node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
-            node.physicsBody?.angularVelocity = -angularK * deltaX / normalizedWidth
-        } else {
-            let missNode = SKLabelNode()
-            let fadeOut = SKAction.fadeOut(withDuration: 1)
-            missNode.text = "Errou"
-            missNode.fontName = "Bangers-Regular"
-            missNode.fontSize = 40
-            missNode.fontColor = .red
-            missNode.position = position
-            missNode.zPosition = -1
-            parent.addChild(missNode)
-            missNode.run(fadeOut)
+    func changeTexture(selectedEgg: Eggs) {
+        let target = CosmeticsBank.shared.eggsAvailable.filter { $0.cosmeticsType == selectedEgg }.first!
+        let image = target.image
+        let scale: CGFloat
+        node.texture = SKTexture(image: UIImage(named: image)!)
+        switch target.size {
+        case .small:
+            scale = 0.8
+        case .medium:
+            scale = 1.4
+        case .big:
+            scale = 2.2
+        }
+        node.xScale = scale
+        node.yScale = scale
+    }
+    
+    func collide(withPan: Bool) {
+        node.physicsBody?.velocity.dx *= -1
+        node.physicsBody?.velocity.dy *= -1
+//        if abs((node.physicsBody?.velocity.dy)!) <= 100 {
+//            node.physicsBody?.velocity.dy *= 5
+//        }
+//        let treshold: CGFloat = 300
+//        if (node.physicsBody?.velocity.dy)! <= treshold && (node.physicsBody?.velocity.dy)! >= treshold {
+//            node.physicsBody?.velocity.dy = -velocityModule
+//            print("limite")
+//        }
+        if withPan {
+            node.physicsBody?.velocity.dy = velocityModule * 2
         }
     }
     
-    func checkTouch(at point: CGPoint) -> Bool {
-        return node.contains(point)
+    func slap(at position: CGPoint, parent: SKNode, difficulty: Difficulty, vibrationEnabled: Bool) {
+        switch difficulty {
+        case .easy:
+//            SoundsManager.instance.playSound(sound: .faceSlap)
+            HapticsManager.instance.impact(style: .soft, vibrationEnabled: vibrationEnabled)
+            let deltaX = node.position.x - position.x
+            var width: CGFloat
+            if deltaX > 0 {
+                width = parent.scene!.size.width / 2 + node.position.x
+            } else {
+                width = parent.scene!.size.width / 2 - node.position.x
+            }
+//            let width = parent.scene!.size.width
+            let vx = deltaX / width * velocityModule
+            node.physicsBody?.velocity.dx = vx
+            node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+            node.physicsBody?.angularVelocity = -angularK * deltaX / width
+        case .hard:
+            if node.contains(position) {
+                HapticsManager.instance.impact(style: .soft, vibrationEnabled: vibrationEnabled)
+//                SoundsManager.instance.playSound(sound: .faceSlap)
+                let deltaX = node.position.x - position.x
+                let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
+                let vx = deltaX / normalizedWidth * velocityModule
+                node.physicsBody?.velocity.dx = vx
+                node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+                node.physicsBody?.angularVelocity = -angularK * deltaX / normalizedWidth
+            } else {
+                let missNode = SKLabelNode()
+                let fadeOut = SKAction.fadeOut(withDuration: 1)
+                missNode.text = NSLocalizedString("missed", comment: "")
+                missNode.fontName = "Bangers-Regular"
+                missNode.fontSize = 40
+                missNode.fontColor = .red
+                missNode.position = position
+                missNode.zPosition = -1
+                parent.addChild(missNode)
+                missNode.run(fadeOut)
+            }
+        }
+        // Tap em qualquer lugar da tela
+//        let deltaX = node.position.x - position.x
+//        let width = parent.scene!.size.width
+//        let vx = deltaX / width * velocityModule
+//        node.physicsBody?.velocity.dx = vx
+//        node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+//        node.physicsBody?.angularVelocity = -angularK * deltaX / width
+        
+        
+        
+        // Tap dentro do ovo:
+//        if node.contains(position) {
+//            let deltaX = node.position.x - position.x
+//            let normalizedWidth = node.size.width + (node.size.height - node.size.width) * abs(cos(node.zRotation))
+//            let vx = deltaX / normalizedWidth * velocityModule
+//            node.physicsBody?.velocity.dx = vx
+//            node.physicsBody?.velocity.dy = sqrt(pow(velocityModule,2) - pow(vx, 2))
+//            node.physicsBody?.angularVelocity = -angularK * deltaX / normalizedWidth
+//        } else {
+//            let missNode = SKLabelNode()
+//            let fadeOut = SKAction.fadeOut(withDuration: 1)
+//            missNode.text = "Errou"
+//            missNode.fontName = "Bangers-Regular"
+//            missNode.fontSize = 40
+//            missNode.fontColor = .red
+//            missNode.position = position
+//            missNode.zPosition = -1
+//            parent.addChild(missNode)
+//            missNode.run(fadeOut)
+//        }
     }
     
+//    func checkTouch(at point: CGPoint) -> Bool {
+//        return node.contains(point)
+//    }
+//    
     func getZRotation() -> CGFloat {
         return node.zRotation
     }
