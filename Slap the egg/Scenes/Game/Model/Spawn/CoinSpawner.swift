@@ -8,23 +8,25 @@
 import SpriteKit
 
 class CoinSpawner {
-    private var node: SKSpriteNode
+    private var node: SKNode
     private var coins = [SKNode]()
     
     private var animation = SKAction()
+    private var defaultAnimation: SKAction
     
     private let parent: SKNode
     
     private let interval = TimeInterval(2)
     private var currentTime = TimeInterval(0)
     
-    init(node: SKSpriteNode, parent: SKNode) {
+    init(node: SKNode, parent: SKNode) {
         self.node = node
         self.parent = parent
-//        animationSetup()
+        self.defaultAnimation = SKAction()
+        self.animationSetup()
     }
-    
-    func animationSetup(item: SKSpriteNode) {
+
+    func animationSetup() {
         let frame0 = SKTexture(imageNamed: "coin0")
         let frame1 = SKTexture(imageNamed: "coin1")
         let frame2 = SKTexture(imageNamed: "coin2")
@@ -32,22 +34,23 @@ class CoinSpawner {
         let frame4 = SKTexture(imageNamed: "coin4")
         let frame5 = SKTexture(imageNamed: "coin5")
         
-        let frames = SKAction.animate(withNormalTextures: [
+        let frames = SKAction.animate(with: [
             frame0, frame1, frame2, frame3, frame4, frame5
-        ], timePerFrame: 0.5)
+        ], timePerFrame: 0.5, resize: false, restore: false)
         
-        animation = SKAction.repeatForever(frames)
-        item.run(animation)
+        defaultAnimation = SKAction.repeatForever(frames)
     }
     
     func spawn() {
-        let new = node.copy() as! SKSpriteNode
+        let new = node.copy() as! SKNode
         new.position = node.position
         new.position.x = CGFloat.random(in: -300...300)
         coins.append(new)
         parent.addChild(new)
-        animationSetup(item: new)
-//        new.run(animation)
+        
+        let coin = new.childNode(withName: "coinModel")!
+        
+        coin.run(defaultAnimation)
     }
     
     func update(deltaTime: TimeInterval, multiplier: CGFloat) {
@@ -57,12 +60,12 @@ class CoinSpawner {
             spawn()
             currentTime -= interval
         }
-        
+
         // move
         for coin in coins {
             coin.position.y -= 500 * deltaTime * multiplier
         }
-        
+
         if let firstEnemy = coins.first {
             if coins.count > 4 {
                 firstEnemy.removeFromParent()

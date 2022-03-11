@@ -78,15 +78,15 @@ class CosmeticsBank {
             cosmeticsType: .dinossaur,
             eggShellCost: 0,
             size: .big),
-//        Egg(animal: NSLocalizedString("Mummy", comment: ""),
-//            image: "mummyEgg",
-//            powerUp: [
-//                PowerUpsAvailable.powerUps[5],
-//                PowerUpsAvailable.powerUps[6]
-//            ],
-//            cosmeticsType: .mummy,
-//            eggShellCost: 0,
-//            size: .medium),
+        Egg(animal: NSLocalizedString("Mummy", comment: ""),
+            image: "mummyEgg",
+            powerUp: [
+                PowerUpsAvailable.powerUps[5],
+                PowerUpsAvailable.powerUps[6]
+            ],
+            cosmeticsType: .mummy,
+            eggShellCost: 0,
+            size: .medium),
 //        Egg(animal: NSLocalizedString("Zombie", comment: ""),
 //            image: "zombieEgg",
 //            powerUp: [
@@ -147,15 +147,15 @@ class CosmeticsBank {
             cosmeticsType: .dinossaur,
             eggShellCost: 1000,
             size: .big),
-//        Egg(animal: NSLocalizedString("Mummy", comment: ""),
-//            image: "mummyEgg",
-//            powerUp: [
-//                PowerUpsAvailable.powerUps[5],
-//                PowerUpsAvailable.powerUps[6]
-//            ],
-//            cosmeticsType: .mummy,
-//            eggShellCost: 800,
-//            size: .medium),
+        Egg(animal: NSLocalizedString("Mummy", comment: ""),
+            image: "mummyEgg",
+            powerUp: [
+                PowerUpsAvailable.powerUps[5],
+                PowerUpsAvailable.powerUps[6]
+            ],
+            cosmeticsType: .mummy,
+            eggShellCost: 800,
+            size: .medium),
 //        Egg(animal: NSLocalizedString("Zombie", comment: ""),
 //            image: "zombieEgg",
 //            powerUp: [

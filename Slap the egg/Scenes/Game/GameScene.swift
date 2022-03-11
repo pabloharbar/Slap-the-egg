@@ -112,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         titleLabel.run(SKAction.repeatForever(animation))
         
         // coin Spawner
-        let coinNode = self.childNode(withName: "coinModel") as! SKSpriteNode
+        let coinNode = self.childNode(withName: "coinSpawner")!
         coinSpawner = CoinSpawner(node: coinNode, parent: self)
         
         // background setup
@@ -334,6 +334,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let eggTouchedSpoon = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 8) || (contact.bodyA.categoryBitMask == 8 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedSpatula = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 16) || (contact.bodyA.categoryBitMask == 16 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedToast = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 32) || (contact.bodyA.categoryBitMask == 32 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedCoin = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 64) || (contact.bodyA.categoryBitMask == 64 && contact.bodyB.categoryBitMask == 1)
+        
+        if eggTouchedCoin {
+            
+        }
         
         // Analytics
         if eggTouchedPan {
