@@ -1,6 +1,0 @@
-framework module Pods_Slap_the_egg {
-  umbrella header "Pods-Slap the egg-umbrella.h"
-
-  export *
-  module * { export * }
-}

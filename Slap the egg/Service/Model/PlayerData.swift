@@ -55,6 +55,7 @@ class PlayerData: Codable {
     var deadToKnife = 0
     var deadToSpatula = 0
     var deadToToast = 0
+    var deadToShovel = 0
     var powerUpsBought = 0
     
     init(highscore: Int, money: Int) {

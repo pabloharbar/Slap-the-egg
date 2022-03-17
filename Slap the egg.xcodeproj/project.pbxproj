@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FDE506F65F9B45320D4B87E /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE0751D59239BC1F2F33560 /* Pods_OneSignalNotificationServiceExtension.framework */; };
+		189D685C8B5BA871C5D22D47 /* Pods_Slap_the_egg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F1351D4E0AA05CA52960B5 /* Pods_Slap_the_egg.framework */; };
 		5B18A4A027A452BC004A2CD0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A49F27A452BC004A2CD0 /* Player.swift */; };
 		5B18A4A227A48929004A2CD0 /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A127A48929004A2CD0 /* Pan.swift */; };
 		5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18A4A327A48984004A2CD0 /* Spawner.swift */; };
@@ -18,6 +18,7 @@
 		5B2C618C27B6BE9F003EA762 /* AdRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */; };
 		5B2C618E27B6DFF7003EA762 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618D27B6DFF7003EA762 /* BannerView.swift */; };
 		5B2C619027B6E087003EA762 /* AdMobID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C618F27B6E087003EA762 /* AdMobID.swift */; };
+		5B2EEE2227DBDE0B0034D526 /* AppDelegateAdsFlyerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2EEE2127DBDE0B0034D526 /* AppDelegateAdsFlyerExtension.swift */; };
 		5B2F05B127BEE1A700CA6CCB /* InterstitialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F05B027BEE1A700CA6CCB /* InterstitialManager.swift */; };
 		5B2F699027C8195800E5F3C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F698F27C8195800E5F3C0 /* AppDelegate.swift */; };
 		5B3BD69827AC520A0061E4B6 /* ScoreReviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */; };
@@ -53,9 +54,11 @@
 		5BBCD6DC27A3336500A743A7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBCD6DB27A3336500A743A7 /* GameScene.swift */; };
 		5BBCD70627A3399300A743A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5BBCD70527A3399300A743A7 /* GameScene.sks */; };
 		5BEC960627A9D1F800B9CEDF /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */; };
+		5BECAB4227E3D00500FDF676 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BECAB4127E3D00500FDF676 /* StoreKit.framework */; };
+		5BECAB4427E3D10000FDF676 /* AdFreeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECAB4327E3D10000FDF676 /* AdFreeManager.swift */; };
 		5BF06CE427C954B6009EFC62 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF06CE327C954B6009EFC62 /* NotificationService.swift */; };
 		5BF06CE827C954B6009EFC62 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5BF06CE127C954B6009EFC62 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AF3018469C7F20FC39F67FCC /* Pods_Slap_the_egg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E4C7D75F7B8036380154AC /* Pods_Slap_the_egg.framework */; };
+		D23EC63918EAC456EE76AE2A /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7398B89D14CBE5CFF8317B /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		EC5F699A27B439B5001BC98C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F699927B439B5001BC98C /* SoundManager.swift */; };
 		EC5F699F27B5864D001BC98C /* faceSlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F699E27B5864D001BC98C /* faceSlap.mp3 */; };
 		EC5F69A127B58672001BC98C /* mouthPop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC5F69A027B58672001BC98C /* mouthPop.mp3 */; };
@@ -92,7 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01E4C7D75F7B8036380154AC /* Pods_Slap_the_egg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slap_the_egg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24632B2ED7AD05E4E925ECA6 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		5B18A49F27A452BC004A2CD0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5B18A4A127A48929004A2CD0 /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		5B18A4A327A48984004A2CD0 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		5B2C618B27B6BE9F003EA762 /* AdRewardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRewardManager.swift; sourceTree = "<group>"; };
 		5B2C618D27B6DFF7003EA762 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		5B2C618F27B6E087003EA762 /* AdMobID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobID.swift; sourceTree = "<group>"; };
+		5B2EEE2127DBDE0B0034D526 /* AppDelegateAdsFlyerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateAdsFlyerExtension.swift; sourceTree = "<group>"; };
 		5B2F05B027BEE1A700CA6CCB /* InterstitialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialManager.swift; sourceTree = "<group>"; };
 		5B2F698F27C8195800E5F3C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B3BD69727AC520A0061E4B6 /* ScoreReviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReviewLabel.swift; sourceTree = "<group>"; };
@@ -140,14 +144,17 @@
 		5BBCD70527A3399300A743A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5BEC960427A9D1CC00B9CEDF /* Slap-the-egg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Slap-the-egg-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5BEC960527A9D1F800B9CEDF /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
+		5BECAB4127E3D00500FDF676 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5BECAB4327E3D10000FDF676 /* AdFreeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFreeManager.swift; sourceTree = "<group>"; };
 		5BF06CE127C954B6009EFC62 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF06CE327C954B6009EFC62 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		5BF06CE527C954B6009EFC62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BF06CED27C9562A009EFC62 /* Slap the egg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Slap the egg.entitlements"; sourceTree = "<group>"; };
-		B02268C3642242A34C7FE3CC /* Pods-Slap the egg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slap the egg.debug.xcconfig"; path = "Target Support Files/Pods-Slap the egg/Pods-Slap the egg.debug.xcconfig"; sourceTree = "<group>"; };
-		BC1145CA74D083FA75DFC88B /* Pods-Slap the egg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slap the egg.release.xcconfig"; path = "Target Support Files/Pods-Slap the egg/Pods-Slap the egg.release.xcconfig"; sourceTree = "<group>"; };
-		CFC59CE234B63F70E2F55B19 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		EBE0751D59239BC1F2F33560 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70D6F862BC3DE14E864E049F /* Pods-Slap the egg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slap the egg.debug.xcconfig"; path = "Target Support Files/Pods-Slap the egg/Pods-Slap the egg.debug.xcconfig"; sourceTree = "<group>"; };
+		720F601E0BAA285D69A3BA4C /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		9FC0CFEEFDC0784EDFEF4567 /* Pods-Slap the egg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slap the egg.release.xcconfig"; path = "Target Support Files/Pods-Slap the egg/Pods-Slap the egg.release.xcconfig"; sourceTree = "<group>"; };
+		C7F1351D4E0AA05CA52960B5 /* Pods_Slap_the_egg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slap_the_egg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB7398B89D14CBE5CFF8317B /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5F699927B439B5001BC98C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		EC5F699E27B5864D001BC98C /* faceSlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = faceSlap.mp3; sourceTree = "<group>"; };
 		EC5F69A027B58672001BC98C /* mouthPop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouthPop.mp3; sourceTree = "<group>"; };
@@ -158,7 +165,6 @@
 		ECDE210E27AB093E0091AAF1 /* EggShellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggShellLabel.swift; sourceTree = "<group>"; };
 		ECDE211027AB0EFD0091AAF1 /* MenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabel.swift; sourceTree = "<group>"; };
 		ECF2CB4A27B59D64006F6439 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		FABAB193F15ED73C776B7EB4 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,8 +174,9 @@
 			files = (
 				5B3BD6A027AC5B670061E4B6 /* GameKit.framework in Frameworks */,
 				5B5D9E5627D7D0B900BBF0CF /* AppTrackingTransparency.framework in Frameworks */,
-				AF3018469C7F20FC39F67FCC /* Pods_Slap_the_egg.framework in Frameworks */,
+				5BECAB4227E3D00500FDF676 /* StoreKit.framework in Frameworks */,
 				5B5D9E5427D7D0AF00BBF0CF /* AdSupport.framework in Frameworks */,
+				189D685C8B5BA871C5D22D47 /* Pods_Slap_the_egg.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FDE506F65F9B45320D4B87E /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
+				D23EC63918EAC456EE76AE2A /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,11 +259,12 @@
 		5B3BD69E27AC5B670061E4B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BECAB4127E3D00500FDF676 /* StoreKit.framework */,
 				5B5D9E5527D7D0B900BBF0CF /* AppTrackingTransparency.framework */,
 				5B5D9E5327D7D0AF00BBF0CF /* AdSupport.framework */,
 				5B3BD69F27AC5B670061E4B6 /* GameKit.framework */,
-				EBE0751D59239BC1F2F33560 /* Pods_OneSignalNotificationServiceExtension.framework */,
-				01E4C7D75F7B8036380154AC /* Pods_Slap_the_egg.framework */,
+				DB7398B89D14CBE5CFF8317B /* Pods_OneSignalNotificationServiceExtension.framework */,
+				C7F1351D4E0AA05CA52960B5 /* Pods_Slap_the_egg.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -294,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				5B50322C27B30CB300E7E4F4 /* RoundedCornerModifier.swift */,
+				5B2EEE2127DBDE0B0034D526 /* AppDelegateAdsFlyerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 				ECF2CB4A27B59D64006F6439 /* HapticManager.swift */,
 				EC5F699B27B4483C001BC98C /* Sounds */,
 				5B265F7827B5C0BB004E74DB /* AnalyticsManager.swift */,
+				5BECAB4327E3D10000FDF676 /* AdFreeManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -371,10 +381,10 @@
 		5FFC0E343A610FACB4291FBA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CFC59CE234B63F70E2F55B19 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				FABAB193F15ED73C776B7EB4 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
-				B02268C3642242A34C7FE3CC /* Pods-Slap the egg.debug.xcconfig */,
-				BC1145CA74D083FA75DFC88B /* Pods-Slap the egg.release.xcconfig */,
+				720F601E0BAA285D69A3BA4C /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				24632B2ED7AD05E4E925ECA6 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+				70D6F862BC3DE14E864E049F /* Pods-Slap the egg.debug.xcconfig */,
+				9FC0CFEEFDC0784EDFEF4567 /* Pods-Slap the egg.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -415,13 +425,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BBCD6D627A3328400A743A7 /* Build configuration list for PBXNativeTarget "Slap the egg" */;
 			buildPhases = (
-				5AF3831D9797E6AA5743D0F5 /* [CP] Check Pods Manifest.lock */,
+				9E71527E60549E42E2CE003F /* [CP] Check Pods Manifest.lock */,
 				5BBCD6C427A3328300A743A7 /* Sources */,
 				5BBCD6C527A3328300A743A7 /* Frameworks */,
 				5BBCD6C627A3328300A743A7 /* Resources */,
 				5B265F7A27B5C3DF004E74DB /* ShellScript */,
 				5BF06CE927C954B7009EFC62 /* Embed App Extensions */,
-				CAA8EDD33595592A7F7E3815 /* [CP] Embed Pods Frameworks */,
+				5326E6F3F568E13332BA4BF4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -437,7 +447,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BF06CEC27C954B7009EFC62 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				3F7E45B266707686A8A316A1 /* [CP] Check Pods Manifest.lock */,
+				EFA1BE3FC9CC3C065677E7D1 /* [CP] Check Pods Manifest.lock */,
 				5BF06CDD27C954B6009EFC62 /* Sources */,
 				5BF06CDE27C954B6009EFC62 /* Frameworks */,
 				5BF06CDF27C954B6009EFC62 /* Resources */,
@@ -517,48 +527,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F7E45B266707686A8A316A1 /* [CP] Check Pods Manifest.lock */ = {
+		5326E6F3F568E13332BA4BF4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5AF3831D9797E6AA5743D0F5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Slap the egg-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5B265F7A27B5C3DF004E74DB /* ShellScript */ = {
@@ -580,21 +563,48 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		CAA8EDD33595592A7F7E3815 /* [CP] Embed Pods Frameworks */ = {
+		9E71527E60549E42E2CE003F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Slap the egg-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Slap the egg/Pods-Slap the egg-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFA1BE3FC9CC3C065677E7D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -604,12 +614,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BECAB4427E3D10000FDF676 /* AdFreeManager.swift in Sources */,
 				5B3BD6A627AC5C390061E4B6 /* LeaderboardView.swift in Sources */,
 				5B18A4A427A48984004A2CD0 /* Spawner.swift in Sources */,
 				5B2F699027C8195800E5F3C0 /* AppDelegate.swift in Sources */,
 				5B5CD62727AB24F400B74A7C /* UserDefaultsWrapper.swift in Sources */,
 				EC5F699A27B439B5001BC98C /* SoundManager.swift in Sources */,
 				5B5D9E5A27D816D400BBF0CF /* AchievementsViewController.swift in Sources */,
+				5B2EEE2227DBDE0B0034D526 /* AppDelegateAdsFlyerExtension.swift in Sources */,
 				5B3BD6AA27AC80850061E4B6 /* SettingsView.swift in Sources */,
 				5B5CD62227AACD7600B74A7C /* GameManager.swift in Sources */,
 				5B18A4AB27A4A8DE004A2CD0 /* Background.swift in Sources */,
@@ -799,7 +811,7 @@
 		};
 		5BBCD6D727A3328400A743A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B02268C3642242A34C7FE3CC /* Pods-Slap the egg.debug.xcconfig */;
+			baseConfigurationReference = 70D6F862BC3DE14E864E049F /* Pods-Slap the egg.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -827,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -838,7 +850,7 @@
 		};
 		5BBCD6D827A3328400A743A7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC1145CA74D083FA75DFC88B /* Pods-Slap the egg.release.xcconfig */;
+			baseConfigurationReference = 9FC0CFEEFDC0784EDFEF4567 /* Pods-Slap the egg.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -865,7 +877,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -876,7 +888,7 @@
 		};
 		5BF06CEA27C954B7009EFC62 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFC59CE234B63F70E2F55B19 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 720F601E0BAA285D69A3BA4C /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -891,7 +903,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg.OneSignalNotificationServiceExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -903,7 +915,7 @@
 		};
 		5BF06CEB27C954B7009EFC62 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FABAB193F15ED73C776B7EB4 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 24632B2ED7AD05E4E925ECA6 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -918,7 +930,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pessoal.Slap-the-egg.OneSignalNotificationServiceExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

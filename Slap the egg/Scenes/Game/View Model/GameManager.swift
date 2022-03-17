@@ -36,6 +36,7 @@ enum Achievements: Int, Codable {
     case allEggs = 11
     case allBackgrounds = 12
     case tenPowerUps = 13
+    case tenShovel = 14
 }
 
 class GameManager: ObservableObject {
@@ -60,6 +61,7 @@ class GameManager: ObservableObject {
     var hasDied: Bool = false
     
     @Published var score = 0
+    @Published var earnings = 0
     
     @Published var gameStatus: GameStatus = .menu {
         didSet {
@@ -244,7 +246,9 @@ class GameManager: ObservableObject {
     }
     
     func updateData() {
-        playerData.money += PowerUpMultiplicator * score / 10
+        earnings = PowerUpMultiplicator * score / 10 + scene.restoreCoins()
+        playerData.money += earnings
+        scene.resetCoins()
         PowerUpMultiplicator = 1
         if score > playerData.highscore {
             playerData.highscore = score
@@ -312,7 +316,9 @@ class GameManager: ObservableObject {
                 // Game center is not enabled on the user's device
                 self.gcEnabled = false
                 print("Local player could not be authenticated!")
-                print(error!)
+                if error != nil {
+                    print(error!)
+                }
             }
         }
     }
@@ -366,6 +372,8 @@ class GameManager: ObservableObject {
                 if playerData.deadToPanTimes == 10 {
                     playerData.achievements.append(.tenFry)
                 }
+            } else {
+                updateAchievements(achievement: .tenFry, percentage: Double(playerData.deadToPanTimes) / 10.0)
             }
         case 1:
             // Toast
@@ -375,6 +383,8 @@ class GameManager: ObservableObject {
                 if playerData.deadToToast == 10 {
                     playerData.achievements.append(.tenToaster)
                 }
+            } else {
+                updateAchievements(achievement: .tenToaster, percentage: Double(playerData.deadToToast) / 10.0)
             }
         case 2:
             // Knife
@@ -384,6 +394,8 @@ class GameManager: ObservableObject {
                 if playerData.deadToKnife == 10 {
                     playerData.achievements.append(.tenKnife)
                 }
+            } else {
+                updateAchievements(achievement: .tenKnife, percentage: Double(playerData.deadToKnife) / 10.0)
             }
         case 3:
             // Spoon
@@ -393,6 +405,8 @@ class GameManager: ObservableObject {
                 if playerData.deadToSpoonTimes == 10 {
                     playerData.achievements.append(.tenSpoon)
                 }
+            } else {
+                updateAchievements(achievement: .tenSpoon, percentage: Double(playerData.deadToSpoonTimes) / 10.0)
             }
         case 4:
             // Spatula
@@ -402,11 +416,24 @@ class GameManager: ObservableObject {
                 if playerData.deadToSpatula == 10 {
                     playerData.achievements.append(.tenSpatula)
                 }
+            } else {
+                updateAchievements(achievement: .tenSpatula, percentage: Double(playerData.deadToSpatula) / 10.0)
+            }
+        case 5:
+            // Shovel
+            playerData.deadToShovel += 1
+            if playerData.deadToShovel <= 10 {
+                updateAchievements(achievement: .tenShovel, percentage: Double(playerData.deadToShovel) / 10.0)
+                if playerData.deadToShovel == 10 {
+                    playerData.achievements.append(.tenShovel)
+                }
+            } else {
+                updateAchievements(achievement: .tenShovel, percentage: Double(playerData.deadToShovel) / 10.0)
             }
         default:
             break
         }
-        let totalDeaths = playerData.deadToKnife + playerData.deadToToast + playerData.deadToSpatula + playerData.deadToSpoonTimes + playerData.deadToPanTimes
+        let totalDeaths = playerData.deadToKnife + playerData.deadToToast + playerData.deadToSpatula + playerData.deadToSpoonTimes + playerData.deadToPanTimes + playerData.deadToShovel
         if totalDeaths <= 10 {
             updateAchievements(achievement: .tenDeaths, percentage: Double(totalDeaths)/10.0)
             updateAchievements(achievement: .hundredDeaths, percentage: Double(totalDeaths)/100.0)
@@ -418,6 +445,9 @@ class GameManager: ObservableObject {
             if totalDeaths == 100 {
                 playerData.achievements.append(.hundredDeaths)
             }
+        } else {
+            updateAchievements(achievement: .tenDeaths, percentage: Double(totalDeaths)/10.0)
+            updateAchievements(achievement: .hundredDeaths, percentage: Double(totalDeaths)/100.0)
         }
         saveData()
     }
@@ -425,9 +455,6 @@ class GameManager: ObservableObject {
     func updateAchievements(achievement: Achievements, percentage: Double) {
         let achievementItem = GKAchievement(identifier: "achievement\(achievement.rawValue)")
         achievementItem.percentComplete = 100 * percentage
-        
-        print("\(100 * percentage)")
-        print(percentage)
         achievementItem.showsCompletionBanner = true
         GKAchievement.report([achievementItem]) { error in
             print("update achievement")

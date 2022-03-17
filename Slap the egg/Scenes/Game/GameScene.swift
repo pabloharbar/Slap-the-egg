@@ -33,6 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     private var PUmultiplicator = 1
     private var immunity = false
     private var coinEnabled = false
+    private var coinsAccumulated = 0
     
     // Score publisher setup
     public let scorePublisher = CurrentValueSubject<Int, Never>(0)
@@ -61,6 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     // Labels
     var title: SKNode!
     var titleLabel: SKLabelNode!
+    var tapAnywhereLabel: SKLabelNode!
     
     let deadEgg = SKSpriteNode(imageNamed: "deadEgg")
     var touchIndicator: SKSpriteNode!
@@ -97,6 +99,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         titleLabel.fontName = "Bangers-Regular"
         titleLabel.text = NSLocalizedString("Tap to play", comment: "")
         
+        tapAnywhereLabel = self.childNode(withName: "tapAnywhere") as? SKLabelNode
+        tapAnywhereLabel.fontName = "Bangers-Regular"
+        tapAnywhereLabel.text = NSLocalizedString("Touch anywhere to play!", comment: "")
+        tapAnywhereLabel.removeFromParent()
+        
+        // Touch indicator animation
         touchIndicator = self.childNode(withName: "touch") as? SKSpriteNode
         touchIndicator.removeFromParent()
         let approximate = SKAction.moveBy(x: -100, y: 50, duration: 0.5)
@@ -145,9 +153,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     self.beginTouchAnimation()
                 }
             }
+            self.addChild(tapAnywhereLabel)
         case .intro:
             start()
             player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
+            tapAnywhereLabel.removeFromParent()
 //            touchAnimation(pos: pos)
         case .playing:
             player.slap(at: pos, parent: self, difficulty: difficulty, vibrationEnabled: vibrationEnabled)
@@ -190,14 +200,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         
     }
     
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-   
-    }
-    
     func start() {
         status = .playing
         player.start()
@@ -215,7 +217,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         if deadEgg.parent == self {
             deadEgg.removeFromParent()
         }
-//        deadEgg.removeFromParent()
     }
     
     func reset() {
@@ -312,7 +313,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             coinEnabled = true
         case .shovelEnemy:
             // TODO: Shovel spawner
-            break
+            spawner.shovelEnabled = true
         }
 //        }
     }
@@ -334,10 +335,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let eggTouchedSpoon = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 8) || (contact.bodyA.categoryBitMask == 8 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedSpatula = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 16) || (contact.bodyA.categoryBitMask == 16 && contact.bodyB.categoryBitMask == 1)
         let eggTouchedToast = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 32) || (contact.bodyA.categoryBitMask == 32 && contact.bodyB.categoryBitMask == 1)
-        let eggTouchedCoin = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 64) || (contact.bodyA.categoryBitMask == 64 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedShovel = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 64) || (contact.bodyA.categoryBitMask == 64 && contact.bodyB.categoryBitMask == 1)
+        let eggTouchedCoin = (contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 128) || (contact.bodyA.categoryBitMask == 128 && contact.bodyB.categoryBitMask == 1)
         
         if eggTouchedCoin {
-            
+            let coinRemoved = coinSpawner.removeCoin(nextTo: contact.contactPoint)
+            if coinRemoved {
+                coinsAccumulated += 5
+                let textNode = SKLabelNode(text: "+5")
+                textNode.fontColor = .yellow
+                textNode.fontName = "Bangers-Regular"
+                textNode.position = contact.contactPoint
+                textNode.zPosition = 4
+                self.addChild(textNode)
+                let fade = SKAction.fadeOut(withDuration: 1)
+                textNode.run(fade, completion: {
+                    textNode.removeFromParent()
+                })
+            }
         }
         
         // Analytics
@@ -361,15 +376,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToSpatula.rawValue)
             deathPublisher.send(4)
         }
+        if eggTouchedShovel {
+            AnalyticsManager.logEvent(eventName: AnalyticsEvents.deadToShovel.rawValue)
+            deathPublisher.send(5)
+        }
         
-        
-        let eggTouchedEnemy = eggTouchedKnife || eggTouchedSpoon || eggTouchedSpatula || eggTouchedToast
+        let eggTouchedEnemy = eggTouchedKnife || eggTouchedSpoon || eggTouchedSpatula || eggTouchedToast || eggTouchedShovel
         
         if eggTouchedPan || eggTouchedEnemy {
             if revive <= 0 {
                 if status == .playing {
                     HapticsManager.instance.notification(type: .error, vibrationEnabled: vibrationEnabled)
                     gameOver(killedByPan: eggTouchedPan, deathPosition: contact.contactPoint)
+                    spawner.shovelEnabled = false
                 }
             } else {
                 if !immunity {
@@ -383,6 +402,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 immunity = true
             }
         }
+    }
+    
+    // 
+    func restoreCoins() -> Int {
+        return coinsAccumulated
+    }
+    
+    func resetCoins() {
+        coinsAccumulated = 0
     }
     
     func beginTouchAnimation() {
@@ -430,17 +458,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
 }

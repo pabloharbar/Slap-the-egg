@@ -53,6 +53,18 @@ class CoinSpawner {
         coin.run(defaultAnimation)
     }
     
+    func removeCoin(nextTo point: CGPoint) -> Bool {
+        for coin in coins {
+            if coin.contains(point) {
+                coin.removeFromParent()
+                let coinIndex = coins.firstIndex(of: coin)!
+                coins.remove(at: coinIndex)
+                return true
+            }
+        }
+        return false
+    }
+    
     func update(deltaTime: TimeInterval, multiplier: CGFloat) {
         // interval
         currentTime += deltaTime

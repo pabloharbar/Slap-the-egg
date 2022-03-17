@@ -11,6 +11,7 @@ import Firebase
 import AppTrackingTransparency
 import AdSupport
 import FBSDKCoreKit
+import AppsFlyerLib
 
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,17 +39,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(requestDataPermission), name: UIApplication.didBecomeActiveNotification, object: nil)
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.requestDataPermission()
-//            print("oh yeah")
-//        }
+        // Apps Flyer config
+        AppsFlyerLib.shared().appsFlyerDevKey = "hmWVGzJMmKWo4tsGAHWa97"
+        AppsFlyerLib.shared().appleAppID = "1607902004"
         
-        // Chamar linha (ver com a Naomi)
+        /* Uncomment the following line to see AppsFlyer debug logs */
+//        AppsFlyerLib.shared().isDebug = true
         
+        // Must be called AFTER setting appsFlyerDevKey and appleAppID
+        AppsFlyerLib.shared().delegate = self
+        // SceneDelegate support
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActiveNotification),
+                                               // For Swift version < 4.2 replace name argument with the commented out code
+                                               name: UIApplication.didBecomeActiveNotification, //.UIApplicationDidBecomeActive for Swift < 4.2
+                                               object: nil)
+
         ApplicationDelegate.shared.application(
                             application,
                             didFinishLaunchingWithOptions: launchOptions)
         return true
+    }
+    
+    @objc func didBecomeActiveNotification() {
+        AppsFlyerLib.shared().start()
     }
     
     func application(

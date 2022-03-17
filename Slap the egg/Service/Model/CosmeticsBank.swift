@@ -87,14 +87,15 @@ class CosmeticsBank {
             cosmeticsType: .mummy,
             eggShellCost: 0,
             size: .medium),
-//        Egg(animal: NSLocalizedString("Zombie", comment: ""),
-//            image: "zombieEgg",
-//            powerUp: [
-//                PowerUpsAvailable.powerUps[6]
-//            ],
-//            cosmeticsType: .zombie,
-//            eggShellCost: 0,
-//            size: .medium),
+        Egg(animal: NSLocalizedString("Zombie", comment: ""),
+            image: "zombieEgg",
+            powerUp: [
+                PowerUpsAvailable.powerUps[1],
+                PowerUpsAvailable.powerUps[6]
+            ],
+            cosmeticsType: .zombie,
+            eggShellCost: 0,
+            size: .medium),
     ]
     
     let backgroundsAvailable: [BackgroundModel] = [
@@ -156,14 +157,15 @@ class CosmeticsBank {
             cosmeticsType: .mummy,
             eggShellCost: 800,
             size: .medium),
-//        Egg(animal: NSLocalizedString("Zombie", comment: ""),
-//            image: "zombieEgg",
-//            powerUp: [
-//                PowerUpsAvailable.powerUps[6]
-//            ],
-//            cosmeticsType: .zombie,
-//            eggShellCost: 400,
-//            size: .medium),
+        Egg(animal: NSLocalizedString("Zombie", comment: ""),
+            image: "zombieEgg",
+            powerUp: [
+                PowerUpsAvailable.powerUps[1],
+                PowerUpsAvailable.powerUps[6]
+            ],
+            cosmeticsType: .zombie,
+            eggShellCost: 400,
+            size: .medium),
     ]
     
     let backgroundsAvailable: [BackgroundModel] = [
@@ -171,9 +173,9 @@ class CosmeticsBank {
         BackgroundModel(name: NSLocalizedString("Tiles", comment: ""), image: "tilesBackground", eggShellCost: 40, type: .tiles),
         BackgroundModel(name: NSLocalizedString("Sky", comment: ""), image: "skyBackground", eggShellCost: 150, type: .sky),
         BackgroundModel(name: NSLocalizedString("Space", comment: ""), image: "spaceBackground", eggShellCost: 500, type: .space),
-//        BackgroundModel(name: NSLocalizedString("Pumpkins", comment: ""), image: "pumpkinBackground", eggShellCost: 450, type: .pumpkin),
-//        BackgroundModel(name: NSLocalizedString("Eyes", comment: ""), image: "eyesBackground", eggShellCost: 250, type: .eyes),
-//        BackgroundModel(name: NSLocalizedString("Ghosts", comment: ""), image: "ghostBackground", eggShellCost: 200, type: .ghosts),
+        BackgroundModel(name: NSLocalizedString("Pumpkins", comment: ""), image: "pumpkinBackground", eggShellCost: 450, type: .pumpkin),
+        BackgroundModel(name: NSLocalizedString("Eyes", comment: ""), image: "eyesBackground", eggShellCost: 250, type: .eyes),
+        BackgroundModel(name: NSLocalizedString("Ghosts", comment: ""), image: "ghostBackground", eggShellCost: 200, type: .ghosts),
     ]
     
     #endif
