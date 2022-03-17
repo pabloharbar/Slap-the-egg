@@ -105,7 +105,6 @@ struct ContentView: View {
                     if gameManager.hasSeenAd {
                         gameManager.hasDied = true
                     }
-//                    gameManager.intertitialManager.showAd()
                 }
                 playing = false
     
@@ -168,7 +167,7 @@ struct ContentView: View {
                     
                    
                     VStack {
-                        ScoreReviewLabel(sessionScore: $gameManager.score, multiplier: $multiplier)
+                        ScoreReviewLabel(sessionScore: $gameManager.score, earnings: $gameManager.earnings, multiplier: $multiplier)
                             .padding(.bottom,20)
                         Text("\(NSLocalizedString("Highest:", comment: "")) \(gameManager.playerData.highscore) ")
                             .font(.custom("Bangers-Regular", size: 36))

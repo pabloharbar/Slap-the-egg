@@ -24,6 +24,7 @@ enum AnalyticsEvents: String {
     case deadToSpoon = "dead_spoon"
     case deadToSpatula = "dead_spatula"
     case deadToToaster = "dead_toaster"
+    case deadToShovel = "dead_shovel"
     
     case playedInHardMode = "play_hard"
     case playWithEgg = "play_egg_count"

@@ -1,4 +1,7 @@
 PODS:
+  - AppsFlyerFramework (6.5.3):
+    - AppsFlyerFramework/Main (= 6.5.3)
+  - AppsFlyerFramework/Main (6.5.3)
   - FBAEMKit (13.0.0):
     - FBSDKCoreKit_Basics (= 13.0.0)
   - FBSDKCoreKit (13.0.0):
@@ -110,6 +113,7 @@ PODS:
   - PromisesObjC (2.0.0)
 
 DEPENDENCIES:
+  - AppsFlyerFramework
   - FBSDKCoreKit
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -118,6 +122,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AppsFlyerFramework
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -137,6 +142,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
+  AppsFlyerFramework: daff1a8ac502cef2c9408794bac68c852e3483d4
   FBAEMKit: 11a0bcdc7a88e26ed764bcf56372afc6cbbbdcd9
   FBSDKCoreKit: 00e1e751257e1005304fa29cb683d2dfe008f41a
   FBSDKCoreKit_Basics: 96ec2ddb67a032e54f0754ea3d59db6f84f42389
@@ -155,6 +161,6 @@ SPEC CHECKSUMS:
   OneSignalXCFramework: fe027712118f2862ab193b72270487f11450ea63
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 2ad2e64a66df64adea8f3d17d94cbb0885d89538
+PODFILE CHECKSUM: a30c0778eee95e7927841ebc8457b9c3ab405962
 
 COCOAPODS: 1.11.2

@@ -67,5 +67,6 @@
 
 //GameScene
 "Tap to play" = "Pressione para jogar ";
+"Touch anywhere to play!" = "Toque em qualquer lugar para jogar!";
 //Intro image
 "introImage" = "introImagem";

@@ -13,9 +13,14 @@ enum Enemies: CaseIterable {
     case knife
     case spoon
     case spatula
+    case shovel
     
-    static func random() -> Enemies {
-        let sorted = Int.random(in: 0..<Enemies.allCases.count)
+    static func random(shovelEnabled: Bool) -> Enemies {
+        var sortLimit = Enemies.allCases.count
+        if !shovelEnabled {
+            sortLimit = Enemies.allCases.count - 1
+        }
+        let sorted = Int.random(in: 0..<sortLimit)
         switch sorted {
         case 0:
             return .knife
@@ -23,6 +28,8 @@ enum Enemies: CaseIterable {
             return .spoon
         case 2:
             return .spatula
+        case 3:
+            return .shovel
         default:
             return .knife
         }
@@ -30,15 +37,14 @@ enum Enemies: CaseIterable {
 }
 
 class Spawner {
-    
-//    private var path: UIBezierPath
-//    private var paths = [UIBezierPath]()
     private var spawner: SKNode!
     private var parent: SKNode
     private var moveSpeedMultiplier: CGFloat = 1
     
     private var enemies = [SKNode]()
+    var shovelEnabled: Bool = false
     
+//    private var interval = TimeInterval(4)
     private let interval = TimeInterval(2)
     private var currentTime = TimeInterval(0)
     
@@ -52,8 +58,11 @@ class Spawner {
     }
     
     func spawn() {
-        let enemy = Enemies.random()
+        let enemy = Enemies.random(shovelEnabled: shovelEnabled)
         switch enemy {
+        case .shovel:
+            spawnShovel(inversed: false)
+            spawnShovel(inversed: true)
         case .knife:
             spawnKnife()
         case .spoon:
@@ -63,6 +72,41 @@ class Spawner {
             spawnSpatula()
             break
         }
+    }
+    
+    func spawnShovel(inversed: Bool) {
+        let new = spawner.childNode(withName: "shovelModel")!.copy() as! SKNode
+//        let copy = spawner.childNode(withName: "shovelModel")!.copy() as! SKNode
+        
+        let shovel = new.childNode(withName: "shovel")!
+        new.position = startPosition
+        
+//        let inversed = Bool.random()
+        if inversed {
+            shovel.position.x = -shovel.position.x
+            shovel.zRotation = .pi
+        }
+        // Path Setup
+        let path = generateShortPath(node: new.childNode(withName: "shovel") as! SKSpriteNode)
+        let dashes: [CGFloat] = [20,40]
+        let dashedPath = path.cgPath.copy(dashingWithPhase: 10, lengths: dashes)
+        let pathNode = SKShapeNode(path: dashedPath)
+        pathNode.strokeColor = .gray
+        pathNode.lineWidth = 10
+        pathNode.zPosition = -5
+        pathNode.lineCap = .round
+        
+        // Animation Setup
+        let move = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: 200 * moveSpeedMultiplier)
+        let animation = SKAction.repeatForever(move)
+        
+        // Add sprites
+        parent.addChild(new)
+        new.addChild(pathNode)
+        shovel.position = pathNode.position
+//        new.childNode(withName: "shovel")!.zRotation = .pi / 2
+        shovel.run(animation)
+        enemies.append(new)
     }
     
     func spawnKnife() {
@@ -167,6 +211,23 @@ class Spawner {
             path.addLine(to: CGPoint(x: -(750 - 100)/2, y: -CGFloat(incline)))
         }
 
+        path.close()
+        return path
+    }
+    
+    func generateShortPath(node: SKSpriteNode) -> UIBezierPath {
+        let start = node.position
+        var end = CGPoint()
+        if node.position.x > 0 {
+            end =  CGPoint(x: node.position.x - 300, y: node.position.y)
+        } else {
+            end = CGPoint(x: node.position.x + 300, y: node.position.y)
+        }
+        let path = UIBezierPath()
+//        path.move(to: start)
+//        path.addLine(to: end)
+        path.move(to: end)
+        path.addLine(to: start)
         path.close()
         return path
     }
